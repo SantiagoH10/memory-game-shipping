@@ -1,0 +1,8 @@
+{
+  "setName": "Animals",
+  "images": [
+    { "name": "Tanker", "filename": "tanker.jpg" },
+    { "name": "Ro-Ro", "filename": "roro.jpeg"},
+    { "name": "Barge", "filename": "barge.jpg"}
+  ]
+}
