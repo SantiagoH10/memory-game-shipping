@@ -190,56 +190,105 @@ function MemoryGame() {
     if (state.gameStatus === "evaluating") {
       const timer = setTimeout(() => {
         dispatch({ type: ACTIONS.FLIP_BACK });
-      }, 700);
+      }, 500);
       
       return () => clearTimeout(timer);
     }
   }, [state.gameStatus]);
 
+  const gridSize = Math.sqrt(state.images.length);
+  const isValidGrid = Number.isInteger(gridSize) && gridSize > 0;
   
+  if (!isValidGrid) {
+    return (
+      <div className="p-6 bg-gray-200 min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-red-600 mb-4">Invalid Grid</h2>
+          <p className="text-gray-700">
+            Incorrect number of cards ({state.images.length}). 
+            Need a perfect square number like 16, 25, or 36 cards.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const rowLabels = Array.from({length: gridSize}, (_, i) => String.fromCharCode(65 + i));
+  const columnLabels = Array.from({length: gridSize}, (_, i) => i + 1);
+
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="grid grid-cols-4 gap-4 max-w-4xl mx-auto">
-        {state.images.map((img) => (
-          <button 
-            key={img.id}
-            disabled={img.isMatched}
-            onClick={() => {dispatch({type: ACTIONS.CARD_CLICK, payload: img.id})}}
-            className={`
-              relative p-4 rounded-lg border-2 transition-all duration-300 transform hover:scale-105
-              ${img.isFlipped 
-                ? 'bg-white border-blue-500 shadow-lg' 
-                : 'bg-blue-600 border-blue-700 hover:bg-blue-700'
-              }
-              ${img.isMatched 
-                ? 'opacity-50 cursor-not-allowed' 
-                : 'cursor-pointer'
-              }
-            `}
-          >
-            {img.isFlipped ? (
-              <>
-                <img 
-                  src={img.src} 
-                  alt={img.name}
-                  className="w-full h-32 object-cover rounded-md mb-2"
-                />
-                <p className="text-sm font-medium text-gray-800">{img.name}</p>
-              </>
-            ) : (
-              <div className="w-full h-32 flex items-center justify-center">
-                <div className="text-white text-2xl font-bold">?</div>
-              </div>
-            )}
-          </button>
+    <div className="p-6 bg-gray-200 min-h-screen">
+      <div className={`grid gap-4 max-w-5xl mx-auto`} 
+          style={{ 
+            gridTemplateColumns: `auto repeat(${gridSize}, 1fr)`,
+            gridTemplateRows: `auto repeat(${gridSize}, 1fr)`
+          }}>
+        
+        {/* Empty top-left corner */}
+        <div className="flex items-center justify-center"></div>
+        
+        {/* Column numbers header */}
+        {columnLabels.map((num, index) => (
+          <div key={`col-${index}`} className="flex items-center justify-center h-8">
+            <span className="text-lg font-bold text-gray-600 bg-gray-300 px-3 py-1 rounded-md">
+              {num}
+            </span>
+          </div>
+        ))}
+        
+        {/* Rows with labels and cards */}
+        {rowLabels.map((letter, rowIndex) => (
+          <>
+            {/* Row letter label */}
+            <div key={`row-${rowIndex}`} className="flex items-center justify-center">
+              <span className="text-lg font-bold text-gray-600 bg-gray-300 px-3 py-1 rounded-md">
+                {letter}
+              </span>
+            </div>
+            
+            {/* Cards for this row */}
+            {state.images.slice(rowIndex * gridSize, (rowIndex + 1) * gridSize).map((img) => (
+              <button 
+                key={img.id}
+                disabled={img.isMatched || img.isFlipped}
+                onClick={() => {dispatch({type: ACTIONS.CARD_CLICK, payload: img.id})}}
+                className={`
+                  relative p-1 rounded-lg border-2 h-44
+                  ${img.isFlipped 
+                    ? 'bg-white border-ccaqua shadow-lg' 
+                    : 'bg-blue-500 hover:bg-blue-400'
+                  }
+                  ${img.isMatched 
+                    ? 'bg-green-100 border-green-400 shadow-green-400/50 shadow-xl' 
+                    : 'cursor-pointer transition-all duration-300 transform hover:scale-105'
+                  }
+                `}
+              >
+                {img.isFlipped ? (
+                  <>
+                    <img 
+                      src={img.src} 
+                      alt={img.name}
+                      className="w-full h-32 object-cover rounded-md mb-1"
+                    />
+                    <p className="text-sm font-bold text-gray-800">{img.name}</p>
+                  </>
+                ) : (
+                  <div className="w-full h-32 flex items-center justify-center">
+                    <div className="text-white text-2xl font-bold">?</div>
+                  </div>
+                )}
+              </button>
+            ))}
+          </>
         ))}
       </div>
       
       {state.gameStatus === 'newGame' && (
-        <GameOverlay onNewGame = {() => {dispatch({ type: ACTIONS.NEW_GAME})}} />
+        <GameOverlay onNewGame={() => {dispatch({ type: ACTIONS.NEW_GAME})}} />
       )}
     </div>
-  )
+  );
 }
 //#endregion
 
