@@ -3,6 +3,11 @@
   "images": [
     { "name": "Tanker", "filename": "tanker.jpg" },
     { "name": "Ro-Ro", "filename": "roro.jpeg"},
-    { "name": "Barge", "filename": "barge.jpg"}
+    { "name": "Barge", "filename": "barge.jpg"},
+    { "name": "MSC Irina", "filename": "mscIrina.jpeg"},
+    { "name": "Feeder", "filename": "feeder.jpeg"},
+    { "name": "Ever Alot", "filename": "everAlot.png"},
+    { "name": "LNG", "filename": "lng.jpg"},
+    { "name": "Jacques Saadé", "filename": "jacquesSaade.jpg"}
   ]
 }

@@ -11,12 +11,18 @@ const imageModules = import.meta.glob('./assets/**/*.{png,jpg,jpeg,gif,svg}', { 
 //#region MS header
 function MySociabble () {
   return(
-    <div className="bg-ccblue py-12 px-6 text-center">
-      <p className="font-ssp text-white text-xl md:text-3xl font-bold tracking-wide mb-8 max-w-4xl mx-auto leading-tight">
-        WE IMAGINE BETTER WAYS TO SERVE A WORLD IN MOTION
-      </p>
-      <img src={ccLogo} alt="CMA CGM Logo" className="mx-auto h-16 md:h-20 filter brightness-0 invert"/>
-    </div>
+    <header className="w-full bg-ccblue shadow-lg border-b-2 border-blue-700 -mt-2">
+      <div className="container mx-auto py-8 px-6 text-center">
+        <p className="font-ssp text-white text-lg md:text-2xl lg:text-3xl font-bold tracking-wide mb-6 max-w-4xl mx-auto leading-tight">
+          WE IMAGINE BETTER WAYS TO SERVE A WORLD IN MOTION
+        </p>
+        <img 
+          src={ccLogo} 
+          alt="CMA CGM Logo" 
+          className="mx-auto h-12 md:h-16 lg:h-20 filter brightness-0 invert transition-transform duration-300 hover:scale-105"
+        />
+      </div>
+    </header>
   )
 }
 //#endregion
@@ -38,23 +44,99 @@ function MySociabble () {
 const initState = {
   gameStatus: "newGame",
   imageSet: "vessels",
-  images: []
-
+  images: [],
+  playerGuess: {first: null, second: null},
+  moves: 0,
+  mistakes: 0
 };
 
 const ACTIONS = {
   NEW_GAME: "NEW_GAME",
-  LOAD_IMAGE_SET: "LOAD_IMAGE_SET"
-
+  LOAD_IMAGES: "LOAD_IMAGES",
+  CARD_CLICK: "CARD_CLICK",
+  FLIP_BACK: "FLIP_BACK"
 };
 
 function gameReducer (state, action) {
   switch (action.type) {
     case ACTIONS.NEW_GAME:
-      return {...state, gameStatus: "play"}
+      console.log("games started")
+      return {...state, gameStatus: "firstGuess"}
 
     case ACTIONS.LOAD_IMAGES:
       return {...state, images: action.payload}
+
+    case ACTIONS.CARD_CLICK:
+      const clickedCardId = action.payload;
+      
+      if (state.gameStatus === "firstGuess") {
+        return {
+          ...state,
+          playerGuess: {
+            ...state.playerGuess,
+            first: clickedCardId
+          },
+          images: state.images.map(img =>
+            img.id === clickedCardId
+              ? { ...img, isFlipped: true }
+              : img
+          ),
+          moves: state.moves + 1,
+          gameStatus: "secondGuess"
+        };
+      } 
+      
+      else if (state.gameStatus === "secondGuess") {
+        const firstGuessId = state.playerGuess.first;
+        const secondGuessId = clickedCardId;
+        
+        const firstImage = state.images.find(img => img.id === firstGuessId);
+        const secondImage = state.images.find(img => img.id === secondGuessId);
+        
+        const isMatch = firstImage.pairId === secondImage.pairId;
+        
+        if (isMatch) {
+          return {
+            ...state,
+            playerGuess: { first: null, second: null },
+            images: state.images.map(img => {
+              if (img.id === firstGuessId || img.id === secondGuessId) {
+                return { ...img, isMatched: true, isFlipped: true };
+              }
+              return img;
+            }),
+            moves: state.moves + 1,
+            gameStatus: "firstGuess"
+          };
+        } else {
+          return {
+            ...state,
+            playerGuess: { first: firstGuessId, second: secondGuessId },
+            images: state.images.map(img => {
+              if (img.id === firstGuessId || img.id === secondGuessId) {
+                return { ...img, isFlipped: true };
+              }
+              return img;
+            }),
+            moves: state.moves + 1,
+            gameStatus: "evaluating"
+          };
+        }
+      }
+    
+    case ACTIONS.FLIP_BACK:
+      return {
+        ...state,
+        playerGuess: { first: null, second: null },
+        images: state.images.map(img => {
+          // Only flip back cards that are flipped but not matched
+          if (img.isFlipped && !img.isMatched) {
+            return { ...img, isFlipped: false };
+          }
+          return img;
+        }),
+        gameStatus: "firstGuess"
+      };
 
     default: 
       return state
@@ -82,7 +164,7 @@ function MemoryGame() {
           };
         })
       );
-      
+         
       const dupImages = images.flatMap((img, i) => {
         img.pairId = i;
         return [img, {...img}]
@@ -93,8 +175,6 @@ function MemoryGame() {
       });
 
       const shuffledImages = randShuffle(dupImages);
-
-      console.log(shuffledImages)
       
       dispatch({ 
         type: ACTIONS.LOAD_IMAGES, 
@@ -106,17 +186,54 @@ function MemoryGame() {
 
   },[state.imageSet]);
 
+  useEffect(() => {
+    if (state.gameStatus === "evaluating") {
+      const timer = setTimeout(() => {
+        dispatch({ type: ACTIONS.FLIP_BACK });
+      }, 700);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [state.gameStatus]);
+
+  
   return (
-    <div className = "">
-      <div>
+    <div className="p-6 bg-gray-100 min-h-screen">
+      <div className="grid grid-cols-4 gap-4 max-w-4xl mx-auto">
         {state.images.map((img) => (
-          <button key={img.id}>
-            <img src={img.src} alt={img.name}/>
-            <p>{img.name}</p>
+          <button 
+            key={img.id}
+            disabled={img.isMatched}
+            onClick={() => {dispatch({type: ACTIONS.CARD_CLICK, payload: img.id})}}
+            className={`
+              relative p-4 rounded-lg border-2 transition-all duration-300 transform hover:scale-105
+              ${img.isFlipped 
+                ? 'bg-white border-blue-500 shadow-lg' 
+                : 'bg-blue-600 border-blue-700 hover:bg-blue-700'
+              }
+              ${img.isMatched 
+                ? 'opacity-50 cursor-not-allowed' 
+                : 'cursor-pointer'
+              }
+            `}
+          >
+            {img.isFlipped ? (
+              <>
+                <img 
+                  src={img.src} 
+                  alt={img.name}
+                  className="w-full h-32 object-cover rounded-md mb-2"
+                />
+                <p className="text-sm font-medium text-gray-800">{img.name}</p>
+              </>
+            ) : (
+              <div className="w-full h-32 flex items-center justify-center">
+                <div className="text-white text-2xl font-bold">?</div>
+              </div>
+            )}
           </button>
         ))}
       </div>
-      
       
       {state.gameStatus === 'newGame' && (
         <GameOverlay onNewGame = {() => {dispatch({ type: ACTIONS.NEW_GAME})}} />
@@ -171,10 +288,10 @@ const GameOverlay = ({ onNewGame }) => {
 //#region App
 function App() {
   return (
-    <>
-      <MySociabble/>
-      <MemoryGame/>
-    </>
+    <div className="m-0 p-0">
+        <MySociabble/>
+        <MemoryGame/>
+    </div>
   )
 }
 
