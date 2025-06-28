@@ -66,7 +66,8 @@ function gameReducer (state, action) {
       const resetImages = state.images.map(img => ({
         ...img,
         isFlipped: false,
-        isMatched: false
+        isMatched: false,
+        flipCounter: 0
       }));
 
       const shuffledImages = randShuffle(resetImages);
@@ -94,6 +95,9 @@ function gameReducer (state, action) {
       const clickedCardId = action.payload;
       
       if (state.gameStatus === "firstGuess") {
+        const clickedCard = state.images.find(img => img.id === clickedCardId);
+        const newFlipCounter = clickedCard.flipCounter + 1;
+
         return {
           ...state,
           playerGuess: {
@@ -102,7 +106,7 @@ function gameReducer (state, action) {
           },
           images: state.images.map(img =>
             img.id === clickedCardId
-              ? { ...img, isFlipped: true }
+              ? { ...img, isFlipped: true, flipCounter: newFlipCounter }
               : img
           ),
           moves: state.moves + 1,
@@ -116,44 +120,58 @@ function gameReducer (state, action) {
         
         const firstImage = state.images.find(img => img.id === firstGuessId);
         const secondImage = state.images.find(img => img.id === secondGuessId);
+        const secondCardNewFlipCounter = secondImage.flipCounter + 1;
         
         const isMatch = firstImage.pairId === secondImage.pairId;
         
         if (isMatch) {
-          if (isMatch) {
-            const updatedImages = state.images.map(img => {
-              if (img.id === firstGuessId || img.id === secondGuessId) {
-                return { ...img, isMatched: true, isFlipped: true };
-              }
-              return img;
-            });
+          const updatedImages = state.images.map(img => {
+            if (img.id === firstGuessId || img.id === secondGuessId) {
+              return { 
+                ...img, 
+                isMatched: true, 
+                isFlipped: true,
+                flipCounter: img.id === secondGuessId ? secondCardNewFlipCounter : img.flipCounter
+              };
+            }
+            return img;
+          });
 
-            // Check if all cards are matched
-            const allMatched = updatedImages.every(img => img.isMatched);
+          const allMatched = updatedImages.every(img => img.isMatched);
 
-            return {
-              ...state,
-              playerGuess: { first: null, second: null },
-              images: updatedImages,
-              moves: state.moves + 1,
-              gameStatus: allMatched ? "gameOver" : "firstGuess" // Win check here
-            };
-          }
+          return {
+            ...state,
+            playerGuess: { first: null, second: null },
+            images: updatedImages,
+            moves: state.moves + 1,
+            gameStatus: allMatched ? "gameOver" : "firstGuess"
+          };
         } else {
+          // Only count mistakes when guess is wrong AND cards were seen before
+          const firstCardMistake = firstImage.flipCounter > 1;
+          const secondCardMistake = secondCardNewFlipCounter > 1;
+          const totalMistakes = (firstCardMistake ? 1 : 0) + (secondCardMistake ? 1 : 0);
+
           return {
             ...state,
             playerGuess: { first: firstGuessId, second: secondGuessId },
             images: state.images.map(img => {
               if (img.id === firstGuessId || img.id === secondGuessId) {
-                return { ...img, isFlipped: true };
+                return { 
+                  ...img, 
+                  isFlipped: true,
+                  flipCounter: img.id === secondGuessId ? secondCardNewFlipCounter : img.flipCounter
+                };
               }
               return img;
             }),
             moves: state.moves + 1,
+            mistakes: state.mistakes + totalMistakes,
             gameStatus: "evaluating"
           };
         }
       }
+
     
     case ACTIONS.FLIP_BACK:
       return {
@@ -209,7 +227,8 @@ function MemoryGame() {
             name: img.name,
             src: imageModule.default,
             isFlipped : false,
-            isMatched : false
+            isMatched : false,
+            flipCounter: 0
           };
         })
       );
@@ -316,8 +335,14 @@ function MemoryGame() {
   return (
     <div className="p-6 bg-gray-200 min-h-screen">
       <div className="flex justify-center items-center p-4">
-        <p className="text-lg font-semibold text-white bg-ccblue px-8 py-2 rounded-lg shadow-md border-gray-400">
+        <p className="text-lg font-semibold text-white bg-ccblue px-6 py-3 rounded-lg shadow-md border border-gray-400 min-w-[80px] h-12 flex items-center justify-center">
           {state.coords}
+        </p>
+        <p className="text-lg font-semibold text-white bg-ccblue px-6 py-3 rounded-lg shadow-md border border-gray-400 min-w-[80px] h-12 flex items-center justify-center">
+          {`Moves ${state.moves}`}
+        </p>
+        <p className="text-lg font-semibold text-white bg-ccblue px-6 py-3 rounded-lg shadow-md border border-gray-400 min-w-[80px] h-12 flex items-center justify-center">
+          {`Mistakes ${state.mistakes}`}
         </p>
       </div>
       <div className={`grid gap-4 max-w-5xl mx-auto`} 
@@ -366,9 +391,6 @@ function MemoryGame() {
                   }
                 `}
               >
-                <div className="absolute top-0 left-0 bg-red-500 text-white text-xs p-1">
-  {img.coordinate} (ID: {img.id})
-</div>
                 {img.isFlipped ? (
                   <>
                     <img 
@@ -380,7 +402,7 @@ function MemoryGame() {
                   </>
                 ) : (
                   <div className="w-full h-32 flex items-center justify-center">
-                    <div className="text-white text-2xl font-bold">?</div>
+                    <div className="text-white text-2xl font-bold">{img.coordinate}</div>
                   </div>
                 )}
               </button>
@@ -403,8 +425,15 @@ function MemoryGame() {
 //#endregion
 
 //#region Game Overlay
-const GameOverlay = ({ onNewGame, onGameOver, moves, mistakes, gameStatus }) => {
+const GameOverlay = ({ onNewGame, onGameOver, moves, mistakes, gameStatus, images }) => {
   const isGameOver = gameStatus === 'gameOver';
+  
+  const totalCards = images ? images.length : 0;
+  const optimalMoves = totalCards + (totalCards / 2 - 1);
+  
+  const efficiency = moves > 0 ? Math.round((optimalMoves / moves) * 100) : 0;
+  
+  const isPerfectMemory = moves === optimalMoves;
   
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50">
@@ -438,7 +467,6 @@ const GameOverlay = ({ onNewGame, onGameOver, moves, mistakes, gameStatus }) => 
           </p>
         </div>
 
-        {/* Score Display for Game Over */}
         {isGameOver && (
           <div className="bg-slate-700/50 rounded-lg p-4 mb-6 border border-slate-600">
             <div className="grid grid-cols-2 gap-4 text-center">
@@ -452,15 +480,28 @@ const GameOverlay = ({ onNewGame, onGameOver, moves, mistakes, gameStatus }) => 
               </div>
             </div>
             
-            {/* Performance message */}
             <div className="mt-3 text-center">
-              <span className={`text-sm font-medium ${
-                mistakes <= 2 ? 'text-green-400' : 
-                mistakes <= 5 ? 'text-yellow-400' : 'text-orange-400'
-              }`}>
-                {mistakes <= 2 ? 'Excellent memory!' : 
-                 mistakes <= 5 ? 'Good job!' : 'Keep practicing!'}
-              </span>
+              {isPerfectMemory ? (
+                <div className="flex items-center justify-center gap-2">
+                  <Brain className="w-5 h-5 text-purple-400" />
+                  <span className="text-sm font-medium text-purple-400">
+                    Perfect Memory!
+                  </span>
+                </div>
+              ) : (
+                <div className="space-y-1">
+                  <span className={`text-sm font-medium ${
+                    mistakes <= 2 ? 'text-green-400' : 
+                    mistakes <= 5 ? 'text-yellow-400' : 'text-orange-400'
+                  }`}>
+                    {mistakes <= 2 ? 'Excellent memory!' : 
+                     mistakes <= 5 ? 'Good job!' : 'Keep practicing!'}
+                  </span>
+                  <div className="text-xs text-slate-500">
+                    Optimal: {optimalMoves} moves ({efficiency}% efficiency)
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
