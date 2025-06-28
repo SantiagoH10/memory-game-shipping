@@ -1,6 +1,6 @@
 //#region Imports
 import { useState, useReducer, useEffect } from 'react';
-import { Play, RotateCcw } from 'lucide-react';
+import { Play, RotateCcw, Trophy } from 'lucide-react';
 import viteLogo from '/vite.svg';
 import ccLogo from './assets/cma.png';
 import './App.css';
@@ -54,14 +54,27 @@ const ACTIONS = {
   NEW_GAME: "NEW_GAME",
   LOAD_IMAGES: "LOAD_IMAGES",
   CARD_CLICK: "CARD_CLICK",
-  FLIP_BACK: "FLIP_BACK"
+  FLIP_BACK: "FLIP_BACK",
+  GAME_OVER: "GAME_OVER"
 };
 
 function gameReducer (state, action) {
   switch (action.type) {
     case ACTIONS.NEW_GAME:
-      console.log("games started")
-      return {...state, gameStatus: "firstGuess"}
+      const resetImages = state.images.map(img => ({
+        ...img,
+        isFlipped: false,
+        isMatched: false
+      }));
+
+      return {
+        ...state,
+        playerGuess: { first: null, second: null }, 
+        moves: 0,
+        mistakes: 0,
+        images: randShuffle(resetImages),
+        gameStatus: "firstGuess"
+      }
 
     case ACTIONS.LOAD_IMAGES:
       return {...state, images: action.payload}
@@ -96,18 +109,25 @@ function gameReducer (state, action) {
         const isMatch = firstImage.pairId === secondImage.pairId;
         
         if (isMatch) {
-          return {
-            ...state,
-            playerGuess: { first: null, second: null },
-            images: state.images.map(img => {
+          if (isMatch) {
+            const updatedImages = state.images.map(img => {
               if (img.id === firstGuessId || img.id === secondGuessId) {
                 return { ...img, isMatched: true, isFlipped: true };
               }
               return img;
-            }),
-            moves: state.moves + 1,
-            gameStatus: "firstGuess"
-          };
+            });
+
+            // Check if all cards are matched
+            const allMatched = updatedImages.every(img => img.isMatched);
+
+            return {
+              ...state,
+              playerGuess: { first: null, second: null },
+              images: updatedImages,
+              moves: state.moves + 1,
+              gameStatus: allMatched ? "gameOver" : "firstGuess" // Win check here
+            };
+          }
         } else {
           return {
             ...state,
@@ -137,6 +157,9 @@ function gameReducer (state, action) {
         }),
         gameStatus: "firstGuess"
       };
+
+    case ACTIONS.GAME_OVER:
+      return {...state, gameStatus: "gameOver"}
 
     default: 
       return state
@@ -284,8 +307,14 @@ function MemoryGame() {
         ))}
       </div>
       
-      {state.gameStatus === 'newGame' && (
-        <GameOverlay onNewGame={() => {dispatch({ type: ACTIONS.NEW_GAME})}} />
+      {(state.gameStatus === 'newGame' || state.gameStatus === 'gameOver') && (
+        <GameOverlay 
+          onNewGame={() => {dispatch({ type: ACTIONS.NEW_GAME })}}
+          onGameOver={() =>{dispatch({ type: ACTIONS.GAME_OVER })}}
+          gameStatus={state.gameStatus}
+          moves={state.moves}
+          mistakes={state.mistakes}
+        />
       )}
     </div>
   );
@@ -293,41 +322,102 @@ function MemoryGame() {
 //#endregion
 
 //#region Game Overlay
-const GameOverlay = ({ onNewGame }) => {
+const GameOverlay = ({ onNewGame, onGameOver, moves, mistakes, gameStatus }) => {
+  const isGameOver = gameStatus === 'gameOver';
+  
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-black p-8 rounded-2xl shadow-2xl border border-slate-700 max-w-md w-full mx-4 transform transition-all duration-300 hover:scale-105">
-        {/* Header */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-            <Play className="w-8 h-8 text-white ml-1" />
+          <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg ${
+            isGameOver 
+              ? 'bg-gradient-to-r from-green-500 to-emerald-600' 
+              : 'bg-gradient-to-r from-blue-500 to-purple-600'
+          }`}>
+            {isGameOver ? (
+              <Trophy className="w-8 h-8 text-white" />
+            ) : (
+              <Play className="w-8 h-8 text-white ml-1" />
+            )}
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Game Ready
+          
+          <h1 className={`text-3xl font-bold text-white mb-2 bg-clip-text text-transparent ${
+            isGameOver 
+              ? 'bg-gradient-to-r from-green-400 to-emerald-400' 
+              : 'bg-gradient-to-r from-blue-400 to-purple-400'
+          }`}>
+            {isGameOver ? 'Congratulations!' : 'Game Ready'}
           </h1>
+          
           <p className="text-slate-400 text-sm">
-            Ready to start your next adventure?
+            {isGameOver 
+              ? 'You completed the memory game!' 
+              : 'Ready to start your next adventure?'
+            }
           </p>
         </div>
+
+        {/* Score Display for Game Over */}
+        {isGameOver && (
+          <div className="bg-slate-700/50 rounded-lg p-4 mb-6 border border-slate-600">
+            <div className="grid grid-cols-2 gap-4 text-center">
+              <div>
+                <div className="text-2xl font-bold text-white">{moves}</div>
+                <div className="text-sm text-slate-400">Moves</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-white">{mistakes}</div>
+                <div className="text-sm text-slate-400">Mistakes</div>
+              </div>
+            </div>
+            
+            {/* Performance message */}
+            <div className="mt-3 text-center">
+              <span className={`text-sm font-medium ${
+                mistakes <= 2 ? 'text-green-400' : 
+                mistakes <= 5 ? 'text-yellow-400' : 'text-orange-400'
+              }`}>
+                {mistakes <= 2 ? 'Excellent memory!' : 
+                 mistakes <= 5 ? 'Good job!' : 'Keep practicing!'}
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* New Game Button */}
         <button
           onClick={onNewGame}
-          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-102 active:scale-98 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 group"
+          className={`w-full font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-102 active:scale-98 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 group text-white ${
+            isGameOver 
+              ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700' 
+              : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
+          }`}
         >
           <RotateCcw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-300" />
-          <span className="text-lg">Start New Game</span>
+          <span className="text-lg">
+            {isGameOver ? 'Play Again' : 'Start New Game'}
+          </span>
         </button>
 
         {/* Decorative Elements */}
         <div className="mt-6 flex justify-center space-x-2">
-          <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-          <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse delay-100"></div>
-          <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse delay-200"></div>
+          <div className={`w-2 h-2 rounded-full animate-pulse ${
+            isGameOver ? 'bg-green-500' : 'bg-blue-500'
+          }`}></div>
+          <div className={`w-2 h-2 rounded-full animate-pulse delay-100 ${
+            isGameOver ? 'bg-emerald-500' : 'bg-purple-500'
+          }`}></div>
+          <div className={`w-2 h-2 rounded-full animate-pulse delay-200 ${
+            isGameOver ? 'bg-teal-500' : 'bg-pink-500'
+          }`}></div>
         </div>
 
         {/* Subtle Pattern */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 to-purple-500/5 pointer-events-none"></div>
+        <div className={`absolute inset-0 rounded-2xl pointer-events-none ${
+          isGameOver 
+            ? 'bg-gradient-to-r from-green-500/5 to-emerald-500/5' 
+            : 'bg-gradient-to-r from-blue-500/5 to-purple-500/5'
+        }`}></div>
       </div>
     </div>
   );
