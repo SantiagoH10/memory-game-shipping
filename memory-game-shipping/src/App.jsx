@@ -69,14 +69,23 @@ function gameReducer (state, action) {
         isMatched: false
       }));
 
+      const shuffledImages = randShuffle(resetImages);
+      
+      const finalGridSize = Math.sqrt(shuffledImages.length);
+      shuffledImages.forEach((img, i) => {
+        img.gridRow = Math.floor(i / finalGridSize);
+        img.gridCol = i % finalGridSize;
+        img.coordinate = `${String.fromCharCode(65 + Math.floor(i / finalGridSize))}${(i % finalGridSize) + 1}`;
+      });
+
       return {
         ...state,
         playerGuess: { first: null, second: null }, 
         moves: 0,
         mistakes: 0,
-        images: randShuffle(resetImages),
+        images: shuffledImages,
         gameStatus: "firstGuess"
-      }
+    }
 
     case ACTIONS.LOAD_IMAGES:
       return {...state, images: action.payload}
