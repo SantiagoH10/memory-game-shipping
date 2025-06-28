@@ -47,7 +47,8 @@ const initState = {
   images: [],
   playerGuess: {first: null, second: null},
   moves: 0,
-  mistakes: 0
+  mistakes: 0,
+  coords: ""
 };
 
 const ACTIONS = {
@@ -55,7 +56,8 @@ const ACTIONS = {
   LOAD_IMAGES: "LOAD_IMAGES",
   CARD_CLICK: "CARD_CLICK",
   FLIP_BACK: "FLIP_BACK",
-  GAME_OVER: "GAME_OVER"
+  SET_COORD: "SET_COORD",
+  RM_COORD: "RM_COORD"
 };
 
 function gameReducer (state, action) {
@@ -158,8 +160,17 @@ function gameReducer (state, action) {
         gameStatus: "firstGuess"
       };
 
-    case ACTIONS.GAME_OVER:
-      return {...state, gameStatus: "gameOver"}
+    case ACTIONS.SET_COORD:
+      return {
+        ...state,
+          coords: state.coords + action.payload
+      };
+
+    case ACTIONS.RM_COORD:
+      return {
+        ...state,
+          coords: state.coords.slice(0, -1)
+      }
 
     default: 
       return state
@@ -171,6 +182,12 @@ function gameReducer (state, action) {
 
 function MemoryGame() {
   const [state, dispatch] = useReducer(gameReducer, initState);
+
+  const gridSize = Math.sqrt(state.images.length);
+  const isValidGrid = Number.isInteger(gridSize) && gridSize > 0;
+  
+  const rowLabels = Array.from({length: gridSize}, (_, i) => String.fromCharCode(65 + i));
+  const columnLabels = Array.from({length: gridSize}, (_, i) => i + 1);
 
   useEffect(() => {
     const loadImages = async () => {
@@ -198,6 +215,14 @@ function MemoryGame() {
       });
 
       const shuffledImages = randShuffle(dupImages);
+
+      const finalGridSize = Math.sqrt(shuffledImages.length);
+
+      shuffledImages.forEach((img, i) => {
+        img.gridRow = Math.floor(i / finalGridSize)+1;
+        img.gridCol = i % finalGridSize+1;
+        img.coordinate = `${String.fromCharCode(65 + Math.floor(i / finalGridSize))}${(i % finalGridSize) + 1}`;
+      });
       
       dispatch({ 
         type: ACTIONS.LOAD_IMAGES, 
@@ -219,9 +244,52 @@ function MemoryGame() {
     }
   }, [state.gameStatus]);
 
-  const gridSize = Math.sqrt(state.images.length);
-  const isValidGrid = Number.isInteger(gridSize) && gridSize > 0;
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (!['firstGuess', 'secondGuess'].includes(state.gameStatus)) return;
+
+      if (event.key === "Backspace" || event.key === "Delete") {
+        dispatch({ type: ACTIONS.RM_COORD});
+        return;
+      }
+
+      const key = event.key.toUpperCase();
+
+      if (state.coords.length === 0 && rowLabels.includes(key)) {
+        dispatch({ type: ACTIONS.SET_COORD, payload: key });
+        return;
+      }
+
+      if (state.coords.length === 1 && columnLabels.includes(parseInt(key))) {
+        dispatch({ type: ACTIONS.SET_COORD, payload: key });
+        return;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+
+  },[state.gameStatus, state.coords, rowLabels, columnLabels]);
+
+  useEffect(() => {
+    if (state.coords.length === 2 && rowLabels.includes(state.coords[0]) && columnLabels.includes(parseInt(state.coords[1]))) {
+      const targetCard = state.images.find(img => img.coordinate === state.coords);
+      
+      if (targetCard && !targetCard.isMatched && !targetCard.isFlipped) {
+        dispatch({ type: ACTIONS.CARD_CLICK, payload: targetCard.id });
+        dispatch({ type: ACTIONS.RM_COORD });
+        dispatch({ type: ACTIONS.RM_COORD });
+      } else {
+        dispatch({ type: ACTIONS.RM_COORD });
+        dispatch({ type: ACTIONS.RM_COORD });
+      }
+    }
+  }, [state.coords, state.images, rowLabels, columnLabels]);
   
+
   if (!isValidGrid) {
     return (
       <div className="p-6 bg-gray-200 min-h-screen flex items-center justify-center">
@@ -236,11 +304,13 @@ function MemoryGame() {
     );
   }
 
-  const rowLabels = Array.from({length: gridSize}, (_, i) => String.fromCharCode(65 + i));
-  const columnLabels = Array.from({length: gridSize}, (_, i) => i + 1);
-
   return (
     <div className="p-6 bg-gray-200 min-h-screen">
+      <div className="flex justify-center items-center p-4">
+        <p className="text-lg font-semibold text-white bg-ccblue px-8 py-2 rounded-lg shadow-md border-gray-400">
+          {state.coords}
+        </p>
+      </div>
       <div className={`grid gap-4 max-w-5xl mx-auto`} 
           style={{ 
             gridTemplateColumns: `auto repeat(${gridSize}, 1fr)`,
@@ -287,6 +357,9 @@ function MemoryGame() {
                   }
                 `}
               >
+                <div className="absolute top-0 left-0 bg-red-500 text-white text-xs p-1">
+  {img.coordinate} (ID: {img.id})
+</div>
                 {img.isFlipped ? (
                   <>
                     <img 
@@ -310,7 +383,6 @@ function MemoryGame() {
       {(state.gameStatus === 'newGame' || state.gameStatus === 'gameOver') && (
         <GameOverlay 
           onNewGame={() => {dispatch({ type: ACTIONS.NEW_GAME })}}
-          onGameOver={() =>{dispatch({ type: ACTIONS.GAME_OVER })}}
           gameStatus={state.gameStatus}
           moves={state.moves}
           mistakes={state.mistakes}
