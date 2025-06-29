@@ -1,0 +1,13 @@
+{
+  "setName": "containers",
+  "images": [
+    { "name": "20ft container", "filename": "teu.jpg" },
+    { "name": "40ft container", "filename": "feu.jpg"},
+    { "name": "Flat Rack", "filename": "flatRack.jpg"},
+    { "name": "Open Top", "filename": "openTop.jpg"},
+    { "name": "Reefer", "filename": "reefer.jpg"},
+    { "name": "Half Height", "filename": "halfHeight.jpeg"},
+    { "name": "Tank", "filename": "tank.jpg"},
+    { "name": "Breakbulk", "filename": "breakbulk.png"}
+  ]
+}

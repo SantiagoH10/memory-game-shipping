@@ -52,7 +52,7 @@ function MySociabble () {
 //#region Reducer game logic
 const initState = {
   gameStatus: "newGame",
-  imageSet: "vessels",
+  imageSet: "containers",
   images: [],
   playerGuess: {first: null, second: null},
   moves: 0,
