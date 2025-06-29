@@ -330,6 +330,11 @@ function MemoryGame() {
   }, [state.coords, state.images, rowLabels, columnLabels]);
   
   useEffect(() => {
+    if (state.gameStatus === 'newGame') {
+      setElapsedTime(0);
+      setStartTime(null);
+    }
+    
     let timer;
     
     if (['firstGuess', 'secondGuess', 'evaluating'].includes(state.gameStatus)) {
