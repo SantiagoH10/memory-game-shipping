@@ -417,6 +417,7 @@ function MemoryGame() {
           gameStatus={state.gameStatus}
           moves={state.moves}
           mistakes={state.mistakes}
+          imgLength={state.images.length}
         />
       )}
     </div>
@@ -425,11 +426,11 @@ function MemoryGame() {
 //#endregion
 
 //#region Game Overlay
-const GameOverlay = ({ onNewGame, onGameOver, moves, mistakes, gameStatus, images }) => {
+const GameOverlay = ({ onNewGame, moves, mistakes, gameStatus, imgLength }) => {
   const isGameOver = gameStatus === 'gameOver';
   
-  const totalCards = images ? images.length : 0;
-  const optimalMoves = totalCards + (totalCards / 2 - 1);
+  const totalCards = imgLength ? imgLength : 0;
+  const optimalMoves = totalCards + (totalCards / (2 - 1));
   
   const efficiency = moves > 0 ? Math.round((optimalMoves / moves) * 100) : 0;
   
@@ -498,6 +499,7 @@ const GameOverlay = ({ onNewGame, onGameOver, moves, mistakes, gameStatus, image
                      mistakes <= 5 ? 'Good job!' : 'Keep practicing!'}
                   </span>
                   <div className="text-xs text-slate-500">
+                      {console.log(optimalMoves)}
                     Optimal: {optimalMoves} moves ({efficiency}% efficiency)
                   </div>
                 </div>
