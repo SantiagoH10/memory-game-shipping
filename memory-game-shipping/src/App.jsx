@@ -27,17 +27,26 @@ function MySociabble () {
 }
 //#endregion
 
-//#region Fisher-Yates random shuffle
-  function randShuffle(images) {
-    const shuffled = [...images];
-    
-    // Fisher-Yates shuffle
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap
+//#region Helper Functions
+  // Fisher-Yates random shuffle
+
+    function randShuffle(images) {
+      const shuffled = [...images];
+      
+      // Fisher-Yates shuffle
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap
+      }
+      return shuffled;
     }
-    return shuffled;
-  }
+
+    //Format time as MM:SS
+    const formatTime = (seconds) => {
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+      return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    };
 //#endregion
 
 //#region Reducer game logic
@@ -210,6 +219,9 @@ function gameReducer (state, action) {
 function MemoryGame() {
   const [state, dispatch] = useReducer(gameReducer, initState);
 
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [startTime, setStartTime] = useState(null);
+
   const gridSize = Math.sqrt(state.images.length);
   const isValidGrid = Number.isInteger(gridSize) && gridSize > 0;
   
@@ -317,6 +329,20 @@ function MemoryGame() {
     }
   }, [state.coords, state.images, rowLabels, columnLabels]);
   
+  useEffect(() => {
+    let timer;
+    
+    if (['firstGuess', 'secondGuess', 'evaluating'].includes(state.gameStatus)) {
+      timer = setInterval(() => {
+        setElapsedTime(prev => prev + 1);
+      }, 1000);
+    }
+
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [state.gameStatus]);
+
 
   if (!isValidGrid) {
     return (
@@ -334,17 +360,7 @@ function MemoryGame() {
 
   return (
     <div className="p-6 bg-gray-200 min-h-screen">
-      <div className="flex justify-center items-center p-4">
-        <p className="text-lg font-semibold text-white bg-ccblue px-6 py-3 rounded-lg shadow-md border border-gray-400 min-w-[80px] h-12 flex items-center justify-center">
-          {state.coords}
-        </p>
-        <p className="text-lg font-semibold text-white bg-ccblue px-6 py-3 rounded-lg shadow-md border border-gray-400 min-w-[80px] h-12 flex items-center justify-center">
-          {`Moves ${state.moves}`}
-        </p>
-        <p className="text-lg font-semibold text-white bg-ccblue px-6 py-3 rounded-lg shadow-md border border-gray-400 min-w-[80px] h-12 flex items-center justify-center">
-          {`Mistakes ${state.mistakes}`}
-        </p>
-      </div>
+      <GameDashboard coords={state.coords} moves={state.moves} time={formatTime(elapsedTime)} mistakes={state.mistakes} />
       <div className={`grid gap-4 max-w-5xl mx-auto`} 
           style={{ 
             gridTemplateColumns: `auto repeat(${gridSize}, 1fr)`,
@@ -418,6 +434,7 @@ function MemoryGame() {
           moves={state.moves}
           mistakes={state.mistakes}
           imgLength={state.images.length}
+          time={formatTime(elapsedTime)}
         />
       )}
     </div>
@@ -425,8 +442,34 @@ function MemoryGame() {
 }
 //#endregion
 
+//#region Game Dashboard
+function GameDashboard({ coords, moves, time, mistakes }) {
+  return (
+    <div className="flex flex-col items-center gap-4 p-4">
+      <div className="flex justify-center items-center gap-4">
+        <div className="px-6 py-3 rounded-xl shadow-lg min-w-[100px] h-14 flex items-center justify-center" style={{backgroundColor: '#096B68', borderColor: '#096B68', borderWidth: '2px'}}>
+          <span className="text-lg font-bold" style={{color: '#FFFBDE'}}>Moves: {moves}</span>
+        </div>
+        
+        <div className="px-6 py-3 rounded-xl shadow-lg min-w-[120px] h-14 flex items-center justify-center" style={{backgroundColor: '#90D1CA', borderColor: '#90D1CA', borderWidth: '2px'}}>
+          <span className="text-lg font-bold" style={{color: '#096B68'}}>{time}</span>
+        </div>
+        
+        <div className="px-6 py-3 rounded-xl shadow-lg min-w-[120px] h-14 flex items-center justify-center" style={{backgroundColor: '#096B68', borderColor: '#096B68', borderWidth: '2px'}}>
+          <span className="text-lg font-bold" style={{color: '#FFFBDE'}}>Mistakes: {mistakes}</span>
+        </div>
+      </div>
+      
+      <div className="px-4 py-2 rounded-lg shadow-md w-[120px] h-[40px] flex items-center justify-center" style={{backgroundColor: '#FFFBDE', borderColor: '#FFFBDE', borderWidth: '2px'}}>
+        <span className="text-xl font-bold" style={{color: '#096B68'}}>{coords || '\u00A0'}</span>
+      </div>
+    </div>
+  )
+}
+//#endregion
+
 //#region Game Overlay
-const GameOverlay = ({ onNewGame, moves, mistakes, gameStatus, imgLength }) => {
+const GameOverlay = ({ onNewGame, moves, mistakes, gameStatus, imgLength, time}) => {
   const isGameOver = gameStatus === 'gameOver';
   
   const totalCards = imgLength ? imgLength : 0;
@@ -470,7 +513,7 @@ const GameOverlay = ({ onNewGame, moves, mistakes, gameStatus, imgLength }) => {
 
         {isGameOver && (
           <div className="bg-slate-700/50 rounded-lg p-4 mb-6 border border-slate-600">
-            <div className="grid grid-cols-2 gap-4 text-center">
+            <div className="grid grid-cols-3 gap-4 text-center">
               <div>
                 <div className="text-2xl font-bold text-white">{moves}</div>
                 <div className="text-sm text-slate-400">Moves</div>
@@ -478,6 +521,10 @@ const GameOverlay = ({ onNewGame, moves, mistakes, gameStatus, imgLength }) => {
               <div>
                 <div className="text-2xl font-bold text-white">{mistakes}</div>
                 <div className="text-sm text-slate-400">Mistakes</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-white">{time}</div>
+                <div className="text-sm text-slate-400">Time</div>
               </div>
             </div>
             
