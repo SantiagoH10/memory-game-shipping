@@ -472,7 +472,7 @@ function GameSelector({ currentImageSet, onImageSetChange }) {
   return (
     <div className="w-full bg-white shadow-lg border-b-2 border-gray-200 py-4 px-6 mb-6">
       <div className="max-w-6xl mx-auto">        
-        <div className="flex justify-center items-center gap-4 flex-wrap">
+        <div className="flex justify-center items-center gap-5 flex-wrap">
           {IMAGE_SET_OPTIONS.map((set, i) => (
             <button 
               key={i}
@@ -480,13 +480,14 @@ function GameSelector({ currentImageSet, onImageSetChange }) {
               className={`
                 px-6 py-3 rounded-lg border-2 transition-all duration-200 transform hover:scale-105 hover:shadow-md
                 ${currentImageSet === set.folderName 
-                  ? 'bg-blue-600 border-blue-600 text-white shadow-lg' 
-                  : 'bg-gray-50 border-gray-300 text-gray-700 hover:bg-blue-50 hover:border-blue-300'
+                  ? 'border-ccblue bg-ccblue text-white shadow-lg' 
+                  : 'bg-gray-50 border-gray-300 text-gray-700 hover:border-blue-300'
                 }
-                min-w-[120px] text-center font-medium
+                min-w-[140px] text-center font-medium
               `}
+              
             >
-              <div className="flex flex-col items-center gap-1">
+              <div className="flex items-center justify-center gap-2">
                 <span className="text-sm font-bold">{set.title}</span>
                 <span className={`text-xs px-2 py-1 rounded-full ${
                   currentImageSet === set.folderName 
