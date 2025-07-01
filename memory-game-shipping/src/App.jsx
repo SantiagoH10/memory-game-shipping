@@ -380,11 +380,13 @@ function MemoryGame() {
   }
 
   return (
-    <div className="relative min-h-screen p-6 bg-gray-200">
+    <div className="min-h-screen p-3 bg-ccblue">
       <GameSelector 
         currentImageSet={state.imageSet}
         onImageSetChange={(imageSet) => {dispatch({ type: ACTIONS.CHANGE_IMAGE_SET, payload: imageSet })}}
       />
+      <div className="relative bg-gray-200 rounded-lg p-2">
+
       <GameDashboard coords={state.coords} moves={state.moves} time={formatTime(elapsedTime)} mistakes={state.mistakes} />
       <div className={`grid gap-4 max-w-5xl mx-auto`} 
           style={{ 
@@ -417,28 +419,28 @@ function MemoryGame() {
             {/* Cards for this row */}
             {state.images.slice(rowIndex * gridSize, (rowIndex + 1) * gridSize).map((img) => (
               <button 
-                key={img.id}
-                disabled={img.isMatched || img.isFlipped}
-                onClick={() => {dispatch({type: ACTIONS.CARD_CLICK, payload: img.id})}}
-                className={`
-                  relative p-1 rounded-lg border-2 h-44
-                  ${img.isFlipped 
-                    ? 'bg-white border-ccaqua shadow-lg' 
-                    : 'bg-blue-500 hover:bg-blue-400'
-                  }
-                  ${img.isMatched 
-                    ? 'bg-green-100 border-green-400 shadow-green-400/50 shadow-xl' 
-                    : 'cursor-pointer transition-all duration-300 transform hover:scale-105'
-                  }
+              key={img.id}
+              disabled={img.isMatched || img.isFlipped}
+              onClick={() => {dispatch({type: ACTIONS.CARD_CLICK, payload: img.id})}}
+              className={`
+                relative p-1 rounded-lg border-2 h-44
+                ${img.isFlipped 
+                  ? 'bg-white border-ccaqua shadow-lg' 
+                  : 'bg-blue-500 hover:bg-blue-400'
+                }
+                ${img.isMatched 
+                  ? 'bg-green-100 border-green-400 shadow-green-400/50 shadow-xl' 
+                  : 'cursor-pointer transition-all duration-300 transform hover:scale-105'
+                }
                 `}
-              >
+                >
                 {img.isFlipped ? (
                   <>
                     <img 
                       src={img.src} 
                       alt={img.name}
                       className="w-full h-32 object-cover rounded-md mb-1"
-                    />
+                      />
                     <p className="text-sm font-bold text-gray-800">{img.name}</p>
                   </>
                 ) : (
@@ -454,14 +456,15 @@ function MemoryGame() {
       
       {(state.gameStatus === 'newGame' || state.gameStatus === 'gameOver') && (
         <GameOverlay 
-          onNewGame={() => {dispatch({ type: ACTIONS.NEW_GAME })}}
-          gameStatus={state.gameStatus}
-          moves={state.moves}
-          mistakes={state.mistakes}
-          imgLength={state.images.length}
-          time={formatTime(elapsedTime)}
+        onNewGame={() => {dispatch({ type: ACTIONS.NEW_GAME })}}
+        gameStatus={state.gameStatus}
+        moves={state.moves}
+        mistakes={state.mistakes}
+        imgLength={state.images.length}
+        time={formatTime(elapsedTime)}
         />
       )}
+    </div>
     </div>
   );
 }
@@ -470,7 +473,7 @@ function MemoryGame() {
 //#region Game selector
 function GameSelector({ currentImageSet, onImageSetChange }) {
   return (
-    <div className="w-full bg-white shadow-lg border-b-2 border-gray-200 py-4 px-6 mb-6">
+    <div className="w-full bg-gray-200 rounded-lg shadow-lg border-b-2 border-gray-200 py-4 px-6 mb-6">
       <div className="max-w-6xl mx-auto">        
         <div className="flex justify-center items-center gap-5 flex-wrap">
           {IMAGE_SET_OPTIONS.map((set, i) => (
