@@ -1,11 +1,15 @@
 //#region Imports
 import { useState, useReducer, useEffect } from 'react';
 import { Play, RotateCcw, Trophy } from 'lucide-react';
-import viteLogo from '/vite.svg';
 import ccLogo from './assets/cma.png';
 import './App.css';
 
 const imageModules = import.meta.glob('./assets/**/*.{png,jpg,jpeg,gif,svg}', { eager: false });
+
+const IMAGE_SET_OPTIONS = [
+  {title: "Vessels", folderName: "vessels", dim: "4x4"},
+  {title: "Containers", folderName: "containers", dim: "6x6"}
+];
 //#endregion
 
 //#region MS header
@@ -52,7 +56,7 @@ function MySociabble () {
 //#region Reducer game logic
 const initState = {
   gameStatus: "newGame",
-  imageSet: "containers",
+  imageSet: "vessels",
   images: [],
   playerGuess: {first: null, second: null},
   moves: 0,
@@ -63,6 +67,7 @@ const initState = {
 const ACTIONS = {
   NEW_GAME: "NEW_GAME",
   LOAD_IMAGES: "LOAD_IMAGES",
+  CHANGE_IMAGE_SET: "CHANGE_IMAGE_SET",
   CARD_CLICK: "CARD_CLICK",
   FLIP_BACK: "FLIP_BACK",
   SET_COORD: "SET_COORD",
@@ -181,7 +186,6 @@ function gameReducer (state, action) {
         }
       }
 
-    
     case ACTIONS.FLIP_BACK:
       return {
         ...state,
@@ -200,12 +204,25 @@ function gameReducer (state, action) {
       return {
         ...state,
           coords: state.coords + action.payload
-      };
+      }
 
     case ACTIONS.RM_COORD:
       return {
         ...state,
           coords: state.coords.slice(0, -1)
+      }
+
+
+    case ACTIONS.CHANGE_IMAGE_SET:
+      return {
+        ...state,
+        imageSet: action.payload,
+        playerGuess: { first: null, second: null }, 
+        moves: 0,
+        mistakes: 0,
+        images: [],
+        gameStatus: "newGame",
+        coords: ""
       }
 
     default: 
@@ -215,7 +232,6 @@ function gameReducer (state, action) {
 //#endregion
 
 //#region Memory Game
-
 function MemoryGame() {
   const [state, dispatch] = useReducer(gameReducer, initState);
 
@@ -364,7 +380,11 @@ function MemoryGame() {
   }
 
   return (
-    <div className="p-6 bg-gray-200 min-h-screen">
+    <div className="relative min-h-screen p-6 bg-gray-200">
+      <GameSelector 
+        currentImageSet={state.imageSet}
+        onImageSetChange={(imageSet) => {dispatch({ type: ACTIONS.CHANGE_IMAGE_SET, payload: imageSet })}}
+      />
       <GameDashboard coords={state.coords} moves={state.moves} time={formatTime(elapsedTime)} mistakes={state.mistakes} />
       <div className={`grid gap-4 max-w-5xl mx-auto`} 
           style={{ 
@@ -447,25 +467,61 @@ function MemoryGame() {
 }
 //#endregion
 
+//#region Game selector
+function GameSelector({ currentImageSet, onImageSetChange }) {
+  return (
+    <div className="w-full bg-white shadow-lg border-b-2 border-gray-200 py-4 px-6 mb-6">
+      <div className="max-w-6xl mx-auto">        
+        <div className="flex justify-center items-center gap-4 flex-wrap">
+          {IMAGE_SET_OPTIONS.map((set, i) => (
+            <button 
+              key={i}
+              onClick={() => {onImageSetChange(set.folderName)}}
+              className={`
+                px-6 py-3 rounded-lg border-2 transition-all duration-200 transform hover:scale-105 hover:shadow-md
+                ${currentImageSet === set.folderName 
+                  ? 'bg-blue-600 border-blue-600 text-white shadow-lg' 
+                  : 'bg-gray-50 border-gray-300 text-gray-700 hover:bg-blue-50 hover:border-blue-300'
+                }
+                min-w-[120px] text-center font-medium
+              `}
+            >
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-sm font-bold">{set.title}</span>
+                <span className={`text-xs px-2 py-1 rounded-full ${
+                  currentImageSet === set.folderName 
+                    ? 'bg-white/20 text-white/90' 
+                    : 'bg-gray-200 text-gray-600'
+                }`}>
+                  {set.dim}
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 //#region Game Dashboard
 function GameDashboard({ coords, moves, time, mistakes }) {
   return (
-    <div className="flex flex-col items-center gap-4 p-4">
+    <div className="inset-0 p-2 m-1 mb-3 bg-opacity-75 backdrop-blur-sm flex flex-col items-center justify-center z-50 gap-4">
       <div className="flex justify-center items-center gap-4">
-        <div className="px-6 py-3 rounded-xl shadow-lg min-w-[100px] h-14 flex items-center justify-center" style={{backgroundColor: '#096B68', borderColor: '#096B68', borderWidth: '2px'}}>
+        <div className="px-6 py-3 rounded-xl shadow-lg w-[140px] h-14 flex items-center justify-center" style={{backgroundColor: '#096B68', borderColor: '#096B68', borderWidth: '2px'}}>
           <span className="text-lg font-bold" style={{color: '#FFFBDE'}}>Moves: {moves}</span>
         </div>
         
-        <div className="px-6 py-3 rounded-xl shadow-lg min-w-[120px] h-14 flex items-center justify-center" style={{backgroundColor: '#90D1CA', borderColor: '#90D1CA', borderWidth: '2px'}}>
-          <span className="text-lg font-bold" style={{color: '#096B68'}}>{time}</span>
+        <div className="px-6 py-3 rounded-xl shadow-lg w-[140px] h-14 flex items-center justify-center" style={{backgroundColor: '#90D1CA', borderColor: '#90D1CA', borderWidth: '2px'}}>
+          <span className="text-2xl" style={{color: '#096B68'}}>{time}</span>
         </div>
         
-        <div className="px-6 py-3 rounded-xl shadow-lg min-w-[120px] h-14 flex items-center justify-center" style={{backgroundColor: '#096B68', borderColor: '#096B68', borderWidth: '2px'}}>
+        <div className="px-6 py-3 rounded-xl shadow-lg w-[140px] h-14 flex items-center justify-center" style={{backgroundColor: '#096B68', borderColor: '#096B68', borderWidth: '2px'}}>
           <span className="text-lg font-bold" style={{color: '#FFFBDE'}}>Mistakes: {mistakes}</span>
         </div>
       </div>
       
-      <div className="px-4 py-2 rounded-lg shadow-md w-[120px] h-[40px] flex items-center justify-center" style={{backgroundColor: '#FFFBDE', borderColor: '#FFFBDE', borderWidth: '2px'}}>
+      <div className="px-4 py-2 rounded-lg shadow-md w-[45px] h-[45px] flex items-center justify-center" style={{backgroundColor: '#FFFBDE', borderColor: '#FFFBDE', borderWidth: '2px'}}>
         <span className="text-xl font-bold" style={{color: '#096B68'}}>{coords || '\u00A0'}</span>
       </div>
     </div>
@@ -475,6 +531,21 @@ function GameDashboard({ coords, moves, time, mistakes }) {
 
 //#region Game Overlay
 const GameOverlay = ({ onNewGame, moves, mistakes, gameStatus, imgLength, time}) => {
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === 'Enter') {
+        onNewGame();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [onNewGame]);
+
   const isGameOver = gameStatus === 'gameOver';
   
   const totalCards = imgLength ? imgLength : 0;
@@ -485,7 +556,7 @@ const GameOverlay = ({ onNewGame, moves, mistakes, gameStatus, imgLength, time})
   const isPerfectMemory = moves === optimalMoves;
   
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="absolute inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-black p-8 rounded-2xl shadow-2xl border border-slate-700 max-w-md w-full mx-4 transform transition-all duration-300 hover:scale-105">
         <div className="text-center mb-8">
           <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg ${
