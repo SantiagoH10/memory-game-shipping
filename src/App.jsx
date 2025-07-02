@@ -423,7 +423,7 @@ function MemoryGame() {
               disabled={img.isMatched || img.isFlipped}
               onClick={() => {dispatch({type: ACTIONS.CARD_CLICK, payload: img.id})}}
               className={`
-                relative p-1 rounded-lg border-2 h-44
+                relative p-1 rounded-lg border-2 h-32
                 ${img.isFlipped 
                   ? 'bg-white border-ccaqua shadow-lg' 
                   : 'bg-blue-500 hover:bg-blue-400'
@@ -439,12 +439,12 @@ function MemoryGame() {
                     <img 
                       src={img.src} 
                       alt={img.name}
-                      className="w-full h-32 object-cover rounded-md mb-1"
+                      className="w-full h-24 object-cover rounded-md mb-1"
                       />
                     <p className="text-sm font-bold text-gray-800">{img.name}</p>
                   </>
                 ) : (
-                  <div className="w-full h-32 flex items-center justify-center">
+                  <div className="w-full h-16 flex items-center justify-center">
                     <div className="text-white text-2xl font-bold">{img.coordinate}</div>
                   </div>
                 )}
