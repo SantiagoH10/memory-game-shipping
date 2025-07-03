@@ -16,10 +16,10 @@ export function useMemoryGame() {
   const gridSize = Math.sqrt(state.images.length)
   const isValidGrid = Number.isInteger(gridSize) && gridSize > 0
 
-   const rowLabels = isValidGrid 
+  const rowLabels = isValidGrid
     ? Array.from({ length: gridSize }, (_, i) => String.fromCharCode(65 + i))
     : []
-  const columnLabels = isValidGrid 
+  const columnLabels = isValidGrid
     ? Array.from({ length: gridSize }, (_, i) => i + 1)
     : []
 
@@ -32,7 +32,7 @@ export function useMemoryGame() {
       let items
 
       if (config.type === 'icon') {
-        console.log("entering icon cond statement")
+        console.log('entering icon cond statement')
         console.log(config.type)
         // Handle icons
         items = config.icons.map((iconConfig) => ({
@@ -179,6 +179,6 @@ export function useMemoryGame() {
     rowLabels,
     columnLabels,
     formatTime,
-    ACTIONS
+    ACTIONS,
   }
 }

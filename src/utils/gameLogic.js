@@ -1,14 +1,14 @@
-import { randShuffle, formatTime } from './helpers.js';
+import { randShuffle, formatTime } from './helpers.js'
 
 export const initState = {
   gameStatus: 'newGame',
-  contentType: 'image',
-  imageSet: 'containers',
+  contentType: 'icon',
+  imageSet: 'symbols',
   images: [],
   playerGuess: { first: null, second: null },
   moves: 0,
   mistakes: 0,
-  coords: ''
+  coords: '',
 }
 
 export const ACTIONS = {
@@ -167,7 +167,7 @@ export function gameReducer(state, action) {
       }
 
     case ACTIONS.CHANGE_IMAGE_SET:
-      console.log("entering change image set action")
+      console.log('entering change image set action')
       console.log(action.payload.contentType)
       return {
         ...state,

@@ -11,7 +11,7 @@ import './App.css'
 const IMAGE_SET_OPTIONS = [
   { title: 'Vessels', folderName: 'vessels', dim: '4x4' },
   { title: 'Containers', folderName: 'containers', dim: '6x6' },
-  { title: 'Symbols', folderName: 'symbols', dim: '6x6' },
+  { title: 'Symbols', folderName: 'symbols', dim: '32 pairs' },
 ]
 //#endregion
 
@@ -75,7 +75,7 @@ function MemoryGameContent() {
     ACTIONS,
   } = useGameContext()
 
-  if (!isValidGrid) {
+   if (!isValidGrid) {
     return (
       <div className='p-6 bg-gray-200 min-h-screen flex items-center justify-center'>
         <div className='text-center'>
@@ -107,7 +107,7 @@ function MemoryGameContent() {
 }
 //#endregion
 
-//#region Image vs. Icon dashboards
+//#region Image dashboard
 function ImageGameDashboard() {
   const {
     state,
@@ -120,6 +120,7 @@ function ImageGameDashboard() {
     formatTime,
     ACTIONS,
   } = useGameContext()
+
   return (
     <div
       className={`grid gap-4 max-w-5xl mx-auto`}
@@ -205,46 +206,38 @@ function ImageGameDashboard() {
     </div>
   )
 }
+//#endregion
 
+//#region Icon dashboard
 function IconGameDashboard() {
-  const { state, dispatch, gridSize, rowLabels, columnLabels, ACTIONS } =
-    useGameContext()
+  const { state, dispatch, ACTIONS } = useGameContext()
+
+  const totalCards = 64
+  const getOptimalDimensions = (screenWidth) => {
+    if (screenWidth >= 1400) return { cols: 16, rows: 4 }
+    if (screenWidth >= 1000) return { cols: 12, rows: 6 }
+    if (screenWidth >= 800) return { cols: 8, rows: 8 }
+    if (screenWidth >= 600) return { cols: 6, rows: 11 }
+    return { cols: 4, rows: 16 }
+  }
+
+  const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1000
+  const { cols, rows } = getOptimalDimensions(screenWidth)
+
+  const rowLabels = Array.from({ length: rows }, (_, i) =>
+    String.fromCharCode(65 + i)
+  )
 
   return (
-    <div className='flex items-center justify-center w-full'>
-      <div
-        className='grid gap-1'
-        style={{
-          gridTemplateColumns: `30px repeat(${gridSize}, 80px)`,
-          gridTemplateRows: `30px repeat(${gridSize}, 80px)`,
-        }}
-      >
-        <div></div>
-
-        {columnLabels.map((num, index) => (
-          <div
-            key={`col-${index}`}
-            className='flex items-center justify-center'
-          >
-            <span className='text-sm font-bold text-gray-700 bg-gray-200 w-6 h-6 rounded flex items-center justify-center'>
-              {num}
-            </span>
-          </div>
-        ))}
-
+    <div className='flex items-center justify-center w-full p-4'>
+      <div className='flex flex-col gap-1'>
         {rowLabels.map((letter, rowIndex) => (
-          <>
-            <div
-              key={`row-${rowIndex}`}
-              className='flex items-center justify-center'
-            >
-              <span className='text-sm font-bold text-gray-700 bg-gray-200 w-6 h-6 rounded flex items-center justify-center'>
-                {letter}
-              </span>
-            </div>
-
+          <div
+            key={`row-${rowIndex}`}
+            className='flex gap-1'
+          >
             {state.images
-              .slice(rowIndex * gridSize, (rowIndex + 1) * gridSize)
+              .slice(rowIndex * cols, (rowIndex + 1) * cols)
               .map((item) => {
                 const IconComponent = item.iconComponent
 
@@ -256,7 +249,7 @@ function IconGameDashboard() {
                       dispatch({ type: ACTIONS.CARD_CLICK, payload: item.id })
                     }
                     className={`
-                      relative rounded-xl border-2 w-20 h-20 transition-all duration-300
+                      relative rounded-lg border-2 w-16 h-16 transition-all duration-300 flex-shrink-0
                       ${
                         item.isFlipped
                           ? 'bg-white border-purple-400 shadow-lg scale-105'
@@ -264,16 +257,23 @@ function IconGameDashboard() {
                       }
                       ${
                         item.isMatched
-                          ? 'bg-gradient-to-br from-green-400 to-emerald-500 border-green-300 shadow-emerald-400/50 shadow-xl'
+                          ? 'bg-white border-green-400 shadow-green-400/60 shadow-lg'
                           : 'cursor-pointer transform hover:scale-110 active:scale-95'
                       }
                     `}
+                    style={
+                      item.isMatched
+                        ? {
+                            boxShadow: '0 0 15px rgba(34, 197, 94, 0.6), 0 0 25px rgba(34, 197, 94, 0.3)',
+                          }
+                        : {}
+                    }
                   >
                     {item.isFlipped ? (
                       <div className='w-full h-full flex items-center justify-center'>
                         {IconComponent && (
                           <IconComponent
-                            size={32}
+                            size={28}
                             style={{ color: item.color }}
                             className='drop-shadow-sm'
                           />
@@ -281,7 +281,7 @@ function IconGameDashboard() {
                       </div>
                     ) : (
                       <div className='w-full h-full flex items-center justify-center'>
-                        <div className='text-white text-lg font-bold'>
+                        <div className='text-white text-sm font-bold'>
                           {item.coordinate}
                         </div>
                       </div>
@@ -289,7 +289,7 @@ function IconGameDashboard() {
                   </button>
                 )
               })}
-          </>
+          </div>
         ))}
       </div>
     </div>
