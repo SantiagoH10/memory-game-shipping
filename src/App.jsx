@@ -182,6 +182,17 @@ function IconGameDashboard() {
               .map(item => {
                 const IconComponent = item.iconComponent
 
+                const handleCardClick = (event, itemId) => {
+                  if ('ontouchstart' in window) {
+                    // Mobile device - use double blur with timeout for better mobile focus handling
+                    event.target.blur()
+                    setTimeout(() => event.target.blur(), 0)
+                  } else {
+                    event.target.blur()
+                  }
+                  dispatch({ type: ACTIONS.CARD_CLICK, payload: itemId })
+                }
+
                 return (
                   <button
                     key={item.id}
@@ -190,10 +201,8 @@ function IconGameDashboard() {
                       item.isFlipped ||
                       state.gameStatus === 'evaluating'
                     }
-                    onClick={event => {
-                      event.target.blur()
-                      dispatch({ type: ACTIONS.CARD_CLICK, payload: item.id })
-                    }}
+                    onClick={event => handleCardClick(event, item.id)}
+                    tabIndex="-1"
                     className={`
                     relative rounded-lg border-2 transition-all duration-300 flex-shrink-0
                     ${
@@ -213,6 +222,7 @@ function IconGameDashboard() {
                       width: `${cardSize}px`,
                       height: `${cardSize}px`,
                       borderRadius: `${Math.max(cardSize * 0.08, 4)}px`,
+                      touchAction: 'manipulation',
                       ...(item.isMatched
                         ? {
                             boxShadow:
