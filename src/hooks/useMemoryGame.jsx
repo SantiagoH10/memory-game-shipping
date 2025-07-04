@@ -1,7 +1,7 @@
 import { useState, useReducer, useEffect } from 'react'
 import { randShuffle, formatTime, getBestGridSize } from '../utils/helpers.js'
 import { initState, ACTIONS, gameReducer } from '../utils/gameLogic.js'
-import { ICON_MAP } from '../utils/icons.js'
+import { ICON_MAP } from '../utils/icons.jsx'
 
 export function useMemoryGame() {
   const [state, dispatch] = useReducer(gameReducer, initState)

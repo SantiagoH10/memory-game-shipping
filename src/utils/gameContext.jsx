@@ -1,5 +1,5 @@
 import {createContext, useContext} from 'react'
-import { useMemoryGame } from '../hooks/useMemoryGame'
+import { useMemoryGame } from '../hooks/useMemoryGame.jsx'
 
 //#region Game Context
 const GameContext = createContext()
