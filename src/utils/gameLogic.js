@@ -1,10 +1,13 @@
-import { randShuffle, formatTime } from './helpers.js'
+import { randShuffle, formatTime, getBestGridSize } from './helpers.js'
 
 export const initState = {
   gameStatus: 'newGame',
   contentType: 'icon',
   imageSet: 'symbols-8',
   images: [],
+  gridSize: { rows: 0, cols: 0 },
+  rowLabels: [],
+  columnLabels: [],
   playerGuess: { first: null, second: null },
   moves: 0,
   mistakes: 0,
@@ -33,13 +36,14 @@ export function gameReducer(state, action) {
 
       const shuffledImages = randShuffle(resetImages)
 
-      const finalGridSize = Math.sqrt(shuffledImages.length)
+      // Use the current grid data from state
       shuffledImages.forEach((img, i) => {
-        img.gridRow = Math.floor(i / finalGridSize)
-        img.gridCol = i % finalGridSize
-        img.coordinate = `${String.fromCharCode(
-          65 + Math.floor(i / finalGridSize)
-        )}${(i % finalGridSize) + 1}`
+        const rowIndex = Math.floor(i / state.gridSize.cols)
+        const colIndex = i % state.gridSize.cols
+        
+        img.gridRow = rowIndex + 1
+        img.gridCol = colIndex + 1
+        img.coordinate = `${state.rowLabels[rowIndex]}${state.columnLabels[colIndex]}`
       })
 
       return {
@@ -52,7 +56,13 @@ export function gameReducer(state, action) {
       }
 
     case ACTIONS.LOAD_IMAGES:
-      return { ...state, images: action.payload }
+      return { 
+        ...state, 
+        images: action.payload.images,
+        gridSize: action.payload.gridSize,
+        rowLabels: action.payload.rowLabels,
+        columnLabels: action.payload.columnLabels
+      }
 
     case ACTIONS.CARD_CLICK:
       const clickedCardId = action.payload
@@ -139,6 +149,7 @@ export function gameReducer(state, action) {
           }
         }
       }
+      break
 
     case ACTIONS.FLIP_BACK:
       return {
@@ -167,8 +178,6 @@ export function gameReducer(state, action) {
       }
 
     case ACTIONS.CHANGE_IMAGE_SET:
-      console.log('entering change image set action')
-      console.log(action.payload.contentType)
       return {
         ...state,
         imageSet: action.payload.imageSet,
@@ -177,6 +186,9 @@ export function gameReducer(state, action) {
         moves: 0,
         mistakes: 0,
         images: [],
+        gridSize: { rows: 0, cols: 0 },
+        rowLabels: [],
+        columnLabels: [],
         gameStatus: 'newGame',
         coords: '',
       }

@@ -1,11 +1,7 @@
 import { useState, useReducer, useEffect } from 'react'
-import { randShuffle, formatTime } from '../utils/helpers.js'
+import { randShuffle, formatTime, getBestGridSize } from '../utils/helpers.js'
 import { initState, ACTIONS, gameReducer } from '../utils/gameLogic.js'
 import { ICON_MAP } from '../utils/icons.js'
-
-const imageModules = import.meta.glob('../assets/**/*.{png,jpg,jpeg,gif,svg}', {
-  eager: false,
-})
 
 export function useMemoryGame() {
   const [state, dispatch] = useReducer(gameReducer, initState)
@@ -13,15 +9,9 @@ export function useMemoryGame() {
   const [elapsedTime, setElapsedTime] = useState(0)
   const [startTime, setStartTime] = useState(null)
 
-  const gridSize = Math.sqrt(state.images.length)
-  const isValidGrid = Number.isInteger(gridSize) && gridSize > 0
-
-  const rowLabels = isValidGrid
-    ? Array.from({ length: gridSize }, (_, i) => String.fromCharCode(65 + i))
-    : []
-  const columnLabels = isValidGrid
-    ? Array.from({ length: gridSize }, (_, i) => i + 1)
-    : []
+  // Get grid data from state instead of calculating here
+  const { gridSize, rowLabels, columnLabels } = state
+  const isValidGrid = gridSize?.rows > 0 && gridSize?.cols > 0
 
   useEffect(() => {
     const loadImages = async () => {
@@ -29,61 +19,45 @@ export function useMemoryGame() {
         `../assets/${state.imageSet}/config.json`
       )
 
-      let items
+      const items = config.icons.map((iconConfig) => ({
+        name: iconConfig.name,
+        iconComponent: ICON_MAP[iconConfig.icon],
+        color: iconConfig.color,
+        pairId: iconConfig.pairId,
+        type: 'icon',
+        isFlipped: false,
+        isMatched: false,
+        flipCounter: 0,
+      }))
 
-      if (config.type === 'icon') {
-        console.log('entering icon cond statement')
-        console.log(config.type)
-        // Handle icons
-        items = config.icons.map((iconConfig) => ({
-          name: iconConfig.name,
-          iconComponent: ICON_MAP[iconConfig.icon],
-          color: iconConfig.color,
-          type: 'icon',
-          isFlipped: false,
-          isMatched: false,
-          flipCounter: 0,
-        }))
-      } else {
-        // Handle images (existing logic)
-        items = await Promise.all(
-          config.images.map(async (img) => {
-            const imagePath = `../assets/${state.imageSet}/${img.filename}`
-            const imageModule = await imageModules[imagePath]()
-            return {
-              name: img.name,
-              src: imageModule.default,
-              type: 'image',
-              isFlipped: false,
-              isMatched: false,
-              flipCounter: 0,
-            }
-          })
-        )
-      }
-      const dupItems = items.flatMap((item, i) => {
-        item.pairId = i
-        return [item, { ...item }]
-      })
-
-      dupItems.forEach((item, i) => {
+      items.forEach((item, i) => {
         item.id = i
       })
 
-      const shuffledItems = randShuffle(dupItems)
-      const finalGridSize = Math.sqrt(shuffledItems.length)
+      const shuffledItems = randShuffle(items)
+      
+      // Calculate gridSize based on the actual items loaded
+      const currentGridSize = getBestGridSize(shuffledItems.length)
+      const currentRowLabels = Array.from({ length: currentGridSize.rows }, (_, i) => String.fromCharCode(65 + i))
+      const currentColumnLabels = Array.from({ length: currentGridSize.cols }, (_, i) => i + 1)
 
       shuffledItems.forEach((item, i) => {
-        item.gridRow = Math.floor(i / finalGridSize) + 1
-        item.gridCol = (i % finalGridSize) + 1
-        item.coordinate = `${String.fromCharCode(
-          65 + Math.floor(i / finalGridSize)
-        )}${(i % finalGridSize) + 1}`
+        const rowIndex = Math.floor(i / currentGridSize.cols)
+        const colIndex = i % currentGridSize.cols
+        
+        item.gridRow = rowIndex + 1
+        item.gridCol = colIndex + 1
+        item.coordinate = `${currentRowLabels[rowIndex]}${currentColumnLabels[colIndex]}`
       })
 
       dispatch({
         type: ACTIONS.LOAD_IMAGES,
-        payload: shuffledItems,
+        payload: {
+          images: shuffledItems,
+          gridSize: currentGridSize,
+          rowLabels: currentRowLabels,
+          columnLabels: currentColumnLabels
+        }
       })
     }
     loadImages()
@@ -92,7 +66,6 @@ export function useMemoryGame() {
   useEffect(() => {
     if (state.gameStatus === 'evaluating') {
       const timer = setTimeout(() => {
-        
         dispatch({ type: ACTIONS.FLIP_BACK })
       }, 500)
 
@@ -135,6 +108,7 @@ export function useMemoryGame() {
       rowLabels.includes(state.coords[0]) &&
       columnLabels.includes(parseInt(state.coords[1]))
     ) {
+      console.log(state.coords)
       const targetCard = state.images.find(
         (img) => img.coordinate === state.coords
       )
@@ -175,10 +149,10 @@ export function useMemoryGame() {
     state,
     dispatch,
     elapsedTime,
-    gridSize,
+    gridSize: gridSize || { rows: 0, cols: 0 },
     isValidGrid,
-    rowLabels,
-    columnLabels,
+    rowLabels: rowLabels || [],
+    columnLabels: columnLabels || [],
     formatTime,
     ACTIONS,
   }
