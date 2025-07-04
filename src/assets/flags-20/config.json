@@ -5,12 +5,32 @@
     "type": "icon"
   },
   "icons": [
-    { "name": "United States", "icon": "USFlag", "color": "#ffffff", "pairId": 1 },
-    { "name": "United States", "icon": "USFlag", "color": "#ffffff", "pairId": 1 },
+    {
+      "name": "United States",
+      "icon": "USFlag",
+      "color": "#ffffff",
+      "pairId": 1
+    },
+    {
+      "name": "United States",
+      "icon": "USFlag",
+      "color": "#ffffff",
+      "pairId": 1
+    },
     { "name": "Canada", "icon": "CAFlag", "color": "#ffffff", "pairId": 2 },
     { "name": "Canada", "icon": "CAFlag", "color": "#ffffff", "pairId": 2 },
-    { "name": "United Kingdom", "icon": "GBFlag", "color": "#ffffff", "pairId": 3 },
-    { "name": "United Kingdom", "icon": "GBFlag", "color": "#ffffff", "pairId": 3 },
+    {
+      "name": "United Kingdom",
+      "icon": "GBFlag",
+      "color": "#ffffff",
+      "pairId": 3
+    },
+    {
+      "name": "United Kingdom",
+      "icon": "GBFlag",
+      "color": "#ffffff",
+      "pairId": 3
+    },
     { "name": "France", "icon": "FRFlag", "color": "#ffffff", "pairId": 4 },
     { "name": "France", "icon": "FRFlag", "color": "#ffffff", "pairId": 4 },
     { "name": "Germany", "icon": "DEFlag", "color": "#ffffff", "pairId": 5 },
@@ -33,16 +53,46 @@
     { "name": "Mexico", "icon": "MXFlag", "color": "#ffffff", "pairId": 13 },
     { "name": "Russia", "icon": "RUFlag", "color": "#ffffff", "pairId": 14 },
     { "name": "Russia", "icon": "RUFlag", "color": "#ffffff", "pairId": 14 },
-    { "name": "South Korea", "icon": "KRFlag", "color": "#ffffff", "pairId": 15 },
-    { "name": "South Korea", "icon": "KRFlag", "color": "#ffffff", "pairId": 15 },
+    {
+      "name": "South Korea",
+      "icon": "KRFlag",
+      "color": "#ffffff",
+      "pairId": 15
+    },
+    {
+      "name": "South Korea",
+      "icon": "KRFlag",
+      "color": "#ffffff",
+      "pairId": 15
+    },
     { "name": "Nigeria", "icon": "NGFlag", "color": "#ffffff", "pairId": 16 },
     { "name": "Nigeria", "icon": "NGFlag", "color": "#ffffff", "pairId": 16 },
     { "name": "Argentina", "icon": "ARFlag", "color": "#ffffff", "pairId": 17 },
     { "name": "Argentina", "icon": "ARFlag", "color": "#ffffff", "pairId": 17 },
-    { "name": "South Africa", "icon": "ZAFlag", "color": "#ffffff", "pairId": 18 },
-    { "name": "South Africa", "icon": "ZAFlag", "color": "#ffffff", "pairId": 18 },
-    { "name": "Netherlands", "icon": "NLFlag", "color": "#ffffff", "pairId": 19 },
-    { "name": "Netherlands", "icon": "NLFlag", "color": "#ffffff", "pairId": 19 },
+    {
+      "name": "South Africa",
+      "icon": "ZAFlag",
+      "color": "#ffffff",
+      "pairId": 18
+    },
+    {
+      "name": "South Africa",
+      "icon": "ZAFlag",
+      "color": "#ffffff",
+      "pairId": 18
+    },
+    {
+      "name": "Netherlands",
+      "icon": "NLFlag",
+      "color": "#ffffff",
+      "pairId": 19
+    },
+    {
+      "name": "Netherlands",
+      "icon": "NLFlag",
+      "color": "#ffffff",
+      "pairId": 19
+    },
     { "name": "Sweden", "icon": "SEFlag", "color": "#ffffff", "pairId": 20 },
     { "name": "Sweden", "icon": "SEFlag", "color": "#ffffff", "pairId": 20 }
   ]

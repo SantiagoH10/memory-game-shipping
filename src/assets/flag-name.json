@@ -1,8 +1,8 @@
 {
   "metadata": {
     "title": "Flag name match",
-    "dim": 20,
-    "type": "correspondence"
+    "type": "flag-name",
+    "maxPairs": 20
   },
   "icons": [
     {

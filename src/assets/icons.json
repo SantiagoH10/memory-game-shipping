@@ -1,393 +1,457 @@
 {
   "metadata": {
-    "title": "Symbols",
-    "dim": 32,
-    "type": "icon"
+    "title": "Icons",
+    "type": "icon",
+    "maxPairs": 32
   },
   "icons": [
     {
       "name": "Heart",
       "icon": "Heart",
       "color": "#ef4444",
-      "pairId": 1
+      "pairId": 1,
+      "type": "icon"
     },
     {
       "name": "Heart",
       "icon": "Heart",
       "color": "#10b981",
-      "pairId": 1
+      "pairId": 1,
+      "type": "icon"
     },
     {
       "name": "Star",
       "icon": "Star",
       "color": "#f59e0b",
-      "pairId": 2
+      "pairId": 2,
+      "type": "icon"
     },
     {
       "name": "Star",
       "icon": "Star",
       "color": "#8b5cf6",
-      "pairId": 2
+      "pairId": 2,
+      "type": "icon"
     },
     {
       "name": "Circle",
       "icon": "Circle",
       "color": "#3b82f6",
-      "pairId": 3
+      "pairId": 3,
+      "type": "icon"
     },
     {
       "name": "Circle",
       "icon": "Circle",
       "color": "#f97316",
-      "pairId": 3
+      "pairId": 3,
+      "type": "icon"
     },
     {
       "name": "Square",
       "icon": "Square",
       "color": "#10b981",
-      "pairId": 4
+      "pairId": 4,
+      "type": "icon"
     },
     {
       "name": "Square",
       "icon": "Square",
       "color": "#ec4899",
-      "pairId": 4
+      "pairId": 4,
+      "type": "icon"
     },
     {
       "name": "Triangle",
       "icon": "Triangle",
       "color": "#8b5cf6",
-      "pairId": 5
+      "pairId": 5,
+      "type": "icon"
     },
     {
       "name": "Triangle",
       "icon": "Triangle",
       "color": "#06b6d4",
-      "pairId": 5
+      "pairId": 5,
+      "type": "icon"
     },
     {
       "name": "Diamond",
       "icon": "Diamond",
       "color": "#f97316",
-      "pairId": 6
+      "pairId": 6,
+      "type": "icon"
     },
     {
       "name": "Diamond",
       "icon": "Diamond",
       "color": "#3b82f6",
-      "pairId": 6
+      "pairId": 6,
+      "type": "icon"
     },
     {
       "name": "Hexagon",
       "icon": "Hexagon",
       "color": "#06b6d4",
-      "pairId": 7
+      "pairId": 7,
+      "type": "icon"
     },
     {
       "name": "Hexagon",
       "icon": "Hexagon",
       "color": "#ef4444",
-      "pairId": 7
+      "pairId": 7,
+      "type": "icon"
     },
     {
       "name": "Music",
       "icon": "Music",
       "color": "#ec4899",
-      "pairId": 8
+      "pairId": 8,
+      "type": "icon"
     },
     {
       "name": "Music",
       "icon": "Music",
       "color": "#f59e0b",
-      "pairId": 8
+      "pairId": 8,
+      "type": "icon"
     },
     {
       "name": "Sun",
       "icon": "Sun",
       "color": "#fbbf24",
-      "pairId": 9
+      "pairId": 9,
+      "type": "icon"
     },
     {
       "name": "Sun",
       "icon": "Sun",
       "color": "#7c3aed",
-      "pairId": 9
+      "pairId": 9,
+      "type": "icon"
     },
     {
       "name": "Moon",
       "icon": "Moon",
       "color": "#6366f1",
-      "pairId": 10
+      "pairId": 10,
+      "type": "icon"
     },
     {
       "name": "Moon",
       "icon": "Moon",
       "color": "#16a34a",
-      "pairId": 10
+      "pairId": 10,
+      "type": "icon"
     },
     {
       "name": "Cloud",
       "icon": "Cloud",
       "color": "#94a3b8",
-      "pairId": 11
+      "pairId": 11,
+      "type": "icon"
     },
     {
       "name": "Cloud",
       "icon": "Cloud",
       "color": "#dc2626",
-      "pairId": 11
+      "pairId": 11,
+      "type": "icon"
     },
     {
       "name": "Zap",
       "icon": "Zap",
       "color": "#eab308",
-      "pairId": 12
+      "pairId": 12,
+      "type": "icon"
     },
     {
       "name": "Zap",
       "icon": "Zap",
       "color": "#581c87",
-      "pairId": 12
+      "pairId": 12,
+      "type": "icon"
     },
     {
       "name": "Flame",
       "icon": "Flame",
       "color": "#dc2626",
-      "pairId": 13
+      "pairId": 13,
+      "type": "icon"
     },
     {
       "name": "Flame",
       "icon": "Flame",
       "color": "#0ea5e9",
-      "pairId": 13
+      "pairId": 13,
+      "type": "icon"
     },
     {
       "name": "Droplet",
       "icon": "Droplet",
       "color": "#0ea5e9",
-      "pairId": 14
+      "pairId": 14,
+      "type": "icon"
     },
     {
       "name": "Droplet",
       "icon": "Droplet",
       "color": "#d97706",
-      "pairId": 14
+      "pairId": 14,
+      "type": "icon"
     },
     {
       "name": "Leaf",
       "icon": "Leaf",
       "color": "#16a34a",
-      "pairId": 15
+      "pairId": 15,
+      "type": "icon"
     },
     {
       "name": "Leaf",
       "icon": "Leaf",
       "color": "#be185d",
-      "pairId": 15
+      "pairId": 15,
+      "type": "icon"
     },
     {
       "name": "Flower",
       "icon": "Flower",
       "color": "#db2777",
-      "pairId": 16
+      "pairId": 16,
+      "type": "icon"
     },
     {
       "name": "Flower",
       "icon": "Flower",
       "color": "#0d9488",
-      "pairId": 16
+      "pairId": 16,
+      "type": "icon"
     },
     {
       "name": "Apple",
       "icon": "Apple",
       "color": "#dc2626",
-      "pairId": 17
+      "pairId": 17,
+      "type": "icon"
     },
     {
       "name": "Apple",
       "icon": "Apple",
       "color": "#4338ca",
-      "pairId": 17
+      "pairId": 17,
+      "type": "icon"
     },
     {
       "name": "Coffee",
       "icon": "Coffee",
       "color": "#92400e",
-      "pairId": 18
+      "pairId": 18,
+      "type": "icon"
     },
     {
       "name": "Coffee",
       "icon": "Coffee",
       "color": "#059669",
-      "pairId": 18
+      "pairId": 18,
+      "type": "icon"
     },
     {
       "name": "Home",
       "icon": "Home",
       "color": "#7c3aed",
-      "pairId": 19
+      "pairId": 19,
+      "type": "icon"
     },
     {
       "name": "Home",
       "icon": "Home",
       "color": "#f59e0b",
-      "pairId": 19
+      "pairId": 19,
+      "type": "icon"
     },
     {
       "name": "Car",
       "icon": "Car",
       "color": "#059669",
-      "pairId": 20
+      "pairId": 20,
+      "type": "icon"
     },
     {
       "name": "Car",
       "icon": "Car",
       "color": "#ec4899",
-      "pairId": 20
+      "pairId": 20,
+      "type": "icon"
     },
     {
       "name": "Plane",
       "icon": "Plane",
       "color": "#0d9488",
-      "pairId": 21
+      "pairId": 21,
+      "type": "icon"
     },
     {
       "name": "Plane",
       "icon": "Plane",
       "color": "#b91c1c",
-      "pairId": 21
+      "pairId": 21,
+      "type": "icon"
     },
     {
       "name": "Ship",
       "icon": "Ship",
       "color": "#1e40af",
-      "pairId": 22
+      "pairId": 22,
+      "type": "icon"
     },
     {
       "name": "Ship",
       "icon": "Ship",
       "color": "#65a30d",
-      "pairId": 22
+      "pairId": 22,
+      "type": "icon"
     },
     {
       "name": "Camera",
       "icon": "Camera",
       "color": "#be185d",
-      "pairId": 23
+      "pairId": 23,
+      "type": "icon"
     },
     {
       "name": "Camera",
       "icon": "Camera",
       "color": "#0891b2",
-      "pairId": 23
+      "pairId": 23,
+      "type": "icon"
     },
     {
       "name": "Phone",
       "icon": "Phone",
       "color": "#7c2d12",
-      "pairId": 24
+      "pairId": 24,
+      "type": "icon"
     },
     {
       "name": "Phone",
       "icon": "Phone",
       "color": "#6366f1",
-      "pairId": 24
+      "pairId": 24,
+      "type": "icon"
     },
     {
       "name": "Mail",
       "icon": "Mail",
       "color": "#581c87",
-      "pairId": 25
+      "pairId": 25,
+      "type": "icon"
     },
     {
       "name": "Mail",
       "icon": "Mail",
       "color": "#eab308",
-      "pairId": 25
+      "pairId": 25,
+      "type": "icon"
     },
     {
       "name": "Gift",
       "icon": "Gift",
       "color": "#b91c1c",
-      "pairId": 26
+      "pairId": 26,
+      "type": "icon"
     },
     {
       "name": "Gift",
       "icon": "Gift",
       "color": "#0d9488",
-      "pairId": 26
+      "pairId": 26,
+      "type": "icon"
     },
     {
       "name": "Crown",
       "icon": "Crown",
       "color": "#d97706",
-      "pairId": 27
+      "pairId": 27,
+      "type": "icon"
     },
     {
       "name": "Crown",
       "icon": "Crown",
       "color": "#7c3aed",
-      "pairId": 27
+      "pairId": 27,
+      "type": "icon"
     },
     {
       "name": "Shield",
       "icon": "Shield",
       "color": "#65a30d",
-      "pairId": 28
+      "pairId": 28,
+      "type": "icon"
     },
     {
       "name": "Shield",
       "icon": "Shield",
       "color": "#1e40af",
-      "pairId": 28
+      "pairId": 28,
+      "type": "icon"
     },
     {
       "name": "Sword",
       "icon": "Sword",
       "color": "#4338ca",
-      "pairId": 29
+      "pairId": 29,
+      "type": "icon"
     },
     {
       "name": "Sword",
       "icon": "Sword",
       "color": "#dc2626",
-      "pairId": 29
+      "pairId": 29,
+      "type": "icon"
     },
     {
       "name": "Key",
       "icon": "Key",
       "color": "#c2410c",
-      "pairId": 30
+      "pairId": 30,
+      "type": "icon"
     },
     {
       "name": "Key",
       "icon": "Key",
       "color": "#374151",
-      "pairId": 30
+      "pairId": 30,
+      "type": "icon"
     },
     {
       "name": "Lock",
       "icon": "Lock",
       "color": "#374151",
-      "pairId": 31
+      "pairId": 31,
+      "type": "icon"
     },
     {
       "name": "Lock",
       "icon": "Lock",
       "color": "#c2410c",
-      "pairId": 31
+      "pairId": 31,
+      "type": "icon"
     },
     {
       "name": "Bell",
       "icon": "Bell",
       "color": "#0891b2",
-      "pairId": 32
+      "pairId": 32,
+      "type": "icon"
     },
     {
       "name": "Bell",
       "icon": "Bell",
       "color": "#be185d",
-      "pairId": 32
+      "pairId": 32,
+      "type": "icon"
     }
   ]
 }

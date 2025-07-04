@@ -27,7 +27,7 @@ export const ACTIONS = {
 export function gameReducer(state, action) {
   switch (action.type) {
     case ACTIONS.NEW_GAME:
-      const resetImages = state.images.map((img) => ({
+      const resetImages = state.images.map(img => ({
         ...img,
         isFlipped: false,
         isMatched: false,
@@ -70,7 +70,7 @@ export function gameReducer(state, action) {
       const clickedCardId = action.payload
 
       if (state.gameStatus === 'firstGuess') {
-        const clickedCard = state.images.find((img) => img.id === clickedCardId)
+        const clickedCard = state.images.find(img => img.id === clickedCardId)
         const newFlipCounter = clickedCard.flipCounter + 1
 
         return {
@@ -79,10 +79,10 @@ export function gameReducer(state, action) {
             ...state.playerGuess,
             first: clickedCardId,
           },
-          images: state.images.map((img) =>
+          images: state.images.map(img =>
             img.id === clickedCardId
               ? { ...img, isFlipped: true, flipCounter: newFlipCounter }
-              : img
+              : img,
           ),
           moves: state.moves + 1,
           gameStatus: 'secondGuess',
@@ -91,14 +91,14 @@ export function gameReducer(state, action) {
         const firstGuessId = state.playerGuess.first
         const secondGuessId = clickedCardId
 
-        const firstImage = state.images.find((img) => img.id === firstGuessId)
-        const secondImage = state.images.find((img) => img.id === secondGuessId)
+        const firstImage = state.images.find(img => img.id === firstGuessId)
+        const secondImage = state.images.find(img => img.id === secondGuessId)
         const secondCardNewFlipCounter = secondImage.flipCounter + 1
 
         const isMatch = firstImage.pairId === secondImage.pairId
 
         if (isMatch) {
-          const updatedImages = state.images.map((img) => {
+          const updatedImages = state.images.map(img => {
             if (img.id === firstGuessId || img.id === secondGuessId) {
               return {
                 ...img,
@@ -113,7 +113,7 @@ export function gameReducer(state, action) {
             return img
           })
 
-          const allMatched = updatedImages.every((img) => img.isMatched)
+          const allMatched = updatedImages.every(img => img.isMatched)
 
           return {
             ...state,
@@ -132,7 +132,7 @@ export function gameReducer(state, action) {
           return {
             ...state,
             playerGuess: { first: firstGuessId, second: secondGuessId },
-            images: state.images.map((img) => {
+            images: state.images.map(img => {
               if (img.id === firstGuessId || img.id === secondGuessId) {
                 return {
                   ...img,
@@ -157,7 +157,7 @@ export function gameReducer(state, action) {
       return {
         ...state,
         playerGuess: { first: null, second: null },
-        images: state.images.map((img) => {
+        images: state.images.map(img => {
           // Only flip back cards that are flipped but not matched
           if (img.isFlipped && !img.isMatched) {
             return { ...img, isFlipped: false }

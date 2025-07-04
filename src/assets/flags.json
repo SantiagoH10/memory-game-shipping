@@ -1,0 +1,289 @@
+{
+  "metadata": {
+    "title": "Flags",
+    "type": "flag",
+    "maxPairs": 20
+  },
+  "icons": [
+    {
+      "name": "United States",
+      "icon": "USFlag",
+      "color": "#ffffff",
+      "pairId": 1,
+      "type": "icon"
+    },
+    {
+      "name": "United States",
+      "icon": "USFlag",
+      "color": "#ffffff",
+      "pairId": 1,
+      "type": "icon"
+    },
+    {
+      "name": "Canada",
+      "icon": "CAFlag",
+      "color": "#ffffff",
+      "pairId": 2,
+      "type": "icon"
+    },
+    {
+      "name": "Canada",
+      "icon": "CAFlag",
+      "color": "#ffffff",
+      "pairId": 2,
+      "type": "icon"
+    },
+    {
+      "name": "United Kingdom",
+      "icon": "GBFlag",
+      "color": "#ffffff",
+      "pairId": 3,
+      "type": "icon"
+    },
+    {
+      "name": "United Kingdom",
+      "icon": "GBFlag",
+      "color": "#ffffff",
+      "pairId": 3,
+      "type": "icon"
+    },
+    {
+      "name": "France",
+      "icon": "FRFlag",
+      "color": "#ffffff",
+      "pairId": 4,
+      "type": "icon"
+    },
+    {
+      "name": "France",
+      "icon": "FRFlag",
+      "color": "#ffffff",
+      "pairId": 4,
+      "type": "icon"
+    },
+    {
+      "name": "Germany",
+      "icon": "DEFlag",
+      "color": "#ffffff",
+      "pairId": 5,
+      "type": "icon"
+    },
+    {
+      "name": "Germany",
+      "icon": "DEFlag",
+      "color": "#ffffff",
+      "pairId": 5,
+      "type": "icon"
+    },
+    {
+      "name": "Italy",
+      "icon": "ITFlag",
+      "color": "#ffffff",
+      "pairId": 6,
+      "type": "icon"
+    },
+    {
+      "name": "Italy",
+      "icon": "ITFlag",
+      "color": "#ffffff",
+      "pairId": 6,
+      "type": "icon"
+    },
+    {
+      "name": "Spain",
+      "icon": "ESFlag",
+      "color": "#ffffff",
+      "pairId": 7,
+      "type": "icon"
+    },
+    {
+      "name": "Spain",
+      "icon": "ESFlag",
+      "color": "#ffffff",
+      "pairId": 7,
+      "type": "icon"
+    },
+    {
+      "name": "Japan",
+      "icon": "JPFlag",
+      "color": "#ffffff",
+      "pairId": 8,
+      "type": "icon"
+    },
+    {
+      "name": "Japan",
+      "icon": "JPFlag",
+      "color": "#ffffff",
+      "pairId": 8,
+      "type": "icon"
+    },
+    {
+      "name": "China",
+      "icon": "CNFlag",
+      "color": "#ffffff",
+      "pairId": 9,
+      "type": "icon"
+    },
+    {
+      "name": "China",
+      "icon": "CNFlag",
+      "color": "#ffffff",
+      "pairId": 9,
+      "type": "icon"
+    },
+    {
+      "name": "India",
+      "icon": "INFlag",
+      "color": "#ffffff",
+      "pairId": 10,
+      "type": "icon"
+    },
+    {
+      "name": "India",
+      "icon": "INFlag",
+      "color": "#ffffff",
+      "pairId": 10,
+      "type": "icon"
+    },
+    {
+      "name": "Brazil",
+      "icon": "BRFlag",
+      "color": "#ffffff",
+      "pairId": 11,
+      "type": "icon"
+    },
+    {
+      "name": "Brazil",
+      "icon": "BRFlag",
+      "color": "#ffffff",
+      "pairId": 11,
+      "type": "icon"
+    },
+    {
+      "name": "Australia",
+      "icon": "AUFlag",
+      "color": "#ffffff",
+      "pairId": 12,
+      "type": "icon"
+    },
+    {
+      "name": "Australia",
+      "icon": "AUFlag",
+      "color": "#ffffff",
+      "pairId": 12,
+      "type": "icon"
+    },
+    {
+      "name": "Mexico",
+      "icon": "MXFlag",
+      "color": "#ffffff",
+      "pairId": 13,
+      "type": "icon"
+    },
+    {
+      "name": "Mexico",
+      "icon": "MXFlag",
+      "color": "#ffffff",
+      "pairId": 13,
+      "type": "icon"
+    },
+    {
+      "name": "Russia",
+      "icon": "RUFlag",
+      "color": "#ffffff",
+      "pairId": 14,
+      "type": "icon"
+    },
+    {
+      "name": "Russia",
+      "icon": "RUFlag",
+      "color": "#ffffff",
+      "pairId": 14,
+      "type": "icon"
+    },
+    {
+      "name": "South Korea",
+      "icon": "KRFlag",
+      "color": "#ffffff",
+      "pairId": 15,
+      "type": "icon"
+    },
+    {
+      "name": "South Korea",
+      "icon": "KRFlag",
+      "color": "#ffffff",
+      "pairId": 15,
+      "type": "icon"
+    },
+    {
+      "name": "Nigeria",
+      "icon": "NGFlag",
+      "color": "#ffffff",
+      "pairId": 16,
+      "type": "icon"
+    },
+    {
+      "name": "Nigeria",
+      "icon": "NGFlag",
+      "color": "#ffffff",
+      "pairId": 16,
+      "type": "icon"
+    },
+    {
+      "name": "Argentina",
+      "icon": "ARFlag",
+      "color": "#ffffff",
+      "pairId": 17,
+      "type": "icon"
+    },
+    {
+      "name": "Argentina",
+      "icon": "ARFlag",
+      "color": "#ffffff",
+      "pairId": 17,
+      "type": "icon"
+    },
+    {
+      "name": "South Africa",
+      "icon": "ZAFlag",
+      "color": "#ffffff",
+      "pairId": 18,
+      "type": "icon"
+    },
+    {
+      "name": "South Africa",
+      "icon": "ZAFlag",
+      "color": "#ffffff",
+      "pairId": 18,
+      "type": "icon"
+    },
+    {
+      "name": "Netherlands",
+      "icon": "NLFlag",
+      "color": "#ffffff",
+      "pairId": 19,
+      "type": "icon"
+    },
+    {
+      "name": "Netherlands",
+      "icon": "NLFlag",
+      "color": "#ffffff",
+      "pairId": 19,
+      "type": "icon"
+    },
+    {
+      "name": "Sweden",
+      "icon": "SEFlag",
+      "color": "#ffffff",
+      "pairId": 20,
+      "type": "icon"
+    },
+    {
+      "name": "Sweden",
+      "icon": "SEFlag",
+      "color": "#ffffff",
+      "pairId": 20,
+      "type": "icon"
+    }
+  ]
+}

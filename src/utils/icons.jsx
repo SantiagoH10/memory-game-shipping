@@ -35,19 +35,19 @@ import {
 
 import Flag from 'react-world-flags'
 
-const createFlagComponent = (countryCode) => {
+const createFlagComponent = countryCode => {
   return ({ size = 28, style, ...props }) => (
-    <Flag 
-      code={countryCode} 
+    <Flag
+      code={countryCode}
       height={size}
       style={{
         border: '1px solid rgba(0,0,0,0.15)',
         borderRadius: '4px',
         boxShadow: '0 1px 3px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.1)',
         filter: 'brightness(1.05) contrast(1.1)',
-        ...style
+        ...style,
       }}
-      {...props} 
+      {...props}
     />
   )
 }
@@ -125,5 +125,5 @@ export const ICON_MAP = {
   ARFlag,
   ZAFlag,
   NLFlag,
-  SEFlag
+  SEFlag,
 }

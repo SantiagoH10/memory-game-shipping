@@ -20,17 +20,18 @@ export function useMemoryGame() {
         `../assets/${state.imageSet}/config.json`
       )
 
-      const items = config.icons.map((iconConfig) => ({
-      name: iconConfig.name,
-      iconComponent: iconConfig.type === 'icon' ? ICON_MAP[iconConfig.icon] : null,
-      displayText: iconConfig.displayText || null,
-      color: iconConfig.color, 
-      pairId: iconConfig.pairId,
-      type: iconConfig.type,
-      isFlipped: false,
-      isMatched: false,
-      flipCounter: 0,
-    }))
+      const items = config.icons.map(iconConfig => ({
+        name: iconConfig.name,
+        iconComponent:
+          iconConfig.type === 'icon' ? ICON_MAP[iconConfig.icon] : null,
+        displayText: iconConfig.displayText || null,
+        color: iconConfig.color,
+        pairId: iconConfig.pairId,
+        type: iconConfig.type,
+        isFlipped: false,
+        isMatched: false,
+        flipCounter: 0,
+      }))
       items.forEach((item, i) => {
         item.id = i
       })
@@ -41,11 +42,11 @@ export function useMemoryGame() {
       const currentGridSize = getBestGridSize(shuffledItems.length)
       const currentRowLabels = Array.from(
         { length: currentGridSize.rows },
-        (_, i) => String.fromCharCode(65 + i)
+        (_, i) => String.fromCharCode(65 + i),
       )
       const currentColumnLabels = Array.from(
         { length: currentGridSize.cols },
-        (_, i) => i + 1
+        (_, i) => i + 1,
       )
 
       shuffledItems.forEach((item, i) => {
@@ -84,10 +85,9 @@ export function useMemoryGame() {
   }, [state.gameStatus])
   //#endregion
 
-
   //#region Keyboard functionality and coordinates matching
   useEffect(() => {
-    const handleKeyPress = (event) => {
+    const handleKeyPress = event => {
       if (!['firstGuess', 'secondGuess'].includes(state.gameStatus)) return
 
       if (event.key === 'Backspace' || event.key === 'Delete') {
@@ -122,7 +122,7 @@ export function useMemoryGame() {
       columnLabels.includes(parseInt(state.coords[1]))
     ) {
       const targetCard = state.images.find(
-        (img) => img.coordinate === state.coords
+        img => img.coordinate === state.coords,
       )
 
       if (targetCard && !targetCard.isMatched && !targetCard.isFlipped) {
@@ -158,7 +158,7 @@ export function useMemoryGame() {
     let timer
     if (timerActive) {
       timer = setInterval(() => {
-        setElapsedTime((prev) => prev + 1)
+        setElapsedTime(prev => prev + 1)
       }, 1000)
     }
 
