@@ -135,7 +135,7 @@ export function useMemoryGame() {
   useEffect(() => {
     if (['newGame', 'gameOver'].includes(state.gameStatus)) {
       if (state.gameStatus === 'gameOver' && elapsedTime > 0) {
-      setFinalTime(elapsedTime)
+        setFinalTime(elapsedTime)
       } else if (state.gameStatus === 'newGame') {
         setFinalTime(0)
       }

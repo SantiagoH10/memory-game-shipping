@@ -35,10 +35,9 @@ export function GameSelector() {
                 }}
                 className={`
                   px-6 py-3 rounded-lg border-2 transition-all duration-200 transform hover:scale-105 hover:shadow-md
-                  ${
-                    state.imageSet === set.folderName
-                      ? 'border-ccblue bg-ccblue text-white shadow-lg'
-                      : 'bg-gray-50 border-gray-300 text-gray-700 hover:border-blue-300'
+                  ${state.imageSet === set.folderName
+                    ? 'border-ccblue bg-ccblue text-white shadow-lg'
+                    : 'bg-gray-50 border-gray-300 text-gray-700 hover:border-blue-300'
                   }
                   min-w-[140px] text-center font-medium
                 `}

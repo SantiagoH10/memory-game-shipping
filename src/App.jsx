@@ -1,14 +1,9 @@
 //#region Imports
-import { GameSelector } from './sharedComponents/gameSelector.jsx'
-
 import { useGameContext, GameProvider } from './utils/gameContext.jsx'
-
 import { MySociabble } from './sharedComponents/mySociabble.jsx'
-
 import { GameOverlay } from './sharedComponents/gameOverlay.jsx'
-
 import { GameDashboard } from './sharedComponents/gameDashboard.jsx'
-
+import { GameSelector } from './sharedComponents/gameSelector.jsx'
 import './App.css'
 
 //#endregion
@@ -23,16 +18,7 @@ function MemoryGame() {
 }
 
 function MemoryGameContent() {
-  const {
-    state,
-    dispatch,
-    elapsedTime,
-    gridSize,
-    rowLabels,
-    columnLabels,
-    formatTime,
-    ACTIONS,
-  } = useGameContext()
+  const { state } = useGameContext()
 
   return (
     <div className='min-h-screen p-3 bg-ccblue'>
@@ -70,11 +56,11 @@ function IconGameDashboard() {
 
   return (
     <div className='flex items-center justify-center w-full p-4'>
-      <div className='flex flex-col gap-1'>
+      <div className='flex flex-col gap-2'>
         {rowLabels.map((letter, rowIndex) => (
           <div
             key={`row-${rowIndex}`}
-            className='flex gap-1'
+            className='flex gap-2'
           >
             {state.images
               .filter((item) => item.gridRow === rowIndex + 1) // Filter by actual grid row
@@ -91,23 +77,21 @@ function IconGameDashboard() {
                     }
                     className={`
                       relative rounded-lg border-2 w-16 h-16 transition-all duration-300 flex-shrink-0
-                      ${
-                        item.isFlipped
-                          ? 'bg-white border-purple-400 shadow-lg scale-105'
-                          : 'bg-gradient-to-br from-blue-500 to-purple-600 hover:from-blue-400 hover:to-purple-500 border-blue-400'
+                      ${item.isFlipped
+                        ? 'bg-white border-purple-400 shadow-lg scale-105'
+                        : 'bg-gradient-to-br from-blue-500 to-purple-600 hover:from-blue-400 hover:to-purple-500 border-blue-400'
                       }
-                      ${
-                        item.isMatched
-                          ? 'bg-white border-green-400 shadow-green-400/60 shadow-lg'
-                          : 'cursor-pointer transform hover:scale-110 active:scale-95'
+                      ${item.isMatched
+                        ? 'bg-white border-green-400 shadow-green-400/60 shadow-lg'
+                        : 'cursor-pointer transform hover:scale-110 active:scale-95'
                       }
                     `}
                     style={
                       item.isMatched
                         ? {
-                            boxShadow:
-                              '0 0 15px rgba(34, 197, 94, 0.6), 0 0 25px rgba(34, 197, 94, 0.3)',
-                          }
+                          boxShadow:
+                            '0 0 15px rgba(34, 197, 94, 0.6), 0 0 25px rgba(34, 197, 94, 0.3)',
+                        }
                         : {}
                     }
                   >
