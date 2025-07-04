@@ -1,4 +1,4 @@
-const SET_FOLDERS = ['symbols-2','symbols-10','symbols-32']
+const SET_FOLDERS = ['symbols-2','symbols-10','symbols-20']
 
 export async function loadSetOptions() {
   const options = []

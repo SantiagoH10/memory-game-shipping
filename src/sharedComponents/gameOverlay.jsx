@@ -4,7 +4,7 @@ import { useGameContext } from '../utils/gameContext.jsx'
 import { formatTime } from '../utils/helpers.js'
 
 export const GameOverlay = () => {
-  const { state, dispatch, elapsedTime, ACTIONS } = useGameContext()
+  const { state, dispatch, ACTIONS, finalTime } = useGameContext()
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -87,7 +87,7 @@ export const GameOverlay = () => {
               </div>
               <div>
                 <div className='text-lg sm:text-2xl font-bold text-white'>
-                  {formatTime(elapsedTime)}
+                  {formatTime(finalTime)}
                 </div>
                 <div className='text-xs sm:text-sm text-slate-400'>Time</div>
               </div>

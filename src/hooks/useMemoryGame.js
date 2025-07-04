@@ -8,8 +8,8 @@ export function useMemoryGame() {
 
   const [elapsedTime, setElapsedTime] = useState(0)
   const [timerActive, setTimerActive] = useState(false)
+  const [finalTime, setFinalTime] = useState(0)
 
-  // Get grid data from state instead of calculating here
   const { gridSize, rowLabels, columnLabels } = state
   const isValidGrid = gridSize?.rows > 0 && gridSize?.cols > 0
 
@@ -133,7 +133,12 @@ export function useMemoryGame() {
 
   //#region Timer control logic
   useEffect(() => {
-    if (state.gameStatus === 'newGame') {
+    if (['newGame', 'gameOver'].includes(state.gameStatus)) {
+      if (state.gameStatus === 'gameOver' && elapsedTime > 0) {
+      setFinalTime(elapsedTime)
+      } else if (state.gameStatus === 'newGame') {
+        setFinalTime(0)
+      }
       setElapsedTime(0)
       setTimerActive(false)
     } else if (state.gameStatus === 'firstGuess' && !timerActive) {
@@ -141,7 +146,7 @@ export function useMemoryGame() {
     } else if (state.gameStatus === 'gameOver') {
       setTimerActive(false)
     }
-  }, [state.gameStatus, timerActive])
+  }, [state.gameStatus, timerActive, elapsedTime])
 
   useEffect(() => {
     let timer
@@ -160,6 +165,7 @@ export function useMemoryGame() {
   return {
     state,
     dispatch,
+    finalTime,
     elapsedTime,
     gridSize: gridSize || { rows: 0, cols: 0 },
     isValidGrid,
