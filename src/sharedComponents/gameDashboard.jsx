@@ -10,7 +10,6 @@ export function GameDashboard() {
     isValidGrid,
     rowLabels,
     columnLabels,
-    formatTime,
     ACTIONS,
   } = useGameContext()
   return (

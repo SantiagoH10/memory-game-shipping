@@ -1,17 +1,13 @@
 //#region Imports
-import { useEffect } from 'react'
-
-import { useMemoryGame } from './hooks/useMemoryGame.js'
-
-import { GameSelector } from "./sharedComponents/gameSelector.jsx"
+import { GameSelector } from './sharedComponents/gameSelector.jsx'
 
 import { useGameContext, GameProvider } from './utils/gameContext.jsx'
 
-import { MySociabble} from "./sharedComponents/mySociabble.jsx"
+import { MySociabble } from './sharedComponents/mySociabble.jsx'
 
 import { GameOverlay } from './sharedComponents/gameOverlay.jsx'
 
-import { GameDashboard} from './sharedComponents/gameDashboard.jsx'
+import { GameDashboard } from './sharedComponents/gameDashboard.jsx'
 
 import './App.css'
 
@@ -54,10 +50,17 @@ function MemoryGameContent() {
 
 //#region Icon dashboard
 function IconGameDashboard() {
-  const { state, dispatch, gridSize, rowLabels, columnLabels, ACTIONS } = useGameContext()
+  const { state, dispatch, gridSize, rowLabels, columnLabels, ACTIONS } =
+    useGameContext()
 
   // Return early if grid data isn't loaded yet
-  if (!gridSize || !gridSize.rows || !gridSize.cols || !rowLabels || !columnLabels) {
+  if (
+    !gridSize ||
+    !gridSize.rows ||
+    !gridSize.cols ||
+    !rowLabels ||
+    !columnLabels
+  ) {
     return (
       <div className='flex items-center justify-center w-full p-4'>
         <div className='text-gray-500'>Loading game...</div>
@@ -74,7 +77,7 @@ function IconGameDashboard() {
             className='flex gap-1'
           >
             {state.images
-              .filter(item => item.gridRow === rowIndex + 1) // Filter by actual grid row
+              .filter((item) => item.gridRow === rowIndex + 1) // Filter by actual grid row
               .sort((a, b) => a.gridCol - b.gridCol) // Sort by grid column
               .map((item) => {
                 const IconComponent = item.iconComponent
@@ -102,7 +105,8 @@ function IconGameDashboard() {
                     style={
                       item.isMatched
                         ? {
-                            boxShadow: '0 0 15px rgba(34, 197, 94, 0.6), 0 0 25px rgba(34, 197, 94, 0.3)',
+                            boxShadow:
+                              '0 0 15px rgba(34, 197, 94, 0.6), 0 0 25px rgba(34, 197, 94, 0.3)',
                           }
                         : {}
                     }

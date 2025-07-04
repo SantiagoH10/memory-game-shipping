@@ -7,70 +7,67 @@ export function useMemoryGame() {
   const [state, dispatch] = useReducer(gameReducer, initState)
 
   const [elapsedTime, setElapsedTime] = useState(0)
-  const [startTime, setStartTime] = useState(null)
+  const [timerActive, setTimerActive] = useState(false)
 
   // Get grid data from state instead of calculating here
   const { gridSize, rowLabels, columnLabels } = state
   const isValidGrid = gridSize?.rows > 0 && gridSize?.cols > 0
 
-  useEffect(
-    () => {
-      const loadImages = async () => {
-        const { default: config } = await import(
-          `../assets/${state.imageSet}/config.json`
-        )
+  useEffect(() => {
+    const loadImages = async () => {
+      const { default: config } = await import(
+        `../assets/${state.imageSet}/config.json`
+      )
 
-        const items = config.icons.map((iconConfig) => ({
-          name: iconConfig.name,
-          iconComponent: ICON_MAP[iconConfig.icon],
-          color: iconConfig.color,
-          pairId: iconConfig.pairId,
-          type: 'icon',
-          isFlipped: false,
-          isMatched: false,
-          flipCounter: 0,
-        }))
+      const items = config.icons.map((iconConfig) => ({
+        name: iconConfig.name,
+        iconComponent: ICON_MAP[iconConfig.icon],
+        color: iconConfig.color,
+        pairId: iconConfig.pairId,
+        type: 'icon',
+        isFlipped: false,
+        isMatched: false,
+        flipCounter: 0,
+      }))
 
-        items.forEach((item, i) => {
-          item.id = i
-        })
+      items.forEach((item, i) => {
+        item.id = i
+      })
 
-        const shuffledItems = randShuffle(items)
+      const shuffledItems = randShuffle(items)
 
-        // Calculate gridSize based on the actual items loaded
-        const currentGridSize = getBestGridSize(shuffledItems.length)
-        const currentRowLabels = Array.from(
-          { length: currentGridSize.rows },
-          (_, i) => String.fromCharCode(65 + i)
-        )
-        const currentColumnLabels = Array.from(
-          { length: currentGridSize.cols },
-          (_, i) => i + 1
-        )
+      // Calculate gridSize based on the actual items loaded
+      const currentGridSize = getBestGridSize(shuffledItems.length)
+      const currentRowLabels = Array.from(
+        { length: currentGridSize.rows },
+        (_, i) => String.fromCharCode(65 + i)
+      )
+      const currentColumnLabels = Array.from(
+        { length: currentGridSize.cols },
+        (_, i) => i + 1
+      )
 
-        shuffledItems.forEach((item, i) => {
-          const rowIndex = Math.floor(i / currentGridSize.cols)
-          const colIndex = i % currentGridSize.cols
+      shuffledItems.forEach((item, i) => {
+        const rowIndex = Math.floor(i / currentGridSize.cols)
+        const colIndex = i % currentGridSize.cols
 
-          item.gridRow = rowIndex + 1
-          item.gridCol = colIndex + 1
-          item.coordinate = `${currentRowLabels[rowIndex]}${currentColumnLabels[colIndex]}`
-        })
+        item.gridRow = rowIndex + 1
+        item.gridCol = colIndex + 1
+        item.coordinate = `${currentRowLabels[rowIndex]}${currentColumnLabels[colIndex]}`
+      })
 
-        dispatch({
-          type: ACTIONS.LOAD_IMAGES,
-          payload: {
-            images: shuffledItems,
-            gridSize: currentGridSize,
-            rowLabels: currentRowLabels,
-            columnLabels: currentColumnLabels,
-          },
-        })
-      }
-      loadImages()
-    },
-    [state.gameVersion]
-  )
+      dispatch({
+        type: ACTIONS.LOAD_IMAGES,
+        payload: {
+          images: shuffledItems,
+          gridSize: currentGridSize,
+          rowLabels: currentRowLabels,
+          columnLabels: currentColumnLabels,
+        },
+      })
+    }
+    loadImages()
+  }, [state.gameVersion])
 
   useEffect(() => {
     if (state.gameStatus === 'evaluating') {
@@ -135,31 +132,32 @@ export function useMemoryGame() {
   }, [state.coords, state.images, rowLabels, columnLabels])
   //#endregion
 
-  useEffect(
-    () => {
-      if (state.gameStatus === 'newGame') {
-        setElapsedTime(0)
-        setStartTime(null)
-      }
+  //#region Timer control logic
+  useEffect(() => {
+    if (state.gameStatus === 'newGame') {
+      setElapsedTime(0)
+      setTimerActive(false)
+    } else if (state.gameStatus === 'firstGuess' && !timerActive) {
+      setTimerActive(true)
+    } else if (state.gameStatus === 'gameOver') {
+      setTimerActive(false)
+    }
+  }, [state.gameStatus, timerActive])
 
-      let timer
+  useEffect(() => {
+    let timer
+    if (timerActive) {
+      timer = setInterval(() => {
+        setElapsedTime((prev) => prev + 1)
+      }, 1000)
+    }
 
-      if (
-        ['firstGuess', 'secondGuess', 'evaluating'].includes(state.gameStatus)
-      ) {
-        timer = setInterval(() => {
-          setElapsedTime((prev) => prev + 1)
-        }, 1000)
-      }
+    return () => {
+      if (timer) clearInterval(timer)
+    }
+  }, [timerActive])
 
-      return () => {
-        if (timer) clearInterval(timer)
-      }
-    },
-    [state.gameStatus],
-    [state.gameVersion]
-  )
-
+  //#endregion
   return {
     state,
     dispatch,
@@ -168,7 +166,6 @@ export function useMemoryGame() {
     isValidGrid,
     rowLabels: rowLabels || [],
     columnLabels: columnLabels || [],
-    formatTime,
     ACTIONS,
   }
 }
