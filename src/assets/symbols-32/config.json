@@ -1,6 +1,9 @@
 {
-  "type": "icon",
-  "setName": "symbols-32",
+  "metadata": {
+    "title": "Symbols",
+    "dim": 32,
+    "type": "icon"
+  },
   "icons": [
     { "name": "Heart", "icon": "Heart", "color": "#ef4444", "pairId": 1 },
     { "name": "Heart", "icon": "Heart", "color": "#10b981", "pairId": 1 },

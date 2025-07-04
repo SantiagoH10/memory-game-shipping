@@ -180,7 +180,6 @@ export function gameReducer(state, action) {
       }
 
     case ACTIONS.CHANGE_IMAGE_SET:
-      console.log("changing image set")
       return {
         ...state,
         gameStatus: 'newGame',

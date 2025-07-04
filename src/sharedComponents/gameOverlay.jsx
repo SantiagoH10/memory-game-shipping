@@ -20,7 +20,7 @@ export const GameOverlay = () => {
     return () => {
       document.removeEventListener('keydown', handleKeyPress)
     }
-  }, [dispatch, ACTIONS])
+  }, [dispatch, ACTIONS, state.gameStatus])
 
   const isGameOver = state.gameStatus === 'gameOver'
 
