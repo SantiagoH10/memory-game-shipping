@@ -92,6 +92,7 @@ export function useMemoryGame() {
   useEffect(() => {
     if (state.gameStatus === 'evaluating') {
       const timer = setTimeout(() => {
+        
         dispatch({ type: ACTIONS.FLIP_BACK })
       }, 500)
 
