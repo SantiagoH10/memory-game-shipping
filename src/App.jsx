@@ -85,7 +85,7 @@ function IconGameDashboard() {
                 return (
                   <button
                     key={item.id}
-                    disabled={item.isMatched || item.isFlipped}
+                    disabled={item.isMatched || item.isFlipped || state.gameStatus === 'evaluating'}
                     onClick={() =>
                       dispatch({ type: ACTIONS.CARD_CLICK, payload: item.id })
                     }
