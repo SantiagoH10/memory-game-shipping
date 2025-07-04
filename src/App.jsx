@@ -24,12 +24,12 @@ function MemoryGameContent() {
   const getResponsiveBorderRadius = () => {
     const screenWidth = window.innerWidth
     const screenHeight = window.innerHeight
-    
+
     const baseFactor = Math.min(screenWidth, screenHeight) / 500 // 500px as base reference
     const clampedFactor = Math.max(0.7, Math.min(baseFactor, 2.5)) // Constrain scaling
-    
+
     const borderRadius = Math.floor(8 * clampedFactor) // Base 8px, same as GameSelector
-    
+
     return borderRadius
   }
 
@@ -38,10 +38,10 @@ function MemoryGameContent() {
   return (
     <div className="min-h-screen p-3 sm:p-[0.5vw] md:p-[1vw] lg:p-[1.5vw] xl:p-[2vw] bg-ccblue flex flex-col">
       <GameSelector />
-      <div 
+      <div
         className="relative bg-gray-200 shadow-lg border-b-2 border-gray-200 pb-4 sm:pb-[1.5vh] md:pb-[2.5vh] pt-2 sm:pt-[0.25vh] flex flex-col mb-2"
         style={{
-          borderRadius: `${borderRadius}px`
+          borderRadius: `${borderRadius}px`,
         }}
       >
         <GameDashboard />
@@ -59,8 +59,8 @@ function IconGameDashboard() {
   const { state, dispatch, gridSize, rowLabels, columnLabels, ACTIONS } =
     useGameContext()
 
-const isMobile = window.innerWidth < 768; 
- // Return early if grid data isn't loaded yet
+  const isMobile = window.innerWidth < 768
+  // Return early if grid data isn't loaded yet
   if (
     !gridSize ||
     !gridSize.rows ||
@@ -83,15 +83,17 @@ const isMobile = window.innerWidth < 768;
     // More conservative available space calculation for smaller screens
     const screenWidth = window.innerWidth
     const screenHeight = window.innerHeight
-    
+
     // Adjust available space based on screen size
-    let widthRatio = 0.85  // Default 85% of width
+    let widthRatio = 0.85 // Default 85% of width
     let heightRatio = 0.55 // Default 55% of height
-    
-    if (screenWidth < 640) { // Small screens
-      widthRatio = 0.9   // Use more width on small screens
-      heightRatio = 0.5  // Less height due to more UI elements
-    } else if (screenWidth < 768) { // Medium screens
+
+    if (screenWidth < 640) {
+      // Small screens
+      widthRatio = 0.9 // Use more width on small screens
+      heightRatio = 0.5 // Less height due to more UI elements
+    } else if (screenWidth < 768) {
+      // Medium screens
       widthRatio = 0.88
       heightRatio = 0.52
     }
@@ -102,58 +104,58 @@ const isMobile = window.innerWidth < 768;
     // Calculate card size based on available space
     const cardWidthFromVW = Math.floor(availableWidth / cols)
     const cardHeightFromVH = Math.floor(availableHeight / rows)
-    
+
     // Use the smaller dimension to ensure cards fit
     const baseCardSize = Math.min(cardWidthFromVW, cardHeightFromVH)
-    
+
     // Apply constraints using viewport-relative units with better small screen support
     const minCardSize = Math.max(screenWidth * 0.12, 48) // Larger minimum for small screens
     const maxCardSize = Math.min(screenWidth * 0.15, 200)
-    
+
     const cardSize = Math.min(Math.max(baseCardSize, minCardSize), maxCardSize)
 
     return {
-      cardSize: Math.floor(cardSize)
+      cardSize: Math.floor(cardSize),
     }
   }
 
-  const getIconSize = (cardSize) => {
+  const getIconSize = cardSize => {
     // Icon size as percentage of card size, with viewport-relative constraints
     const baseIconSize = cardSize * 0.5
     const minIconSize = Math.max(window.innerWidth * 0.025, 16)
     const maxIconSize = Math.min(window.innerWidth * 0.08, 64)
-    
+
     return Math.min(Math.max(baseIconSize, minIconSize), maxIconSize)
   }
 
-  const getGap = (cardSize) => {
-    // Smaller gaps on smaller screens
+  const getGap = cardSize => {
+    // Increased gaps for better visual separation
     const screenWidth = window.innerWidth
-    let gapMultiplier = 0.05
-    
+    let gapMultiplier = 0.12 // Increased from 0.05 to 0.12
+
     if (screenWidth < 640) {
-      gapMultiplier = 0.03 // Smaller gaps on small screens
+      gapMultiplier = 0.08 // Increased from 0.03 to 0.08 for small screens
     }
-    
-    const gapSize = Math.max(cardSize * gapMultiplier, 3)
+
+    const gapSize = Math.max(cardSize * gapMultiplier, 8) // Increased minimum from 3 to 8
     return `${Math.floor(gapSize)}px`
   }
 
-  const getTextSize = (cardSize) => {
+  const getTextSize = cardSize => {
     // Coordinate text size scales directly with card size
     const baseTextSize = cardSize * 0.22 // 22% of card size for coordinates
     const minTextSize = 10 // Absolute minimum for readability
     const maxTextSize = 28 // Absolute maximum to prevent oversized text
-    
+
     return Math.min(Math.max(baseTextSize, minTextSize), maxTextSize)
   }
 
-  const getCountryTextSize = (cardSize) => {
+  const getCountryTextSize = cardSize => {
     // Country name text size scales with card size but smaller than coordinates
     const baseTextSize = cardSize * 0.18 // 18% of card size for country names
     const minTextSize = 8 // Smaller minimum for country names
     const maxTextSize = 22 // Smaller maximum for country names
-    
+
     return Math.min(Math.max(baseTextSize, minTextSize), maxTextSize)
   }
 
@@ -164,23 +166,16 @@ const isMobile = window.innerWidth < 768;
   const countryTextSize = getCountryTextSize(cardSize)
 
   return (
-    <div 
+    <div
       className="w-full flex justify-center"
-      style={{ 
+      style={{
         padding: `${Math.max(window.innerWidth * 0.015, 12)}px`,
-        paddingBottom: `${Math.max(window.innerWidth * 0.02, 16)}px` // Extra bottom padding
+        paddingBottom: `${Math.max(window.innerWidth * 0.02, 16)}px`, // Extra bottom padding
       }}
     >
-      <div 
-        className="flex flex-col"
-        style={{ gap }}
-      >
+      <div className="flex flex-col" style={{ gap }}>
         {rowLabels.map((letter, rowIndex) => (
-          <div 
-            key={`row-${rowIndex}`} 
-            className="flex"
-            style={{ gap }}
-          >
+          <div key={`row-${rowIndex}`} className="flex" style={{ gap }}>
             {state.images
               .filter(item => item.gridRow === rowIndex + 1)
               .sort((a, b) => a.gridCol - b.gridCol)
@@ -195,9 +190,10 @@ const isMobile = window.innerWidth < 768;
                       item.isFlipped ||
                       state.gameStatus === 'evaluating'
                     }
-                    onClick={() =>
+                    onClick={event => {
+                      event.target.blur()
                       dispatch({ type: ACTIONS.CARD_CLICK, payload: item.id })
-                    }
+                    }}
                     className={`
                     relative rounded-lg border-2 transition-all duration-300 flex-shrink-0
                     ${
@@ -226,7 +222,7 @@ const isMobile = window.innerWidth < 768;
                     }}
                   >
                     {item.isFlipped ? (
-                      <div 
+                      <div
                         className="w-full h-full flex items-center justify-center"
                         style={{ padding: `${Math.max(cardSize * 0.05, 2)}px` }}
                       >
@@ -258,7 +254,7 @@ const isMobile = window.innerWidth < 768;
                             fontSize: `${coordinateTextSize}px`,
                           }}
                         >
-                          {isMobile ? "?" : item.coordinate}
+                          {isMobile ? '?' : item.coordinate}
                         </div>
                       </div>
                     )}

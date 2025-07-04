@@ -45,30 +45,30 @@ export function GameSelector() {
   const getResponsiveSizes = () => {
     const screenWidth = window.innerWidth
     const screenHeight = window.innerHeight
-    
+
     // Base size factor from viewport (using smaller dimension for consistency)
     const baseFactor = Math.min(screenWidth, screenHeight) / 500 // 500px as base reference
     const clampedFactor = Math.max(0.7, Math.min(baseFactor, 2.5)) // Constrain scaling
-    
+
     // Button sizes scale proportionally
-    const typeButtonWidth = Math.floor(120 * clampedFactor)   // Base 120px
-    const typeButtonHeight = Math.floor(40 * clampedFactor)   // Base 40px
-    const sizeButtonWidth = Math.floor(80 * clampedFactor)    // Base 80px
-    const sizeButtonHeight = Math.floor(50 * clampedFactor)   // Base 50px
-    
+    const typeButtonWidth = Math.floor(120 * clampedFactor) // Base 120px
+    const typeButtonHeight = Math.floor(40 * clampedFactor) // Base 40px
+    const sizeButtonWidth = Math.floor(80 * clampedFactor) // Base 80px
+    const sizeButtonHeight = Math.floor(50 * clampedFactor) // Base 50px
+
     // Font sizes scale with same factor
-    const labelFontSize = Math.floor(14 * clampedFactor)      // Base 14px
-    const gridFontSize = Math.floor(16 * clampedFactor)       // Base 16px
-    const cardsFontSize = Math.floor(11 * clampedFactor)      // Base 11px
-    
+    const labelFontSize = Math.floor(14 * clampedFactor) // Base 14px
+    const gridFontSize = Math.floor(16 * clampedFactor) // Base 16px
+    const cardsFontSize = Math.floor(11 * clampedFactor) // Base 11px
+
     // Spacing scales proportionally
-    const gap = Math.floor(8 * clampedFactor)                // Base 8px
-    const rowGap = Math.floor(12 * clampedFactor)             // Base 12px
-    const padding = Math.floor(16 * clampedFactor)           // Base 16px
-    const containerPadding = Math.floor(20 * clampedFactor)  // Base 20px
-    const borderRadius = Math.floor(8 * clampedFactor)       // Base 8px
+    const gap = Math.floor(8 * clampedFactor) // Base 8px
+    const rowGap = Math.floor(12 * clampedFactor) // Base 12px
+    const padding = Math.floor(16 * clampedFactor) // Base 16px
+    const containerPadding = Math.floor(20 * clampedFactor) // Base 20px
+    const borderRadius = Math.floor(8 * clampedFactor) // Base 8px
     const borderWidth = Math.max(1, Math.floor(2 * clampedFactor)) // Base 2px
-    
+
     return {
       typeButtonWidth,
       typeButtonHeight,
@@ -83,7 +83,7 @@ export function GameSelector() {
       containerPadding,
       borderRadius,
       borderWidth,
-      scaleFactor: clampedFactor
+      scaleFactor: clampedFactor,
     }
   }
 
@@ -110,30 +110,28 @@ export function GameSelector() {
   const sizes = getResponsiveSizes()
 
   return (
-    <div 
+    <div
       className="w-full bg-gray-200 shadow-lg border-b-2 border-gray-200"
       style={{
         borderRadius: `${sizes.borderRadius}px`,
         padding: `${sizes.containerPadding}px ${sizes.padding}px`,
-        marginBottom: `${sizes.rowGap}px`
+        marginBottom: `${sizes.rowGap}px`,
       }}
     >
       <div className="max-w-6xl mx-auto">
-        <div 
-          className="flex flex-col"
-          style={{ gap: `${sizes.rowGap}px` }}
-        >
+        <div className="flex flex-col" style={{ gap: `${sizes.rowGap}px` }}>
           {/* Game Type Selection */}
-          <div 
+          <div
             className="flex justify-center items-center flex-wrap"
             style={{ gap: `${sizes.gap}px` }}
           >
             {TYPE_OPTIONS.map(option => (
               <button
                 key={option.value}
-                onClick={(event) => {
+                onClick={event => {
                   event.target.blur()
-                  handleTypeChange(option.value)}}
+                  handleTypeChange(option.value)
+                }}
                 className={`
                   transition-all duration-200 transform hover:scale-105 text-center font-medium
                   ${
@@ -148,9 +146,10 @@ export function GameSelector() {
                   borderRadius: `${sizes.borderRadius}px`,
                   borderWidth: `${sizes.borderWidth}px`,
                   borderStyle: 'solid',
-                  borderColor: state.contentType === option.value ? '#ccblue' : '#d1d5db',
+                  borderColor:
+                    state.contentType === option.value ? '#ccblue' : '#d1d5db',
                   fontSize: `${sizes.labelFontSize}px`,
-                  padding: `${Math.floor(sizes.padding * 0.3)}px`
+                  padding: `${Math.floor(sizes.padding * 0.3)}px`,
                 }}
               >
                 {option.label}
@@ -159,7 +158,7 @@ export function GameSelector() {
           </div>
 
           {/* Grid Size Selection */}
-          <div 
+          <div
             className="flex justify-center items-center flex-wrap"
             style={{ gap: `${sizes.gap}px` }}
           >
@@ -184,18 +183,19 @@ export function GameSelector() {
                   borderRadius: `${sizes.borderRadius}px`,
                   borderWidth: `${sizes.borderWidth}px`,
                   borderStyle: 'solid',
-                  borderColor: state.size === sizeOption.size ? '#ccblue' : '#d1d5db',
-                  padding: `${Math.floor(sizes.padding * 0.2)}px`
+                  borderColor:
+                    state.size === sizeOption.size ? '#ccblue' : '#d1d5db',
+                  padding: `${Math.floor(sizes.padding * 0.2)}px`,
                 }}
               >
                 <div>
-                  <div 
+                  <div
                     className="font-bold"
                     style={{ fontSize: `${sizes.gridFontSize}px` }}
                   >
                     {sizeOption.grid}
                   </div>
-                  <div 
+                  <div
                     className="opacity-80"
                     style={{ fontSize: `${sizes.cardsFontSize}px` }}
                   >
