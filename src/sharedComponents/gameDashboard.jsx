@@ -12,70 +12,164 @@ export function GameDashboard() {
     columnLabels,
     ACTIONS,
   } = useGameContext()
+
+  // Calculate responsive sizes with proportional scaling
+  const getResponsiveSizes = () => {
+    const screenWidth = window.innerWidth
+    const screenHeight = window.innerHeight
+    
+    // Base size factor from viewport (using smaller dimension for consistency)
+    const baseFactor = Math.min(screenWidth, screenHeight) / 500 // 500px as base reference
+    const clampedFactor = Math.max(0.7, Math.min(baseFactor, 2.5)) // Constrain scaling
+    
+    // All sizes scale proportionally with the base factor
+    const cardWidth = Math.floor(110 * clampedFactor)   // Base 120px
+    const cardHeight = Math.floor(40 * clampedFactor)   // Base 60px
+    const coordSize = Math.floor(30 * clampedFactor)    // Base 45px
+    
+    // Font sizes scale with same factor
+    const labelFontSize = Math.floor(14 * clampedFactor)   // Base 14px
+    const timeFontSize = Math.floor(18 * clampedFactor)    // Base 18px
+    const coordFontSize = Math.floor(16 * clampedFactor)   // Base 16px
+    
+    // Spacing scales proportionally
+    const gap = Math.floor(8 * clampedFactor)         // Base 12px
+    const padding = Math.floor(8 * clampedFactor)      // Base 8px
+    const borderRadius = Math.floor(12 * clampedFactor) // Base 12px
+    const borderWidth = Math.max(1, Math.floor(2 * clampedFactor)) // Base 2px
+    
+    return {
+      cardWidth,
+      cardHeight,
+      coordSize,
+      labelFontSize,
+      timeFontSize,
+      coordFontSize,
+      gap,
+      padding,
+      borderRadius,
+      borderWidth,
+      scaleFactor: clampedFactor
+    }
+  }
+
+  const sizes = getResponsiveSizes()
+  const isMobile = window.innerWidth < 768; 
+
   return (
-    <div className="inset-0 p-1 sm:p-2 m-1 mb-2 sm:mb-3 bg-opacity-75 backdrop-blur-sm flex flex-col items-center justify-center z-50 gap-2 sm:gap-4">
-      <div className="flex justify-center items-center gap-2 sm:gap-4 flex-wrap">
+    <div 
+      className="inset-0 bg-opacity-75 backdrop-blur-sm flex flex-col items-center justify-center z-50"
+      style={{ 
+        padding: `${sizes.padding}px`,
+        gap: `${Math.floor(sizes.gap * 1.5)}px` // Slightly larger gap between rows
+      }}
+    >
+      <div 
+        className="flex justify-center items-center flex-wrap"
+        style={{ gap: `${sizes.gap}px` }}
+      >
+        {/* Moves Card */}
         <div
-          className="px-3 sm:px-6 py-2 sm:py-3 rounded-xl shadow-lg w-[100px] sm:w-[140px] h-12 sm:h-14 flex items-center justify-center"
+          className="shadow-lg flex items-center justify-center"
           style={{
             backgroundColor: '#096B68',
             borderColor: '#096B68',
-            borderWidth: '2px',
+            borderWidth: `${sizes.borderWidth}px`,
+            borderStyle: 'solid',
+            borderRadius: `${sizes.borderRadius}px`,
+            width: `${sizes.cardWidth}px`,
+            height: `${sizes.cardHeight}px`,
+            padding: `${Math.floor(sizes.padding * 0.8)}px`
           }}
         >
           <span
-            className="text-sm sm:text-lg font-bold"
-            style={{ color: '#FFFBDE' }}
+            className="font-bold text-center leading-tight"
+            style={{ 
+              color: '#FFFBDE',
+              fontSize: `${sizes.labelFontSize}px`
+            }}
           >
             Moves: {state.moves}
           </span>
         </div>
 
+        {/* Timer Card */}
         <div
-          className="px-3 sm:px-6 py-2 sm:py-3 rounded-xl shadow-lg w-[100px] sm:w-[140px] h-12 sm:h-14 flex items-center justify-center"
+          className="shadow-lg flex items-center justify-center"
           style={{
             backgroundColor: '#90D1CA',
             borderColor: '#90D1CA',
-            borderWidth: '2px',
+            borderWidth: `${sizes.borderWidth}px`,
+            borderStyle: 'solid',
+            borderRadius: `${sizes.borderRadius}px`,
+            width: `${sizes.cardWidth}px`,
+            height: `${sizes.cardHeight}px`,
+            padding: `${Math.floor(sizes.padding * 0.8)}px`
           }}
         >
-          <span className="text-lg sm:text-2xl" style={{ color: '#096B68' }}>
+          <span 
+            className="font-bold text-center"
+            style={{ 
+              color: '#096B68',
+              fontSize: `${sizes.timeFontSize}px`
+            }}
+          >
             {formatTime(elapsedTime)}
           </span>
         </div>
 
+        {/* Mistakes Card */}
         <div
-          className="px-3 sm:px-6 py-2 sm:py-3 rounded-xl shadow-lg w-[100px] sm:w-[140px] h-12 sm:h-14 flex items-center justify-center"
+          className="shadow-lg flex items-center justify-center"
           style={{
             backgroundColor: '#096B68',
             borderColor: '#096B68',
-            borderWidth: '2px',
+            borderWidth: `${sizes.borderWidth}px`,
+            borderStyle: 'solid',
+            borderRadius: `${sizes.borderRadius}px`,
+            width: `${sizes.cardWidth}px`,
+            height: `${sizes.cardHeight}px`,
+            padding: `${Math.floor(sizes.padding * 0.8)}px`
           }}
         >
           <span
-            className="text-sm sm:text-lg font-bold"
-            style={{ color: '#FFFBDE' }}
+            className="font-bold text-center leading-tight"
+            style={{ 
+              color: '#FFFBDE',
+              fontSize: `${sizes.labelFontSize}px`
+            }}
           >
             Mistakes: {state.mistakes}
           </span>
         </div>
       </div>
-
+      
+      {/* Coordinate Input Display */}
+      {isMobile ? '' :
       <div
-        className="px-2 sm:px-4 py-1 sm:py-2 rounded-lg shadow-md w-[35px] sm:w-[45px] h-[35px] sm:h-[45px] flex items-center justify-center"
+        className="shadow-md flex items-center justify-center"
         style={{
           backgroundColor: '#FFFBDE',
           borderColor: '#FFFBDE',
-          borderWidth: '2px',
+          borderWidth: `${sizes.borderWidth}px`,
+          borderStyle: 'solid',
+          borderRadius: `${Math.floor(sizes.borderRadius * 0.8)}px`, // Slightly smaller radius
+          width: `${sizes.coordSize}px`,
+          height: `${sizes.coordSize}px`,
         }}
       >
         <span
-          className="text-lg sm:text-xl font-bold"
-          style={{ color: '#096B68' }}
+          className="font-bold text-center"
+          style={{ 
+            color: '#096B68',
+            fontSize: `${sizes.coordFontSize}px`
+          }}
         >
           {state.coords || '\u00A0'}
+
         </span>
       </div>
+      }
     </div>
   )
 }
