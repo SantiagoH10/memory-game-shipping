@@ -32,9 +32,9 @@ export function GameDashboard() {
     const timeFontSize = Math.floor(18 * clampedFactor) // Base 18px
     const coordFontSize = Math.floor(16 * clampedFactor) // Base 16px
 
-    // Spacing scales proportionally
-    const gap = Math.floor(8 * clampedFactor) // Base 12px
-    const padding = Math.floor(8 * clampedFactor) // Base 8px
+    // Restored spacing and padding (only side padding reduced)
+    const gap = Math.floor(8 * clampedFactor) // Restored from 6 to 8
+    const padding = Math.floor(8 * clampedFactor) // Restored from 4 to 8
     const borderRadius = Math.floor(12 * clampedFactor) // Base 12px
     const borderWidth = Math.max(1, Math.floor(2 * clampedFactor)) // Base 2px
 
@@ -58,10 +58,11 @@ export function GameDashboard() {
 
   return (
     <div
-      className="inset-0 bg-opacity-75 backdrop-blur-sm flex flex-col items-center justify-center z-50"
+      className="bg-opacity-75 backdrop-blur-sm flex flex-col items-center justify-center z-50 w-auto inline-flex"
       style={{
         padding: `${sizes.padding}px`,
-        gap: `${Math.floor(sizes.gap * 1.5)}px`, // Slightly larger gap between rows
+        gap: `${Math.floor(sizes.gap * 1.5)}px`,
+        borderRadius: `${sizes.borderRadius}px`,
       }}
     >
       <div
@@ -79,7 +80,7 @@ export function GameDashboard() {
             borderRadius: `${sizes.borderRadius}px`,
             width: `${sizes.cardWidth}px`,
             height: `${sizes.cardHeight}px`,
-            padding: `${Math.floor(sizes.padding * 0.8)}px`,
+            padding: `${Math.floor(sizes.padding * 0.8)}px`, // Restored card internal padding
           }}
         >
           <span
@@ -104,7 +105,7 @@ export function GameDashboard() {
             borderRadius: `${sizes.borderRadius}px`,
             width: `${sizes.cardWidth}px`,
             height: `${sizes.cardHeight}px`,
-            padding: `${Math.floor(sizes.padding * 0.8)}px`,
+            padding: `${Math.floor(sizes.padding * 0.8)}px`, // Restored card internal padding
           }}
         >
           <span
@@ -129,7 +130,7 @@ export function GameDashboard() {
             borderRadius: `${sizes.borderRadius}px`,
             width: `${sizes.cardWidth}px`,
             height: `${sizes.cardHeight}px`,
-            padding: `${Math.floor(sizes.padding * 0.8)}px`,
+            padding: `${Math.floor(sizes.padding * 0.8)}px`, // Restored card internal padding
           }}
         >
           <span

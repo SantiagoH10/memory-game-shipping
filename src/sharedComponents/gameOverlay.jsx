@@ -25,10 +25,10 @@ export const GameOverlay = () => {
     const textScaleFactor = clampedFactor * 0.8 // Reduce text scaling by 20%
     const titleFontSize = Math.floor(24 * textScaleFactor) // Base 24px
     const subtitleFontSize = Math.floor(12 * textScaleFactor) // Base 12px
-    const statsFontSize = Math.floor(18 * textScaleFactor) // Base 18px
-    const statsLabelFontSize = Math.floor(10 * textScaleFactor) // Base 10px
+    const statsFontSize = Math.floor(28 * textScaleFactor) // Increased from 18px to 28px
+    const statsLabelFontSize = Math.floor(14 * textScaleFactor) // Increased from 10px to 14px
     const buttonTextFontSize = Math.floor(14 * textScaleFactor) // Base 14px
-    const efficiencyFontSize = Math.floor(9 * textScaleFactor) // Base 9px
+    const efficiencyFontSize = Math.floor(12 * textScaleFactor) // Increased from 9px to 12px
 
     // Responsive title font size for game over
     let gameOverTitleSize = titleFontSize
@@ -94,6 +94,8 @@ export const GameOverlay = () => {
 
   const sizes = getResponsiveSizes()
 
+  
+
   return (
     <div className="absolute inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50">
       <div
@@ -137,7 +139,6 @@ export const GameOverlay = () => {
               </h1>
             </div>
           ) : (
-            // New Game Layout - Centered Brain and Title
             <>
               <div
                 className="bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center mx-auto shadow-lg"
