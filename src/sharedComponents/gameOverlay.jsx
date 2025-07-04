@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 import { Trophy, Brain, RotateCcw } from 'lucide-react'
 import { useGameContext } from '../utils/gameContext.jsx'
+import { formatTime } from '../utils/helpers.js'
 
 export const GameOverlay = () => {
-  const { state, dispatch, elapsedTime, formatTime, ACTIONS } = useGameContext()
+  const { state, dispatch, elapsedTime, ACTIONS } = useGameContext()
 
   useEffect(() => {
     const handleKeyPress = (event) => {

@@ -115,7 +115,6 @@ export function useMemoryGame() {
       rowLabels.includes(state.coords[0]) &&
       columnLabels.includes(parseInt(state.coords[1]))
     ) {
-      console.log(state.coords)
       const targetCard = state.images.find(
         (img) => img.coordinate === state.coords
       )
