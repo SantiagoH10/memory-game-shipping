@@ -3,7 +3,7 @@ import { randShuffle, formatTime } from './helpers.js'
 export const initState = {
   gameStatus: 'newGame',
   contentType: 'icon',
-  imageSet: 'symbols',
+  imageSet: 'symbols-8',
   images: [],
   playerGuess: { first: null, second: null },
   moves: 0,

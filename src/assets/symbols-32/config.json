@@ -1,6 +1,6 @@
 {
   "type": "icon",
-  "setName": "symbols",
+  "setName": "symbols-32",
   "icons": [
     { "name": "Heart", "icon": "Heart", "color": "#ef4444" },
     { "name": "Star", "icon": "Star", "color": "#f59e0b" },

@@ -1,0 +1,14 @@
+{
+  "type": "icon",
+  "setName": "symbols-8",
+  "icons": [
+    { "name": "Heart", "icon": "Heart", "color": "#ef4444" },
+    { "name": "Star", "icon": "Star", "color": "#f59e0b" },
+    { "name": "Circle", "icon": "Circle", "color": "#3b82f6" },
+    { "name": "Square", "icon": "Square", "color": "#10b981" },
+    { "name": "Triangle", "icon": "Triangle", "color": "#8b5cf6" },
+    { "name": "Diamond", "icon": "Diamond", "color": "#f97316" },
+    { "name": "Hexagon", "icon": "Hexagon", "color": "#06b6d4" },
+    { "name": "Music", "icon": "Music", "color": "#ec4899" }
+  ]
+}
