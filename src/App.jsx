@@ -43,7 +43,7 @@ function MemoryGameContent() {
       <GameSelector />
       <div className='relative bg-gray-200 rounded-lg pb-10 pt-1'>
         <GameDashboard />
-          <IconGameDashboard />
+        <IconGameDashboard />
         {(state.gameStatus === 'newGame' ||
           state.gameStatus === 'gameOver') && <GameOverlay />}
       </div>
@@ -54,23 +54,16 @@ function MemoryGameContent() {
 
 //#region Icon dashboard
 function IconGameDashboard() {
-  const { state, dispatch, ACTIONS } = useGameContext()
+  const { state, dispatch, gridSize, rowLabels, columnLabels, ACTIONS } = useGameContext()
 
-  const totalCards = 64
-  const getOptimalDimensions = (screenWidth) => {
-    if (screenWidth >= 1400) return { cols: 16, rows: 4 }
-    if (screenWidth >= 1000) return { cols: 12, rows: 6 }
-    if (screenWidth >= 800) return { cols: 8, rows: 8 }
-    if (screenWidth >= 600) return { cols: 6, rows: 11 }
-    return { cols: 4, rows: 16 }
+  // Return early if grid data isn't loaded yet
+  if (!gridSize || !gridSize.rows || !gridSize.cols || !rowLabels || !columnLabels) {
+    return (
+      <div className='flex items-center justify-center w-full p-4'>
+        <div className='text-gray-500'>Loading game...</div>
+      </div>
+    )
   }
-
-  const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1000
-  const { cols, rows } = getOptimalDimensions(screenWidth)
-
-  const rowLabels = Array.from({ length: rows }, (_, i) =>
-    String.fromCharCode(65 + i)
-  )
 
   return (
     <div className='flex items-center justify-center w-full p-4'>
@@ -81,7 +74,8 @@ function IconGameDashboard() {
             className='flex gap-1'
           >
             {state.images
-              .slice(rowIndex * cols, (rowIndex + 1) * cols)
+              .filter(item => item.gridRow === rowIndex + 1) // Filter by actual grid row
+              .sort((a, b) => a.gridCol - b.gridCol) // Sort by grid column
               .map((item) => {
                 const IconComponent = item.iconComponent
 
@@ -140,7 +134,6 @@ function IconGameDashboard() {
   )
 }
 //#endregion
-
 
 //#region App
 function App() {

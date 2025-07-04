@@ -13,55 +13,64 @@ export function useMemoryGame() {
   const { gridSize, rowLabels, columnLabels } = state
   const isValidGrid = gridSize?.rows > 0 && gridSize?.cols > 0
 
-  useEffect(() => {
-    const loadImages = async () => {
-      const { default: config } = await import(
-        `../assets/${state.imageSet}/config.json`
-      )
+  useEffect(
+    () => {
+      const loadImages = async () => {
+        const { default: config } = await import(
+          `../assets/${state.imageSet}/config.json`
+        )
 
-      const items = config.icons.map((iconConfig) => ({
-        name: iconConfig.name,
-        iconComponent: ICON_MAP[iconConfig.icon],
-        color: iconConfig.color,
-        pairId: iconConfig.pairId,
-        type: 'icon',
-        isFlipped: false,
-        isMatched: false,
-        flipCounter: 0,
-      }))
+        const items = config.icons.map((iconConfig) => ({
+          name: iconConfig.name,
+          iconComponent: ICON_MAP[iconConfig.icon],
+          color: iconConfig.color,
+          pairId: iconConfig.pairId,
+          type: 'icon',
+          isFlipped: false,
+          isMatched: false,
+          flipCounter: 0,
+        }))
 
-      items.forEach((item, i) => {
-        item.id = i
-      })
+        items.forEach((item, i) => {
+          item.id = i
+        })
 
-      const shuffledItems = randShuffle(items)
-      
-      // Calculate gridSize based on the actual items loaded
-      const currentGridSize = getBestGridSize(shuffledItems.length)
-      const currentRowLabels = Array.from({ length: currentGridSize.rows }, (_, i) => String.fromCharCode(65 + i))
-      const currentColumnLabels = Array.from({ length: currentGridSize.cols }, (_, i) => i + 1)
+        const shuffledItems = randShuffle(items)
 
-      shuffledItems.forEach((item, i) => {
-        const rowIndex = Math.floor(i / currentGridSize.cols)
-        const colIndex = i % currentGridSize.cols
-        
-        item.gridRow = rowIndex + 1
-        item.gridCol = colIndex + 1
-        item.coordinate = `${currentRowLabels[rowIndex]}${currentColumnLabels[colIndex]}`
-      })
+        // Calculate gridSize based on the actual items loaded
+        const currentGridSize = getBestGridSize(shuffledItems.length)
+        const currentRowLabels = Array.from(
+          { length: currentGridSize.rows },
+          (_, i) => String.fromCharCode(65 + i)
+        )
+        const currentColumnLabels = Array.from(
+          { length: currentGridSize.cols },
+          (_, i) => i + 1
+        )
 
-      dispatch({
-        type: ACTIONS.LOAD_IMAGES,
-        payload: {
-          images: shuffledItems,
-          gridSize: currentGridSize,
-          rowLabels: currentRowLabels,
-          columnLabels: currentColumnLabels
-        }
-      })
-    }
-    loadImages()
-  }, [state.imageSet])
+        shuffledItems.forEach((item, i) => {
+          const rowIndex = Math.floor(i / currentGridSize.cols)
+          const colIndex = i % currentGridSize.cols
+
+          item.gridRow = rowIndex + 1
+          item.gridCol = colIndex + 1
+          item.coordinate = `${currentRowLabels[rowIndex]}${currentColumnLabels[colIndex]}`
+        })
+
+        dispatch({
+          type: ACTIONS.LOAD_IMAGES,
+          payload: {
+            images: shuffledItems,
+            gridSize: currentGridSize,
+            rowLabels: currentRowLabels,
+            columnLabels: currentColumnLabels,
+          },
+        })
+      }
+      loadImages()
+    },
+    [state.gameVersion]
+  )
 
   useEffect(() => {
     if (state.gameStatus === 'evaluating') {
@@ -73,6 +82,7 @@ export function useMemoryGame() {
     }
   }, [state.gameStatus])
 
+  //#region Keyboard functionality and coordinates matching
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (!['firstGuess', 'secondGuess'].includes(state.gameStatus)) return
@@ -123,27 +133,32 @@ export function useMemoryGame() {
       }
     }
   }, [state.coords, state.images, rowLabels, columnLabels])
+  //#endregion
 
-  useEffect(() => {
-    if (state.gameStatus === 'newGame') {
-      setElapsedTime(0)
-      setStartTime(null)
-    }
+  useEffect(
+    () => {
+      if (state.gameStatus === 'newGame') {
+        setElapsedTime(0)
+        setStartTime(null)
+      }
 
-    let timer
+      let timer
 
-    if (
-      ['firstGuess', 'secondGuess', 'evaluating'].includes(state.gameStatus)
-    ) {
-      timer = setInterval(() => {
-        setElapsedTime((prev) => prev + 1)
-      }, 1000)
-    }
+      if (
+        ['firstGuess', 'secondGuess', 'evaluating'].includes(state.gameStatus)
+      ) {
+        timer = setInterval(() => {
+          setElapsedTime((prev) => prev + 1)
+        }, 1000)
+      }
 
-    return () => {
-      if (timer) clearInterval(timer)
-    }
-  }, [state.gameStatus])
+      return () => {
+        if (timer) clearInterval(timer)
+      }
+    },
+    [state.gameStatus],
+    [state.gameVersion]
+  )
 
   return {
     state,

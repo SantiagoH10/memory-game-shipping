@@ -2,24 +2,15 @@ import { useEffect } from 'react'
 import { Trophy, Brain, RotateCcw } from 'lucide-react'
 import { useGameContext } from '../utils/gameContext.jsx'
 
-
-
 export const GameOverlay = () => {
-  const {
-    state,
-    dispatch,
-    elapsedTime,
-    gridSize,
-    isValidGrid,
-    rowLabels,
-    columnLabels,
-    formatTime,
-    ACTIONS,
-  } = useGameContext()
+  const { state, dispatch, elapsedTime, formatTime, ACTIONS } = useGameContext()
 
   useEffect(() => {
     const handleKeyPress = (event) => {
-      if (event.key === 'Enter') {
+      if (
+        event.key === 'Enter' &&
+        (state.gameStatus === 'newGame' || state.gameStatus === 'gameOver')
+      ) {
         dispatch({ type: ACTIONS.NEW_GAME })
       }
     }
@@ -89,7 +80,9 @@ export const GameOverlay = () => {
                 <div className='text-lg sm:text-2xl font-bold text-white'>
                   {state.mistakes}
                 </div>
-                <div className='text-xs sm:text-sm text-slate-400'>Mistakes</div>
+                <div className='text-xs sm:text-sm text-slate-400'>
+                  Mistakes
+                </div>
               </div>
               <div>
                 <div className='text-lg sm:text-2xl font-bold text-white'>

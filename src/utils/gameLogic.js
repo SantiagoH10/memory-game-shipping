@@ -2,8 +2,8 @@ import { randShuffle, formatTime, getBestGridSize } from './helpers.js'
 
 export const initState = {
   gameStatus: 'newGame',
-  contentType: 'icon',
-  imageSet: 'symbols-8',
+  imageSet: 'symbols-10',
+  gameVersion: 0,
   images: [],
   gridSize: { rows: 0, cols: 0 },
   rowLabels: [],
@@ -36,11 +36,11 @@ export function gameReducer(state, action) {
 
       const shuffledImages = randShuffle(resetImages)
 
-      // Use the current grid data from state
+      // Use the current grid data from state to reassign coordinates
       shuffledImages.forEach((img, i) => {
         const rowIndex = Math.floor(i / state.gridSize.cols)
         const colIndex = i % state.gridSize.cols
-        
+
         img.gridRow = rowIndex + 1
         img.gridCol = colIndex + 1
         img.coordinate = `${state.rowLabels[rowIndex]}${state.columnLabels[colIndex]}`
@@ -53,15 +53,17 @@ export function gameReducer(state, action) {
         mistakes: 0,
         images: shuffledImages,
         gameStatus: 'firstGuess',
+        gameVersion: state.gameVersion + 1,
+        coords: '',
       }
 
     case ACTIONS.LOAD_IMAGES:
-      return { 
-        ...state, 
+      return {
+        ...state,
         images: action.payload.images,
         gridSize: action.payload.gridSize,
         rowLabels: action.payload.rowLabels,
-        columnLabels: action.payload.columnLabels
+        columnLabels: action.payload.columnLabels,
       }
 
     case ACTIONS.CARD_CLICK:
@@ -178,18 +180,19 @@ export function gameReducer(state, action) {
       }
 
     case ACTIONS.CHANGE_IMAGE_SET:
+      console.log("changing image set")
       return {
         ...state,
+        gameStatus: 'newGame',
         imageSet: action.payload.imageSet,
-        contentType: action.payload.contentType,
+        images: [],
+        gameVersion: state.gameVersion + 1,
         playerGuess: { first: null, second: null },
         moves: 0,
         mistakes: 0,
-        images: [],
         gridSize: { rows: 0, cols: 0 },
         rowLabels: [],
         columnLabels: [],
-        gameStatus: 'newGame',
         coords: '',
       }
 
