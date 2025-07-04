@@ -13,6 +13,7 @@ export function useMemoryGame() {
   const { gridSize, rowLabels, columnLabels } = state
   const isValidGrid = gridSize?.rows > 0 && gridSize?.cols > 0
 
+  //#region Load Images
   useEffect(() => {
     const loadImages = async () => {
       const { default: config } = await import(
@@ -20,16 +21,16 @@ export function useMemoryGame() {
       )
 
       const items = config.icons.map((iconConfig) => ({
-        name: iconConfig.name,
-        iconComponent: ICON_MAP[iconConfig.icon],
-        color: iconConfig.color,
-        pairId: iconConfig.pairId,
-        type: 'icon',
-        isFlipped: false,
-        isMatched: false,
-        flipCounter: 0,
-      }))
-
+      name: iconConfig.name,
+      iconComponent: iconConfig.type === 'icon' ? ICON_MAP[iconConfig.icon] : null,
+      displayText: iconConfig.displayText || null,
+      color: iconConfig.color, 
+      pairId: iconConfig.pairId,
+      type: iconConfig.type,
+      isFlipped: false,
+      isMatched: false,
+      flipCounter: 0,
+    }))
       items.forEach((item, i) => {
         item.id = i
       })
@@ -69,6 +70,9 @@ export function useMemoryGame() {
     loadImages()
   }, [state.gameVersion])
 
+  //#endregion
+
+  //#region Handle card flip
   useEffect(() => {
     if (state.gameStatus === 'evaluating') {
       const timer = setTimeout(() => {
@@ -78,6 +82,8 @@ export function useMemoryGame() {
       return () => clearTimeout(timer)
     }
   }, [state.gameStatus])
+  //#endregion
+
 
   //#region Keyboard functionality and coordinates matching
   useEffect(() => {
@@ -160,8 +166,8 @@ export function useMemoryGame() {
       if (timer) clearInterval(timer)
     }
   }, [timerActive])
-
   //#endregion
+
   return {
     state,
     dispatch,

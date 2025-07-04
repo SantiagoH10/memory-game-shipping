@@ -2,7 +2,7 @@ import { randShuffle, formatTime, getBestGridSize } from './helpers.js'
 
 export const initState = {
   gameStatus: 'newGame',
-  imageSet: 'symbols-10',
+  imageSet: 'flag-text-20',
   gameVersion: 0,
   images: [],
   gridSize: { rows: 0, cols: 0 },
