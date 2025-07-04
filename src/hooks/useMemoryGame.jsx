@@ -16,30 +16,55 @@ export function useMemoryGame() {
   //#region Load Images
   useEffect(() => {
     const loadImages = async () => {
-      const { default: config } = await import(
-        `../assets/${state.imageSet}/config.json`
+      // Load master config based on content type
+      const { default: masterConfig } = await import(
+        `../assets/${state.contentType}.json`
       )
 
-      const items = config.icons.map(iconConfig => ({
-        name: iconConfig.name,
-        iconComponent:
-          iconConfig.type === 'icon' ? ICON_MAP[iconConfig.icon] : null,
-        displayText: iconConfig.displayText || null,
-        color: iconConfig.color,
-        pairId: iconConfig.pairId,
-        type: iconConfig.type,
-        isFlipped: false,
-        isMatched: false,
-        flipCounter: 0,
-      }))
+      // Calculate how many pairs we need based on the target size
+      const targetPairs = state.size / 2
+
+      // Get available pairs from master config
+      const availablePairs = {}
+      masterConfig.icons.forEach(item => {
+        if (!availablePairs[item.pairId]) {
+          availablePairs[item.pairId] = []
+        }
+        availablePairs[item.pairId].push(item)
+      })
+
+      // Randomly select the required number of pairs
+      const allPairIds = Object.keys(availablePairs)
+      const shuffledPairIds = randShuffle(allPairIds)
+      const selectedPairIds = shuffledPairIds.slice(0, targetPairs)
+
+      // Create the final items array with selected pairs
+      const items = []
+      selectedPairIds.forEach(pairId => {
+        availablePairs[pairId].forEach(iconConfig => {
+          items.push({
+            name: iconConfig.name,
+            iconComponent:
+              iconConfig.type === 'icon' ? ICON_MAP[iconConfig.icon] : null,
+            displayText: iconConfig.displayText || null,
+            color: iconConfig.color,
+            pairId: iconConfig.pairId,
+            type: iconConfig.type,
+            isFlipped: false,
+            isMatched: false,
+            flipCounter: 0,
+          })
+        })
+      })
+
       items.forEach((item, i) => {
         item.id = i
       })
 
       const shuffledItems = randShuffle(items)
 
-      // Calculate gridSize based on the actual items loaded
-      const currentGridSize = getBestGridSize(shuffledItems.length)
+      // Calculate gridSize based on the target size
+      const currentGridSize = getBestGridSize(state.size)
       const currentRowLabels = Array.from(
         { length: currentGridSize.rows },
         (_, i) => String.fromCharCode(65 + i),
@@ -69,9 +94,7 @@ export function useMemoryGame() {
       })
     }
     loadImages()
-  }, [state.gameVersion])
-
-  //#endregion
+  }, [state.gameVersion, state.contentType, state.size])
 
   //#region Handle card flip
   useEffect(() => {

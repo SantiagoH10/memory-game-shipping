@@ -2,7 +2,8 @@ import { randShuffle, formatTime, getBestGridSize } from './helpers.js'
 
 export const initState = {
   gameStatus: 'newGame',
-  imageSet: 'flag-text-20',
+  contentType: 'icons',
+  size: 20,
   gameVersion: 0,
   images: [],
   gridSize: { rows: 0, cols: 0 },
@@ -17,7 +18,8 @@ export const initState = {
 export const ACTIONS = {
   NEW_GAME: 'NEW_GAME',
   LOAD_IMAGES: 'LOAD_IMAGES',
-  CHANGE_IMAGE_SET: 'CHANGE_IMAGE_SET',
+  CHANGE_CONTENT_TYPE: 'CHANGE_CONTENT_TYPE',
+  CHANGE_SIZE: 'CHANGE_SIZE',
   CARD_CLICK: 'CARD_CLICK',
   FLIP_BACK: 'FLIP_BACK',
   SET_COORD: 'SET_COORD',
@@ -179,11 +181,29 @@ export function gameReducer(state, action) {
         coords: state.coords.slice(0, -1),
       }
 
-    case ACTIONS.CHANGE_IMAGE_SET:
+    case ACTIONS.CHANGE_CONTENT_TYPE:
       return {
         ...state,
         gameStatus: 'newGame',
-        imageSet: action.payload.imageSet,
+        contentType: action.payload.contentType,
+        size: action.payload.size || state.size,
+        images: [],
+        gameVersion: state.gameVersion + 1,
+        playerGuess: { first: null, second: null },
+        moves: 0,
+        mistakes: 0,
+        gridSize: { rows: 0, cols: 0 },
+        rowLabels: [],
+        columnLabels: [],
+        coords: '',
+      }
+
+    case ACTIONS.CHANGE_SIZE:
+      return {
+        ...state,
+        gameStatus: 'newGame',
+        size: action.payload.size,
+        contentType: action.payload.contentType || state.contentType,
         images: [],
         gameVersion: state.gameVersion + 1,
         playerGuess: { first: null, second: null },
