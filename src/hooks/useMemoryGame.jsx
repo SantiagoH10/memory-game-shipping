@@ -2,6 +2,7 @@ import { useState, useReducer, useEffect } from 'react'
 import { randShuffle, formatTime, getBestGridSize } from '../utils/helpers.js'
 import { initState, ACTIONS, gameReducer } from '../utils/gameLogic.js'
 import { ICON_MAP } from '../utils/icons.jsx'
+import { saveGameResult } from '../firebase/db.js'
 
 export function useMemoryGame() {
   const [state, dispatch] = useReducer(gameReducer, initState)
@@ -95,6 +96,7 @@ export function useMemoryGame() {
     }
     loadImages()
   }, [state.gameVersion, state.contentType, state.size])
+  //#endregion
 
   //#region Handle card flip
   useEffect(() => {
@@ -189,6 +191,31 @@ export function useMemoryGame() {
       if (timer) clearInterval(timer)
     }
   }, [timerActive])
+  //#endregion
+
+  //#region Save result in Firebase
+  useEffect(() => {
+    if (state.gameStatus === 'gameOver') {
+      const saveGame = async () => {
+        const gameData = {
+          game: state.contentType,
+          cardNum: state.size,
+          moves: state.moves,
+          mistakes: state.mistakes,
+          time: finalTime,
+        }
+
+        try {
+          await saveGameResult(gameData)
+        } catch (error) {
+          console.error('Failed to save game:', error)
+        }
+      
+
+      }
+    saveGame()
+    }
+  }, [state.gameStatus])
   //#endregion
 
   return {
