@@ -6,6 +6,6 @@
   html,
   body,
   #root {
-    @apply font-ssp;
+    @apply font-sans;
   }
 }

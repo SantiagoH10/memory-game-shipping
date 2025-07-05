@@ -4,7 +4,6 @@ import { MySociabble } from './sharedComponents/mySociabble.jsx'
 import { GameOverlay } from './sharedComponents/gameOverlay.jsx'
 import { GameDashboard } from './sharedComponents/gameDashboard.jsx'
 import { GameSelector } from './sharedComponents/gameSelector.jsx'
-import './App.css'
 
 //#endregion
 
