@@ -83,15 +83,6 @@ export const GameOverlay = () => {
 
   const isGameOver = state.gameStatus === 'gameOver'
 
-  const totalCards = state.images.length ? state.images.length : 0
-  const optimalMoves = totalCards + totalCards / (2 - 1)
-
-  const efficiency =
-    state.moves > 0 ? Math.round((optimalMoves / state.moves) * 100) : 0
-
-  // Keep original perfect memory logic - exact match only
-  const isPerfectMemory = state.moves === optimalMoves
-
   const sizes = getResponsiveSizes()
 
   return (
@@ -109,7 +100,6 @@ export const GameOverlay = () => {
           style={{ marginBottom: `${Math.floor(sizes.gap * 1.5)}px` }}
         >
           {isGameOver ? (
-            // Game Over Layout - Trophy and Title on same line
             <div
               className="flex items-center justify-center flex-wrap"
               style={{ gap: `${Math.floor(sizes.gap * 0.75)}px` }}
@@ -231,7 +221,7 @@ export const GameOverlay = () => {
               className="text-center"
               style={{ marginTop: `${Math.floor(sizes.gap * 0.75)}px` }}
             >
-              {isPerfectMemory ? (
+              {state.mistakes === 0 ? (
                 <div
                   className="flex items-center justify-center"
                   style={{ gap: `${Math.floor(sizes.gap * 0.5)}px` }}
@@ -253,27 +243,11 @@ export const GameOverlay = () => {
                   className="space-y-1"
                 >
                   <span
-                    className={`font-medium ${
-                      state.mistakes <= 2
-                        ? 'text-green-400'
-                        : state.mistakes <= 5
-                          ? 'text-yellow-400'
-                          : 'text-orange-400'
-                    }`}
+                    className="font-medium text-orange-400"
                     style={{ fontSize: `${sizes.statsLabelFontSize}px` }}
                   >
-                    {state.mistakes <= 2
-                      ? 'Excellent memory!'
-                      : state.mistakes <= 5
-                        ? 'Good job!'
-                        : 'Keep practicing!'}
+                    'Keep practicing!'
                   </span>
-                  <div
-                    className="text-slate-500"
-                    style={{ fontSize: `${sizes.efficiencyFontSize}px` }}
-                  >
-                    Optimal: {optimalMoves} moves ({efficiency}% efficiency)
-                  </div>
                 </div>
               )}
             </div>

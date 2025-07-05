@@ -210,10 +210,8 @@ export function useMemoryGame() {
         } catch (error) {
           console.error('Failed to save game:', error)
         }
-      
-
       }
-    saveGame()
+      saveGame()
     }
   }, [state.gameStatus])
   //#endregion
