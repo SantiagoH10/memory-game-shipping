@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Flags",
     "type": "flag",
-    "maxPairs": 20
+    "maxPairs": 100
   },
   "icons": [
     {
@@ -283,6 +283,1126 @@
       "icon": "SEFlag",
       "color": "#ffffff",
       "pairId": 20,
+      "type": "icon"
+    },
+    {
+      "name": "Guatemala",
+      "icon": "GTFlag",
+      "color": "#ffffff",
+      "pairId": 21,
+      "type": "icon"
+    },
+    {
+      "name": "Guatemala",
+      "icon": "GTFlag",
+      "color": "#ffffff",
+      "pairId": 21,
+      "type": "icon"
+    },
+    {
+      "name": "Belize",
+      "icon": "BZFlag",
+      "color": "#ffffff",
+      "pairId": 22,
+      "type": "icon"
+    },
+    {
+      "name": "Belize",
+      "icon": "BZFlag",
+      "color": "#ffffff",
+      "pairId": 22,
+      "type": "icon"
+    },
+    {
+      "name": "El Salvador",
+      "icon": "SVFlag",
+      "color": "#ffffff",
+      "pairId": 23,
+      "type": "icon"
+    },
+    {
+      "name": "El Salvador",
+      "icon": "SVFlag",
+      "color": "#ffffff",
+      "pairId": 23,
+      "type": "icon"
+    },
+    {
+      "name": "Honduras",
+      "icon": "HNFlag",
+      "color": "#ffffff",
+      "pairId": 24,
+      "type": "icon"
+    },
+    {
+      "name": "Honduras",
+      "icon": "HNFlag",
+      "color": "#ffffff",
+      "pairId": 24,
+      "type": "icon"
+    },
+    {
+      "name": "Nicaragua",
+      "icon": "NIFlag",
+      "color": "#ffffff",
+      "pairId": 25,
+      "type": "icon"
+    },
+    {
+      "name": "Nicaragua",
+      "icon": "NIFlag",
+      "color": "#ffffff",
+      "pairId": 25,
+      "type": "icon"
+    },
+    {
+      "name": "Costa Rica",
+      "icon": "CRFlag",
+      "color": "#ffffff",
+      "pairId": 26,
+      "type": "icon"
+    },
+    {
+      "name": "Costa Rica",
+      "icon": "CRFlag",
+      "color": "#ffffff",
+      "pairId": 26,
+      "type": "icon"
+    },
+    {
+      "name": "Panama",
+      "icon": "PAFlag",
+      "color": "#ffffff",
+      "pairId": 27,
+      "type": "icon"
+    },
+    {
+      "name": "Panama",
+      "icon": "PAFlag",
+      "color": "#ffffff",
+      "pairId": 27,
+      "type": "icon"
+    },
+    {
+      "name": "Cuba",
+      "icon": "CUFlag",
+      "color": "#ffffff",
+      "pairId": 28,
+      "type": "icon"
+    },
+    {
+      "name": "Cuba",
+      "icon": "CUFlag",
+      "color": "#ffffff",
+      "pairId": 28,
+      "type": "icon"
+    },
+    {
+      "name": "Jamaica",
+      "icon": "JMFlag",
+      "color": "#ffffff",
+      "pairId": 29,
+      "type": "icon"
+    },
+    {
+      "name": "Jamaica",
+      "icon": "JMFlag",
+      "color": "#ffffff",
+      "pairId": 29,
+      "type": "icon"
+    },
+    {
+      "name": "Haiti",
+      "icon": "HTFlag",
+      "color": "#ffffff",
+      "pairId": 30,
+      "type": "icon"
+    },
+    {
+      "name": "Haiti",
+      "icon": "HTFlag",
+      "color": "#ffffff",
+      "pairId": 30,
+      "type": "icon"
+    },
+    {
+      "name": "Dominican Republic",
+      "icon": "DOFlag",
+      "color": "#ffffff",
+      "pairId": 31,
+      "type": "icon"
+    },
+    {
+      "name": "Dominican Republic",
+      "icon": "DOFlag",
+      "color": "#ffffff",
+      "pairId": 31,
+      "type": "icon"
+    },
+    {
+      "name": "Barbados",
+      "icon": "BBFlag",
+      "color": "#ffffff",
+      "pairId": 32,
+      "type": "icon"
+    },
+    {
+      "name": "Barbados",
+      "icon": "BBFlag",
+      "color": "#ffffff",
+      "pairId": 32,
+      "type": "icon"
+    },
+    {
+      "name": "Trinidad and Tobago",
+      "icon": "TTFlag",
+      "color": "#ffffff",
+      "pairId": 33,
+      "type": "icon"
+    },
+    {
+      "name": "Trinidad and Tobago",
+      "icon": "TTFlag",
+      "color": "#ffffff",
+      "pairId": 33,
+      "type": "icon"
+    },
+    {
+      "name": "Bahamas",
+      "icon": "BSFlag",
+      "color": "#ffffff",
+      "pairId": 34,
+      "type": "icon"
+    },
+    {
+      "name": "Bahamas",
+      "icon": "BSFlag",
+      "color": "#ffffff",
+      "pairId": 34,
+      "type": "icon"
+    },
+    {
+      "name": "Dominica",
+      "icon": "DMFlag",
+      "color": "#ffffff",
+      "pairId": 35,
+      "type": "icon"
+    },
+    {
+      "name": "Dominica",
+      "icon": "DMFlag",
+      "color": "#ffffff",
+      "pairId": 35,
+      "type": "icon"
+    },
+    {
+      "name": "Grenada",
+      "icon": "GDFlag",
+      "color": "#ffffff",
+      "pairId": 36,
+      "type": "icon"
+    },
+    {
+      "name": "Grenada",
+      "icon": "GDFlag",
+      "color": "#ffffff",
+      "pairId": 36,
+      "type": "icon"
+    },
+    {
+      "name": "Saint Kitts and Nevis",
+      "icon": "KNFlag",
+      "color": "#ffffff",
+      "pairId": 37,
+      "type": "icon"
+    },
+    {
+      "name": "Saint Kitts and Nevis",
+      "icon": "KNFlag",
+      "color": "#ffffff",
+      "pairId": 37,
+      "type": "icon"
+    },
+    {
+      "name": "Saint Lucia",
+      "icon": "LCFlag",
+      "color": "#ffffff",
+      "pairId": 38,
+      "type": "icon"
+    },
+    {
+      "name": "Saint Lucia",
+      "icon": "LCFlag",
+      "color": "#ffffff",
+      "pairId": 38,
+      "type": "icon"
+    },
+    {
+      "name": "Saint Vincent and the Grenadines",
+      "icon": "VCFlag",
+      "color": "#ffffff",
+      "pairId": 39,
+      "type": "icon"
+    },
+    {
+      "name": "Saint Vincent and the Grenadines",
+      "icon": "VCFlag",
+      "color": "#ffffff",
+      "pairId": 39,
+      "type": "icon"
+    },
+    {
+      "name": "Antigua and Barbuda",
+      "icon": "AGFlag",
+      "color": "#ffffff",
+      "pairId": 40,
+      "type": "icon"
+    },
+    {
+      "name": "Antigua and Barbuda",
+      "icon": "AGFlag",
+      "color": "#ffffff",
+      "pairId": 40,
+      "type": "icon"
+    },
+    {
+      "name": "Colombia",
+      "icon": "COFlag",
+      "color": "#ffffff",
+      "pairId": 41,
+      "type": "icon"
+    },
+    {
+      "name": "Colombia",
+      "icon": "COFlag",
+      "color": "#ffffff",
+      "pairId": 41,
+      "type": "icon"
+    },
+    {
+      "name": "Venezuela",
+      "icon": "VEFlag",
+      "color": "#ffffff",
+      "pairId": 42,
+      "type": "icon"
+    },
+    {
+      "name": "Venezuela",
+      "icon": "VEFlag",
+      "color": "#ffffff",
+      "pairId": 42,
+      "type": "icon"
+    },
+    {
+      "name": "Peru",
+      "icon": "PEFlag",
+      "color": "#ffffff",
+      "pairId": 43,
+      "type": "icon"
+    },
+    {
+      "name": "Peru",
+      "icon": "PEFlag",
+      "color": "#ffffff",
+      "pairId": 43,
+      "type": "icon"
+    },
+    {
+      "name": "Ecuador",
+      "icon": "ECFlag",
+      "color": "#ffffff",
+      "pairId": 44,
+      "type": "icon"
+    },
+    {
+      "name": "Ecuador",
+      "icon": "ECFlag",
+      "color": "#ffffff",
+      "pairId": 44,
+      "type": "icon"
+    },
+    {
+      "name": "Bolivia",
+      "icon": "BOFlag",
+      "color": "#ffffff",
+      "pairId": 45,
+      "type": "icon"
+    },
+    {
+      "name": "Bolivia",
+      "icon": "BOFlag",
+      "color": "#ffffff",
+      "pairId": 45,
+      "type": "icon"
+    },
+    {
+      "name": "Chile",
+      "icon": "CLFlag",
+      "color": "#ffffff",
+      "pairId": 46,
+      "type": "icon"
+    },
+    {
+      "name": "Chile",
+      "icon": "CLFlag",
+      "color": "#ffffff",
+      "pairId": 46,
+      "type": "icon"
+    },
+    {
+      "name": "Uruguay",
+      "icon": "UYFlag",
+      "color": "#ffffff",
+      "pairId": 47,
+      "type": "icon"
+    },
+    {
+      "name": "Uruguay",
+      "icon": "UYFlag",
+      "color": "#ffffff",
+      "pairId": 47,
+      "type": "icon"
+    },
+    {
+      "name": "Paraguay",
+      "icon": "PYFlag",
+      "color": "#ffffff",
+      "pairId": 48,
+      "type": "icon"
+    },
+    {
+      "name": "Paraguay",
+      "icon": "PYFlag",
+      "color": "#ffffff",
+      "pairId": 48,
+      "type": "icon"
+    },
+    {
+      "name": "Guyana",
+      "icon": "GYFlag",
+      "color": "#ffffff",
+      "pairId": 49,
+      "type": "icon"
+    },
+    {
+      "name": "Guyana",
+      "icon": "GYFlag",
+      "color": "#ffffff",
+      "pairId": 49,
+      "type": "icon"
+    },
+    {
+      "name": "Suriname",
+      "icon": "SRFlag",
+      "color": "#ffffff",
+      "pairId": 50,
+      "type": "icon"
+    },
+    {
+      "name": "Suriname",
+      "icon": "SRFlag",
+      "color": "#ffffff",
+      "pairId": 50,
+      "type": "icon"
+    },
+    {
+      "name": "Norway",
+      "icon": "NOFlag",
+      "color": "#ffffff",
+      "pairId": 51,
+      "type": "icon"
+    },
+    {
+      "name": "Norway",
+      "icon": "NOFlag",
+      "color": "#ffffff",
+      "pairId": 51,
+      "type": "icon"
+    },
+    {
+      "name": "Denmark",
+      "icon": "DKFlag",
+      "color": "#ffffff",
+      "pairId": 52,
+      "type": "icon"
+    },
+    {
+      "name": "Denmark",
+      "icon": "DKFlag",
+      "color": "#ffffff",
+      "pairId": 52,
+      "type": "icon"
+    },
+    {
+      "name": "Finland",
+      "icon": "FIFlag",
+      "color": "#ffffff",
+      "pairId": 53,
+      "type": "icon"
+    },
+    {
+      "name": "Finland",
+      "icon": "FIFlag",
+      "color": "#ffffff",
+      "pairId": 53,
+      "type": "icon"
+    },
+    {
+      "name": "Iceland",
+      "icon": "ISFlag",
+      "color": "#ffffff",
+      "pairId": 54,
+      "type": "icon"
+    },
+    {
+      "name": "Iceland",
+      "icon": "ISFlag",
+      "color": "#ffffff",
+      "pairId": 54,
+      "type": "icon"
+    },
+    {
+      "name": "Ireland",
+      "icon": "IEFlag",
+      "color": "#ffffff",
+      "pairId": 55,
+      "type": "icon"
+    },
+    {
+      "name": "Ireland",
+      "icon": "IEFlag",
+      "color": "#ffffff",
+      "pairId": 55,
+      "type": "icon"
+    },
+    {
+      "name": "Portugal",
+      "icon": "PTFlag",
+      "color": "#ffffff",
+      "pairId": 56,
+      "type": "icon"
+    },
+    {
+      "name": "Portugal",
+      "icon": "PTFlag",
+      "color": "#ffffff",
+      "pairId": 56,
+      "type": "icon"
+    },
+    {
+      "name": "Switzerland",
+      "icon": "CHFlag",
+      "color": "#ffffff",
+      "pairId": 57,
+      "type": "icon"
+    },
+    {
+      "name": "Switzerland",
+      "icon": "CHFlag",
+      "color": "#ffffff",
+      "pairId": 57,
+      "type": "icon"
+    },
+    {
+      "name": "Austria",
+      "icon": "ATFlag",
+      "color": "#ffffff",
+      "pairId": 58,
+      "type": "icon"
+    },
+    {
+      "name": "Austria",
+      "icon": "ATFlag",
+      "color": "#ffffff",
+      "pairId": 58,
+      "type": "icon"
+    },
+    {
+      "name": "Belgium",
+      "icon": "BEFlag",
+      "color": "#ffffff",
+      "pairId": 59,
+      "type": "icon"
+    },
+    {
+      "name": "Belgium",
+      "icon": "BEFlag",
+      "color": "#ffffff",
+      "pairId": 59,
+      "type": "icon"
+    },
+    {
+      "name": "Luxembourg",
+      "icon": "LUFlag",
+      "color": "#ffffff",
+      "pairId": 60,
+      "type": "icon"
+    },
+    {
+      "name": "Luxembourg",
+      "icon": "LUFlag",
+      "color": "#ffffff",
+      "pairId": 60,
+      "type": "icon"
+    },
+    {
+      "name": "Poland",
+      "icon": "PLFlag",
+      "color": "#ffffff",
+      "pairId": 61,
+      "type": "icon"
+    },
+    {
+      "name": "Poland",
+      "icon": "PLFlag",
+      "color": "#ffffff",
+      "pairId": 61,
+      "type": "icon"
+    },
+    {
+      "name": "Czech Republic",
+      "icon": "CZFlag",
+      "color": "#ffffff",
+      "pairId": 62,
+      "type": "icon"
+    },
+    {
+      "name": "Czech Republic",
+      "icon": "CZFlag",
+      "color": "#ffffff",
+      "pairId": 62,
+      "type": "icon"
+    },
+    {
+      "name": "Slovakia",
+      "icon": "SKFlag",
+      "color": "#ffffff",
+      "pairId": 63,
+      "type": "icon"
+    },
+    {
+      "name": "Slovakia",
+      "icon": "SKFlag",
+      "color": "#ffffff",
+      "pairId": 63,
+      "type": "icon"
+    },
+    {
+      "name": "Hungary",
+      "icon": "HUFlag",
+      "color": "#ffffff",
+      "pairId": 64,
+      "type": "icon"
+    },
+    {
+      "name": "Hungary",
+      "icon": "HUFlag",
+      "color": "#ffffff",
+      "pairId": 64,
+      "type": "icon"
+    },
+    {
+      "name": "Slovenia",
+      "icon": "SIFlag",
+      "color": "#ffffff",
+      "pairId": 65,
+      "type": "icon"
+    },
+    {
+      "name": "Slovenia",
+      "icon": "SIFlag",
+      "color": "#ffffff",
+      "pairId": 65,
+      "type": "icon"
+    },
+    {
+      "name": "Croatia",
+      "icon": "HRFlag",
+      "color": "#ffffff",
+      "pairId": 66,
+      "type": "icon"
+    },
+    {
+      "name": "Croatia",
+      "icon": "HRFlag",
+      "color": "#ffffff",
+      "pairId": 66,
+      "type": "icon"
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "icon": "BAFlag",
+      "color": "#ffffff",
+      "pairId": 67,
+      "type": "icon"
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "icon": "BAFlag",
+      "color": "#ffffff",
+      "pairId": 67,
+      "type": "icon"
+    },
+    {
+      "name": "Serbia",
+      "icon": "RSFlag",
+      "color": "#ffffff",
+      "pairId": 68,
+      "type": "icon"
+    },
+    {
+      "name": "Serbia",
+      "icon": "RSFlag",
+      "color": "#ffffff",
+      "pairId": 68,
+      "type": "icon"
+    },
+    {
+      "name": "Montenegro",
+      "icon": "MEFlag",
+      "color": "#ffffff",
+      "pairId": 69,
+      "type": "icon"
+    },
+    {
+      "name": "Montenegro",
+      "icon": "MEFlag",
+      "color": "#ffffff",
+      "pairId": 69,
+      "type": "icon"
+    },
+    {
+      "name": "North Macedonia",
+      "icon": "MKFlag",
+      "color": "#ffffff",
+      "pairId": 70,
+      "type": "icon"
+    },
+    {
+      "name": "North Macedonia",
+      "icon": "MKFlag",
+      "color": "#ffffff",
+      "pairId": 70,
+      "type": "icon"
+    },
+    {
+      "name": "Albania",
+      "icon": "ALFlag",
+      "color": "#ffffff",
+      "pairId": 71,
+      "type": "icon"
+    },
+    {
+      "name": "Albania",
+      "icon": "ALFlag",
+      "color": "#ffffff",
+      "pairId": 71,
+      "type": "icon"
+    },
+    {
+      "name": "Greece",
+      "icon": "GRFlag",
+      "color": "#ffffff",
+      "pairId": 72,
+      "type": "icon"
+    },
+    {
+      "name": "Greece",
+      "icon": "GRFlag",
+      "color": "#ffffff",
+      "pairId": 72,
+      "type": "icon"
+    },
+    {
+      "name": "Bulgaria",
+      "icon": "BGFlag",
+      "color": "#ffffff",
+      "pairId": 73,
+      "type": "icon"
+    },
+    {
+      "name": "Bulgaria",
+      "icon": "BGFlag",
+      "color": "#ffffff",
+      "pairId": 73,
+      "type": "icon"
+    },
+    {
+      "name": "Romania",
+      "icon": "ROFlag",
+      "color": "#ffffff",
+      "pairId": 74,
+      "type": "icon"
+    },
+    {
+      "name": "Romania",
+      "icon": "ROFlag",
+      "color": "#ffffff",
+      "pairId": 74,
+      "type": "icon"
+    },
+    {
+      "name": "Moldova",
+      "icon": "MDFlag",
+      "color": "#ffffff",
+      "pairId": 75,
+      "type": "icon"
+    },
+    {
+      "name": "Moldova",
+      "icon": "MDFlag",
+      "color": "#ffffff",
+      "pairId": 75,
+      "type": "icon"
+    },
+    {
+      "name": "Ukraine",
+      "icon": "UAFlag",
+      "color": "#ffffff",
+      "pairId": 76,
+      "type": "icon"
+    },
+    {
+      "name": "Ukraine",
+      "icon": "UAFlag",
+      "color": "#ffffff",
+      "pairId": 76,
+      "type": "icon"
+    },
+    {
+      "name": "Belarus",
+      "icon": "BYFlag",
+      "color": "#ffffff",
+      "pairId": 77,
+      "type": "icon"
+    },
+    {
+      "name": "Belarus",
+      "icon": "BYFlag",
+      "color": "#ffffff",
+      "pairId": 77,
+      "type": "icon"
+    },
+    {
+      "name": "Lithuania",
+      "icon": "LTFlag",
+      "color": "#ffffff",
+      "pairId": 78,
+      "type": "icon"
+    },
+    {
+      "name": "Lithuania",
+      "icon": "LTFlag",
+      "color": "#ffffff",
+      "pairId": 78,
+      "type": "icon"
+    },
+    {
+      "name": "Latvia",
+      "icon": "LVFlag",
+      "color": "#ffffff",
+      "pairId": 79,
+      "type": "icon"
+    },
+    {
+      "name": "Latvia",
+      "icon": "LVFlag",
+      "color": "#ffffff",
+      "pairId": 79,
+      "type": "icon"
+    },
+    {
+      "name": "Estonia",
+      "icon": "EEFlag",
+      "color": "#ffffff",
+      "pairId": 80,
+      "type": "icon"
+    },
+    {
+      "name": "Estonia",
+      "icon": "EEFlag",
+      "color": "#ffffff",
+      "pairId": 80,
+      "type": "icon"
+    },
+    {
+      "name": "Malta",
+      "icon": "MTFlag",
+      "color": "#ffffff",
+      "pairId": 81,
+      "type": "icon"
+    },
+    {
+      "name": "Malta",
+      "icon": "MTFlag",
+      "color": "#ffffff",
+      "pairId": 81,
+      "type": "icon"
+    },
+    {
+      "name": "Cyprus",
+      "icon": "CYFlag",
+      "color": "#ffffff",
+      "pairId": 82,
+      "type": "icon"
+    },
+    {
+      "name": "Cyprus",
+      "icon": "CYFlag",
+      "color": "#ffffff",
+      "pairId": 82,
+      "type": "icon"
+    },
+    {
+      "name": "North Korea",
+      "icon": "KPFlag",
+      "color": "#ffffff",
+      "pairId": 83,
+      "type": "icon"
+    },
+    {
+      "name": "North Korea",
+      "icon": "KPFlag",
+      "color": "#ffffff",
+      "pairId": 83,
+      "type": "icon"
+    },
+    {
+      "name": "Indonesia",
+      "icon": "IDFlag",
+      "color": "#ffffff",
+      "pairId": 84,
+      "type": "icon"
+    },
+    {
+      "name": "Indonesia",
+      "icon": "IDFlag",
+      "color": "#ffffff",
+      "pairId": 84,
+      "type": "icon"
+    },
+    {
+      "name": "Thailand",
+      "icon": "THFlag",
+      "color": "#ffffff",
+      "pairId": 85,
+      "type": "icon"
+    },
+    {
+      "name": "Thailand",
+      "icon": "THFlag",
+      "color": "#ffffff",
+      "pairId": 85,
+      "type": "icon"
+    },
+    {
+      "name": "Vietnam",
+      "icon": "VNFlag",
+      "color": "#ffffff",
+      "pairId": 86,
+      "type": "icon"
+    },
+    {
+      "name": "Vietnam",
+      "icon": "VNFlag",
+      "color": "#ffffff",
+      "pairId": 86,
+      "type": "icon"
+    },
+    {
+      "name": "Philippines",
+      "icon": "PHFlag",
+      "color": "#ffffff",
+      "pairId": 87,
+      "type": "icon"
+    },
+    {
+      "name": "Philippines",
+      "icon": "PHFlag",
+      "color": "#ffffff",
+      "pairId": 87,
+      "type": "icon"
+    },
+    {
+      "name": "Malaysia",
+      "icon": "MYFlag",
+      "color": "#ffffff",
+      "pairId": 88,
+      "type": "icon"
+    },
+    {
+      "name": "Malaysia",
+      "icon": "MYFlag",
+      "color": "#ffffff",
+      "pairId": 88,
+      "type": "icon"
+    },
+    {
+      "name": "Singapore",
+      "icon": "SGFlag",
+      "color": "#ffffff",
+      "pairId": 89,
+      "type": "icon"
+    },
+    {
+      "name": "Singapore",
+      "icon": "SGFlag",
+      "color": "#ffffff",
+      "pairId": 89,
+      "type": "icon"
+    },
+    {
+      "name": "Egypt",
+      "icon": "EGFlag",
+      "color": "#ffffff",
+      "pairId": 90,
+      "type": "icon"
+    },
+    {
+      "name": "Egypt",
+      "icon": "EGFlag",
+      "color": "#ffffff",
+      "pairId": 90,
+      "type": "icon"
+    },
+    {
+      "name": "Ethiopia",
+      "icon": "ETFlag",
+      "color": "#ffffff",
+      "pairId": 91,
+      "type": "icon"
+    },
+    {
+      "name": "Ethiopia",
+      "icon": "ETFlag",
+      "color": "#ffffff",
+      "pairId": 91,
+      "type": "icon"
+    },
+    {
+      "name": "Kenya",
+      "icon": "KEFlag",
+      "color": "#ffffff",
+      "pairId": 92,
+      "type": "icon"
+    },
+    {
+      "name": "Kenya",
+      "icon": "KEFlag",
+      "color": "#ffffff",
+      "pairId": 92,
+      "type": "icon"
+    },
+    {
+      "name": "Ghana",
+      "icon": "GHFlag",
+      "color": "#ffffff",
+      "pairId": 93,
+      "type": "icon"
+    },
+    {
+      "name": "Ghana",
+      "icon": "GHFlag",
+      "color": "#ffffff",
+      "pairId": 93,
+      "type": "icon"
+    },
+    {
+      "name": "Morocco",
+      "icon": "MAFlag",
+      "color": "#ffffff",
+      "pairId": 94,
+      "type": "icon"
+    },
+    {
+      "name": "Morocco",
+      "icon": "MAFlag",
+      "color": "#ffffff",
+      "pairId": 94,
+      "type": "icon"
+    },
+    {
+      "name": "Tunisia",
+      "icon": "TNFlag",
+      "color": "#ffffff",
+      "pairId": 95,
+      "type": "icon"
+    },
+    {
+      "name": "Tunisia",
+      "icon": "TNFlag",
+      "color": "#ffffff",
+      "pairId": 95,
+      "type": "icon"
+    },
+    {
+      "name": "New Zealand",
+      "icon": "NZFlag",
+      "color": "#ffffff",
+      "pairId": 96,
+      "type": "icon"
+    },
+    {
+      "name": "New Zealand",
+      "icon": "NZFlag",
+      "color": "#ffffff",
+      "pairId": 96,
+      "type": "icon"
+    },
+    {
+      "name": "Fiji",
+      "icon": "FJFlag",
+      "color": "#ffffff",
+      "pairId": 97,
+      "type": "icon"
+    },
+    {
+      "name": "Fiji",
+      "icon": "FJFlag",
+      "color": "#ffffff",
+      "pairId": 97,
+      "type": "icon"
+    },
+    {
+      "name": "Papua New Guinea",
+      "icon": "PGFlag",
+      "color": "#ffffff",
+      "pairId": 98,
+      "type": "icon"
+    },
+    {
+      "name": "Papua New Guinea",
+      "icon": "PGFlag",
+      "color": "#ffffff",
+      "pairId": 98,
+      "type": "icon"
+    },
+    {
+      "name": "Turkey",
+      "icon": "TRFlag",
+      "color": "#ffffff",
+      "pairId": 99,
+      "type": "icon"
+    },
+    {
+      "name": "Turkey",
+      "icon": "TRFlag",
+      "color": "#ffffff",
+      "pairId": 99,
+      "type": "icon"
+    },
+    {
+      "name": "Israel",
+      "icon": "ILFlag",
+      "color": "#ffffff",
+      "pairId": 100,
+      "type": "icon"
+    },
+    {
+      "name": "Israel",
+      "icon": "ILFlag",
+      "color": "#ffffff",
+      "pairId": 100,
       "type": "icon"
     }
   ]

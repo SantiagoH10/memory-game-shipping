@@ -94,8 +94,6 @@ export const GameOverlay = () => {
 
   const sizes = getResponsiveSizes()
 
-  
-
   return (
     <div className="absolute inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50">
       <div

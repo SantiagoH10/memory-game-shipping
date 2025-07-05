@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Flag name match",
     "type": "flag-name",
-    "maxPairs": 20
+    "maxPairs": 100
   },
   "icons": [
     {
@@ -284,6 +284,1126 @@
       "type": "text",
       "color": "#1f2937",
       "pairId": 20
+    },
+    {
+      "name": "Guatemala",
+      "icon": "GTFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 21
+    },
+    {
+      "name": "Guatemala",
+      "displayText": "Guatemala",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 21
+    },
+    {
+      "name": "Belize",
+      "icon": "BZFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 22
+    },
+    {
+      "name": "Belize",
+      "displayText": "Belize",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 22
+    },
+    {
+      "name": "El Salvador",
+      "icon": "SVFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 23
+    },
+    {
+      "name": "El Salvador",
+      "displayText": "El Salvador",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 23
+    },
+    {
+      "name": "Honduras",
+      "icon": "HNFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 24
+    },
+    {
+      "name": "Honduras",
+      "displayText": "Honduras",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 24
+    },
+    {
+      "name": "Nicaragua",
+      "icon": "NIFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 25
+    },
+    {
+      "name": "Nicaragua",
+      "displayText": "Nicaragua",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 25
+    },
+    {
+      "name": "Costa Rica",
+      "icon": "CRFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 26
+    },
+    {
+      "name": "Costa Rica",
+      "displayText": "Costa Rica",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 26
+    },
+    {
+      "name": "Panama",
+      "icon": "PAFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 27
+    },
+    {
+      "name": "Panama",
+      "displayText": "Panama",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 27
+    },
+    {
+      "name": "Cuba",
+      "icon": "CUFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 28
+    },
+    {
+      "name": "Cuba",
+      "displayText": "Cuba",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 28
+    },
+    {
+      "name": "Jamaica",
+      "icon": "JMFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 29
+    },
+    {
+      "name": "Jamaica",
+      "displayText": "Jamaica",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 29
+    },
+    {
+      "name": "Haiti",
+      "icon": "HTFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 30
+    },
+    {
+      "name": "Haiti",
+      "displayText": "Haiti",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 30
+    },
+    {
+      "name": "Dominican Republic",
+      "icon": "DOFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 31
+    },
+    {
+      "name": "Dominican Republic",
+      "displayText": "Dominican Republic",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 31
+    },
+    {
+      "name": "Barbados",
+      "icon": "BBFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 32
+    },
+    {
+      "name": "Barbados",
+      "displayText": "Barbados",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 32
+    },
+    {
+      "name": "Trinidad and Tobago",
+      "icon": "TTFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 33
+    },
+    {
+      "name": "Trinidad and Tobago",
+      "displayText": "Trinidad and Tobago",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 33
+    },
+    {
+      "name": "Bahamas",
+      "icon": "BSFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 34
+    },
+    {
+      "name": "Bahamas",
+      "displayText": "Bahamas",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 34
+    },
+    {
+      "name": "Dominica",
+      "icon": "DMFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 35
+    },
+    {
+      "name": "Dominica",
+      "displayText": "Dominica",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 35
+    },
+    {
+      "name": "Grenada",
+      "icon": "GDFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 36
+    },
+    {
+      "name": "Grenada",
+      "displayText": "Grenada",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 36
+    },
+    {
+      "name": "Saint Kitts and Nevis",
+      "icon": "KNFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 37
+    },
+    {
+      "name": "Saint Kitts and Nevis",
+      "displayText": "Saint Kitts and Nevis",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 37
+    },
+    {
+      "name": "Saint Lucia",
+      "icon": "LCFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 38
+    },
+    {
+      "name": "Saint Lucia",
+      "displayText": "Saint Lucia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 38
+    },
+    {
+      "name": "Saint Vincent and the Grenadines",
+      "icon": "VCFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 39
+    },
+    {
+      "name": "Saint Vincent and the Grenadines",
+      "displayText": "Saint Vincent and the Grenadines",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 39
+    },
+    {
+      "name": "Antigua and Barbuda",
+      "icon": "AGFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 40
+    },
+    {
+      "name": "Antigua and Barbuda",
+      "displayText": "Antigua and Barbuda",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 40
+    },
+    {
+      "name": "Colombia",
+      "icon": "COFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 41
+    },
+    {
+      "name": "Colombia",
+      "displayText": "Colombia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 41
+    },
+    {
+      "name": "Venezuela",
+      "icon": "VEFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 42
+    },
+    {
+      "name": "Venezuela",
+      "displayText": "Venezuela",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 42
+    },
+    {
+      "name": "Peru",
+      "icon": "PEFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 43
+    },
+    {
+      "name": "Peru",
+      "displayText": "Peru",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 43
+    },
+    {
+      "name": "Ecuador",
+      "icon": "ECFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 44
+    },
+    {
+      "name": "Ecuador",
+      "displayText": "Ecuador",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 44
+    },
+    {
+      "name": "Bolivia",
+      "icon": "BOFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 45
+    },
+    {
+      "name": "Bolivia",
+      "displayText": "Bolivia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 45
+    },
+    {
+      "name": "Chile",
+      "icon": "CLFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 46
+    },
+    {
+      "name": "Chile",
+      "displayText": "Chile",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 46
+    },
+    {
+      "name": "Uruguay",
+      "icon": "UYFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 47
+    },
+    {
+      "name": "Uruguay",
+      "displayText": "Uruguay",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 47
+    },
+    {
+      "name": "Paraguay",
+      "icon": "PYFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 48
+    },
+    {
+      "name": "Paraguay",
+      "displayText": "Paraguay",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 48
+    },
+    {
+      "name": "Guyana",
+      "icon": "GYFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 49
+    },
+    {
+      "name": "Guyana",
+      "displayText": "Guyana",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 49
+    },
+    {
+      "name": "Suriname",
+      "icon": "SRFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 50
+    },
+    {
+      "name": "Suriname",
+      "displayText": "Suriname",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 50
+    },
+    {
+      "name": "Norway",
+      "icon": "NOFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 51
+    },
+    {
+      "name": "Norway",
+      "displayText": "Norway",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 51
+    },
+    {
+      "name": "Denmark",
+      "icon": "DKFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 52
+    },
+    {
+      "name": "Denmark",
+      "displayText": "Denmark",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 52
+    },
+    {
+      "name": "Finland",
+      "icon": "FIFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 53
+    },
+    {
+      "name": "Finland",
+      "displayText": "Finland",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 53
+    },
+    {
+      "name": "Iceland",
+      "icon": "ISFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 54
+    },
+    {
+      "name": "Iceland",
+      "displayText": "Iceland",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 54
+    },
+    {
+      "name": "Ireland",
+      "icon": "IEFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 55
+    },
+    {
+      "name": "Ireland",
+      "displayText": "Ireland",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 55
+    },
+    {
+      "name": "Portugal",
+      "icon": "PTFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 56
+    },
+    {
+      "name": "Portugal",
+      "displayText": "Portugal",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 56
+    },
+    {
+      "name": "Switzerland",
+      "icon": "CHFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 57
+    },
+    {
+      "name": "Switzerland",
+      "displayText": "Switzerland",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 57
+    },
+    {
+      "name": "Austria",
+      "icon": "ATFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 58
+    },
+    {
+      "name": "Austria",
+      "displayText": "Austria",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 58
+    },
+    {
+      "name": "Belgium",
+      "icon": "BEFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 59
+    },
+    {
+      "name": "Belgium",
+      "displayText": "Belgium",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 59
+    },
+    {
+      "name": "Luxembourg",
+      "icon": "LUFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 60
+    },
+    {
+      "name": "Luxembourg",
+      "displayText": "Luxembourg",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 60
+    },
+    {
+      "name": "Poland",
+      "icon": "PLFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 61
+    },
+    {
+      "name": "Poland",
+      "displayText": "Poland",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 61
+    },
+    {
+      "name": "Czech Republic",
+      "icon": "CZFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 62
+    },
+    {
+      "name": "Czech Republic",
+      "displayText": "Czech Republic",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 62
+    },
+    {
+      "name": "Slovakia",
+      "icon": "SKFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 63
+    },
+    {
+      "name": "Slovakia",
+      "displayText": "Slovakia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 63
+    },
+    {
+      "name": "Hungary",
+      "icon": "HUFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 64
+    },
+    {
+      "name": "Hungary",
+      "displayText": "Hungary",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 64
+    },
+    {
+      "name": "Slovenia",
+      "icon": "SIFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 65
+    },
+    {
+      "name": "Slovenia",
+      "displayText": "Slovenia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 65
+    },
+    {
+      "name": "Croatia",
+      "icon": "HRFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 66
+    },
+    {
+      "name": "Croatia",
+      "displayText": "Croatia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 66
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "icon": "BAFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 67
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "displayText": "Bosnia and Herzegovina",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 67
+    },
+    {
+      "name": "Serbia",
+      "icon": "RSFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 68
+    },
+    {
+      "name": "Serbia",
+      "displayText": "Serbia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 68
+    },
+    {
+      "name": "Montenegro",
+      "icon": "MEFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 69
+    },
+    {
+      "name": "Montenegro",
+      "displayText": "Montenegro",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 69
+    },
+    {
+      "name": "North Macedonia",
+      "icon": "MKFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 70
+    },
+    {
+      "name": "North Macedonia",
+      "displayText": "North Macedonia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 70
+    },
+    {
+      "name": "Albania",
+      "icon": "ALFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 71
+    },
+    {
+      "name": "Albania",
+      "displayText": "Albania",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 71
+    },
+    {
+      "name": "Greece",
+      "icon": "GRFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 72
+    },
+    {
+      "name": "Greece",
+      "displayText": "Greece",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 72
+    },
+    {
+      "name": "Bulgaria",
+      "icon": "BGFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 73
+    },
+    {
+      "name": "Bulgaria",
+      "displayText": "Bulgaria",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 73
+    },
+    {
+      "name": "Romania",
+      "icon": "ROFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 74
+    },
+    {
+      "name": "Romania",
+      "displayText": "Romania",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 74
+    },
+    {
+      "name": "Moldova",
+      "icon": "MDFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 75
+    },
+    {
+      "name": "Moldova",
+      "displayText": "Moldova",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 75
+    },
+    {
+      "name": "Ukraine",
+      "icon": "UAFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 76
+    },
+    {
+      "name": "Ukraine",
+      "displayText": "Ukraine",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 76
+    },
+    {
+      "name": "Belarus",
+      "icon": "BYFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 77
+    },
+    {
+      "name": "Belarus",
+      "displayText": "Belarus",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 77
+    },
+    {
+      "name": "Lithuania",
+      "icon": "LTFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 78
+    },
+    {
+      "name": "Lithuania",
+      "displayText": "Lithuania",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 78
+    },
+    {
+      "name": "Latvia",
+      "icon": "LVFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 79
+    },
+    {
+      "name": "Latvia",
+      "displayText": "Latvia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 79
+    },
+    {
+      "name": "Estonia",
+      "icon": "EEFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 80
+    },
+    {
+      "name": "Estonia",
+      "displayText": "Estonia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 80
+    },
+    {
+      "name": "Malta",
+      "icon": "MTFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 81
+    },
+    {
+      "name": "Malta",
+      "displayText": "Malta",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 81
+    },
+    {
+      "name": "Cyprus",
+      "icon": "CYFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 82
+    },
+    {
+      "name": "Cyprus",
+      "displayText": "Cyprus",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 82
+    },
+    {
+      "name": "North Korea",
+      "icon": "KPFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 83
+    },
+    {
+      "name": "North Korea",
+      "displayText": "North Korea",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 83
+    },
+    {
+      "name": "Indonesia",
+      "icon": "IDFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 84
+    },
+    {
+      "name": "Indonesia",
+      "displayText": "Indonesia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 84
+    },
+    {
+      "name": "Thailand",
+      "icon": "THFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 85
+    },
+    {
+      "name": "Thailand",
+      "displayText": "Thailand",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 85
+    },
+    {
+      "name": "Vietnam",
+      "icon": "VNFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 86
+    },
+    {
+      "name": "Vietnam",
+      "displayText": "Vietnam",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 86
+    },
+    {
+      "name": "Philippines",
+      "icon": "PHFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 87
+    },
+    {
+      "name": "Philippines",
+      "displayText": "Philippines",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 87
+    },
+    {
+      "name": "Malaysia",
+      "icon": "MYFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 88
+    },
+    {
+      "name": "Malaysia",
+      "displayText": "Malaysia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 88
+    },
+    {
+      "name": "Singapore",
+      "icon": "SGFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 89
+    },
+    {
+      "name": "Singapore",
+      "displayText": "Singapore",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 89
+    },
+    {
+      "name": "Egypt",
+      "icon": "EGFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 90
+    },
+    {
+      "name": "Egypt",
+      "displayText": "Egypt",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 90
+    },
+    {
+      "name": "Ethiopia",
+      "icon": "ETFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 91
+    },
+    {
+      "name": "Ethiopia",
+      "displayText": "Ethiopia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 91
+    },
+    {
+      "name": "Kenya",
+      "icon": "KEFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 92
+    },
+    {
+      "name": "Kenya",
+      "displayText": "Kenya",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 92
+    },
+    {
+      "name": "Ghana",
+      "icon": "GHFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 93
+    },
+    {
+      "name": "Ghana",
+      "displayText": "Ghana",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 93
+    },
+    {
+      "name": "Morocco",
+      "icon": "MAFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 94
+    },
+    {
+      "name": "Morocco",
+      "displayText": "Morocco",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 94
+    },
+    {
+      "name": "Tunisia",
+      "icon": "TNFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 95
+    },
+    {
+      "name": "Tunisia",
+      "displayText": "Tunisia",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 95
+    },
+    {
+      "name": "New Zealand",
+      "icon": "NZFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 96
+    },
+    {
+      "name": "New Zealand",
+      "displayText": "New Zealand",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 96
+    },
+    {
+      "name": "Fiji",
+      "icon": "FJFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 97
+    },
+    {
+      "name": "Fiji",
+      "displayText": "Fiji",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 97
+    },
+    {
+      "name": "Papua New Guinea",
+      "icon": "PGFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 98
+    },
+    {
+      "name": "Papua New Guinea",
+      "displayText": "Papua New Guinea",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 98
+    },
+    {
+      "name": "Turkey",
+      "icon": "TRFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 99
+    },
+    {
+      "name": "Turkey",
+      "displayText": "Turkey",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 99
+    },
+    {
+      "name": "Israel",
+      "icon": "ILFlag",
+      "type": "icon",
+      "color": "#ffffff",
+      "pairId": 100
+    },
+    {
+      "name": "Israel",
+      "displayText": "Israel",
+      "type": "text",
+      "color": "#1f2937",
+      "pairId": 100
     }
   ]
 }

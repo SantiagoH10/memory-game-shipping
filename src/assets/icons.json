@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Icons",
     "type": "icon",
-    "maxPairs": 32
+    "maxPairs": 50
   },
   "icons": [
     {
@@ -451,6 +451,258 @@
       "icon": "Bell",
       "color": "#be185d",
       "pairId": 32,
+      "type": "icon"
+    },
+    {
+      "name": "Rocket",
+      "icon": "Rocket",
+      "color": "#7c3aed",
+      "pairId": 33,
+      "type": "icon"
+    },
+    {
+      "name": "Rocket",
+      "icon": "Rocket",
+      "color": "#f97316",
+      "pairId": 33,
+      "type": "icon"
+    },
+    {
+      "name": "Compass",
+      "icon": "Compass",
+      "color": "#92400e",
+      "pairId": 34,
+      "type": "icon"
+    },
+    {
+      "name": "Compass",
+      "icon": "Compass",
+      "color": "#059669",
+      "pairId": 34,
+      "type": "icon"
+    },
+    {
+      "name": "Mountain",
+      "icon": "Mountain",
+      "color": "#64748b",
+      "pairId": 35,
+      "type": "icon"
+    },
+    {
+      "name": "Mountain",
+      "icon": "Mountain",
+      "color": "#dc2626",
+      "pairId": 35,
+      "type": "icon"
+    },
+    {
+      "name": "Waves",
+      "icon": "Waves",
+      "color": "#0ea5e9",
+      "pairId": 36,
+      "type": "icon"
+    },
+    {
+      "name": "Waves",
+      "icon": "Waves",
+      "color": "#16a34a",
+      "pairId": 36,
+      "type": "icon"
+    },
+    {
+      "name": "Snowflake",
+      "icon": "Snowflake",
+      "color": "#e2e8f0",
+      "pairId": 37,
+      "type": "icon"
+    },
+    {
+      "name": "Snowflake",
+      "icon": "Snowflake",
+      "color": "#3b82f6",
+      "pairId": 37,
+      "type": "icon"
+    },
+    {
+      "name": "Rainbow",
+      "icon": "Rainbow",
+      "color": "#f59e0b",
+      "pairId": 38,
+      "type": "icon"
+    },
+    {
+      "name": "Rainbow",
+      "icon": "Rainbow",
+      "color": "#8b5cf6",
+      "pairId": 38,
+      "type": "icon"
+    },
+    {
+      "name": "Feather",
+      "icon": "Feather",
+      "color": "#d97706",
+      "pairId": 39,
+      "type": "icon"
+    },
+    {
+      "name": "Feather",
+      "icon": "Feather",
+      "color": "#0d9488",
+      "pairId": 39,
+      "type": "icon"
+    },
+    {
+      "name": "Fan",
+      "icon": "Fan",
+      "color": "#ec4899",
+      "pairId": 40,
+      "type": "icon"
+    },
+    {
+      "name": "Fan",
+      "icon": "Fan",
+      "color": "#14b8a6",
+      "pairId": 40,
+      "type": "icon"
+    },
+    {
+      "name": "Fish",
+      "icon": "Fish",
+      "color": "#06b6d4",
+      "pairId": 41,
+      "type": "icon"
+    },
+    {
+      "name": "Fish",
+      "icon": "Fish",
+      "color": "#ea580c",
+      "pairId": 41,
+      "type": "icon"
+    },
+    {
+      "name": "Bone",
+      "icon": "Bone",
+      "color": "#65a30d",
+      "pairId": 42,
+      "type": "icon"
+    },
+    {
+      "name": "Bone",
+      "icon": "Bone",
+      "color": "#be185d",
+      "pairId": 42,
+      "type": "icon"
+    },
+    {
+      "name": "Cat",
+      "icon": "Cat",
+      "color": "#a855f7",
+      "pairId": 43,
+      "type": "icon"
+    },
+    {
+      "name": "Cat",
+      "icon": "Cat",
+      "color": "#059669",
+      "pairId": 43,
+      "type": "icon"
+    },
+    {
+      "name": "Dog",
+      "icon": "Dog",
+      "color": "#92400e",
+      "pairId": 44,
+      "type": "icon"
+    },
+    {
+      "name": "Dog",
+      "icon": "Dog",
+      "color": "#7c3aed",
+      "pairId": 44,
+      "type": "icon"
+    },
+    {
+      "name": "Rabbit",
+      "icon": "Rabbit",
+      "color": "#f87171",
+      "pairId": 45,
+      "type": "icon"
+    },
+    {
+      "name": "Rabbit",
+      "icon": "Rabbit",
+      "color": "#4ade80",
+      "pairId": 45,
+      "type": "icon"
+    },
+    {
+      "name": "Turtle",
+      "icon": "Turtle",
+      "color": "#10b981",
+      "pairId": 46,
+      "type": "icon"
+    },
+    {
+      "name": "Turtle",
+      "icon": "Turtle",
+      "color": "#f59e0b",
+      "pairId": 46,
+      "type": "icon"
+    },
+    {
+      "name": "Bird",
+      "icon": "Bird",
+      "color": "#8b5cf6",
+      "pairId": 47,
+      "type": "icon"
+    },
+    {
+      "name": "Bird",
+      "icon": "Bird",
+      "color": "#f97316",
+      "pairId": 47,
+      "type": "icon"
+    },
+    {
+      "name": "Squirrel",
+      "icon": "Squirrel",
+      "color": "#ef4444",
+      "pairId": 48,
+      "type": "icon"
+    },
+    {
+      "name": "Squirrel",
+      "icon": "Squirrel",
+      "color": "#06b6d4",
+      "pairId": 48,
+      "type": "icon"
+    },
+    {
+      "name": "Anchor",
+      "icon": "Anchor",
+      "color": "#475569",
+      "pairId": 49,
+      "type": "icon"
+    },
+    {
+      "name": "Anchor",
+      "icon": "Anchor",
+      "color": "#dc2626",
+      "pairId": 49,
+      "type": "icon"
+    },
+    {
+      "name": "Palette",
+      "icon": "Palette",
+      "color": "#db2777",
+      "pairId": 50,
+      "type": "icon"
+    },
+    {
+      "name": "Palette",
+      "icon": "Palette",
+      "color": "#0ea5e9",
+      "pairId": 50,
       "type": "icon"
     }
   ]
